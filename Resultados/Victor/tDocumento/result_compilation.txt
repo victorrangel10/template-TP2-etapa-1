@@ -1,0 +1,3 @@
+tDocumento.c:12:1: warning: useless storage class specifier in empty declaration
+   12 | };
+      | ^

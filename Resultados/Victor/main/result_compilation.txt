@@ -1,0 +1,17 @@
+tBiopsia.c: In function ‘desalocaBiopsia’:
+tBiopsia.c:45:1: warning: control reaches end of non-void function [-Wreturn-type]
+   45 | }
+      | ^
+tDocumento.c:12:1: warning: useless storage class specifier in empty declaration
+   12 | };
+      | ^
+tReceita.c:17:1: warning: useless storage class specifier in empty declaration
+   17 | };
+      | ^
+tReceita.c: In function ‘imprimeEmArquivoReceita’:
+tReceita.c:90:18: warning: too many arguments for format [-Wformat-extra-args]
+   90 |     fprintf(arq, "USO ORAL\n\n", r->tipoUso);
+      |                  ^~~~~~~~~~~~~~
+tReceita.c:92:18: warning: too many arguments for format [-Wformat-extra-args]
+   92 |     fprintf(arq, "USO TOPICO\n\n", r->tipoUso);
+      |                  ^~~~~~~~~~~~~~~~
