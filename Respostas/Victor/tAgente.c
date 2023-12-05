@@ -104,3 +104,28 @@ void LiberaAgente(tAgente* a) {
         free(a);
     }
 }
+
+
+char * ObtemNomeAgente(tAgente * a){
+    if (a)
+    {
+        return a->nome;
+    }
+    
+}
+
+char * ObtemDataNascimentoAgente(tAgente * a){
+    if (a)
+    {
+        return a->dataNascimento;
+    }
+    
+}
+
+char * ObtemCPFAgente(tAgente * a){
+    if (a)
+    {
+        return a->cpf;
+    }
+    
+}

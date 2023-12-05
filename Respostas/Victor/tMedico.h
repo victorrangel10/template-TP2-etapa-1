@@ -17,4 +17,8 @@ tMedico* RecuperaMedico(FILE* banco);
 
 void LiberaMedico(tMedico* m);
 
+
+char * ObtemNomeMedico(tMedico * m);
+
+char * ObtemCRMMedico(tMedico *m);
 #endif

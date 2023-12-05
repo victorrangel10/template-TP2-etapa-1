@@ -15,4 +15,10 @@ tAgente* RecuperaAgenteBancoDados(FILE* banco);
 
 void LiberaAgente(tAgente* a);
 
+char * ObtemNomeAgente(tAgente * a);
+
+char * ObtemDataNascimentoAgente(tAgente * a);
+
+char* ObtemCPFAgente(tAgente* a);
+
 #endif

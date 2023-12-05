@@ -73,3 +73,19 @@ void LiberaMedico(tMedico* m) {
         free(m);
     }
 }
+
+char * ObtemNomeMedico(tMedico * m){
+    if (m)
+    {
+       return  ObtemNomeAgente(m->pessoa);
+    }
+    
+}
+
+char * ObtemCRMMedico(tMedico *m){
+    if (m)
+    {
+        return m->CRM;
+    }
+    
+}
