@@ -4,7 +4,7 @@
 #include <stdlib.h>
 #include <string.h>
 
-typedef struct tReceita {
+struct tReceita {
   char nomePaciente[101];
   eTipoUso tipoUso;
   char nomeMedicamento[MAX_TAM_NOME_MEDICAMENTO];
@@ -87,9 +87,9 @@ void imprimeEmArquivoReceita(void *dado, char *path) {
   fprintf(arq, "RECEITUARIO\n");
   fprintf(arq, "NOME: %s\n\n", r->nomePaciente);
   if (r->tipoUso == ORAL) {
-    fprintf(arq, "USO ORAL\n\n", r->tipoUso);
+    fprintf(arq, "USO ORAL\n\n");
   } else if (r->tipoUso == TOPICO) {
-    fprintf(arq, "USO TOPICO\n\n", r->tipoUso);
+    fprintf(arq, "USO TOPICO\n\n");
   }
 
   fprintf(arq, "%s\n%d %s\n\n", r->nomeMedicamento, r->quantidade,
