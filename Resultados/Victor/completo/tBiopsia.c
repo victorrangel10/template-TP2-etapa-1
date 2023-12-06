@@ -8,7 +8,6 @@
 
 struct tBiopsia {
   char nomePaciente[101];
-  int quantidade;
   char cpfPaciente[15];
   tLesao** lesoes;
   char nomeMedico[101];
@@ -24,7 +23,7 @@ tBiopsia* criaBiopsia(char* nomePaciente, int qtd, char* cpf, tLesao** lesoes,
 
 
   strcpy(b->nomePaciente, nomePaciente);
-  b->quantidade = qtd;
+  b->nlesoes = qtd;
   strcpy(b->cpfPaciente, cpf);
   b->lesoes = lesoes;
   strcpy(b->nomeMedico, nomemedico);

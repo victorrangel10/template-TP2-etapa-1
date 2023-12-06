@@ -13,12 +13,4 @@ void ImprimeTelaEncaminhamento (tEncaminhamento * e);
 
 void ImprimeArquivoEncaminhamento(tEncaminhamento* e, void* path);
 
-
-
-
-
-
-
-
-
 #endif

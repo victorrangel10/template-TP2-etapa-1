@@ -1,17 +1,108 @@
+main.c: In function ‘main’:
+main.c:84:13: warning: implicit declaration of function ‘RecuperaMedicosClinica’; did you mean ‘CadastraMedicoClinica’? [-Wimplicit-function-declaration]
+   84 |             RecuperaMedicosClinica(clinica);
+      |             ^~~~~~~~~~~~~~~~~~~~~~
+      |             CadastraMedicoClinica
+main.c:87:13: warning: implicit declaration of function ‘RecuperaSecretariosClinica’; did you mean ‘CadastraSecretarioClinica’? [-Wimplicit-function-declaration]
+   87 |             RecuperaSecretariosClinica(clinica);
+      |             ^~~~~~~~~~~~~~~~~~~~~~~~~~
+      |             CadastraSecretarioClinica
+main.c:94:15: warning: implicit declaration of function ‘ChecaLogin’ [-Wimplicit-function-declaration]
+   94 |         cargo=ChecaLogin(clinica);
+      |               ^~~~~~~~~~
+main.c:97:5: warning: implicit declaration of function ‘RodaPrograma’ [-Wimplicit-function-declaration]
+   97 |     RodaPrograma(cargo);
+      |     ^~~~~~~~~~~~
+main.c:99:5: warning: implicit declaration of function ‘DesalocaClinica’ [-Wimplicit-function-declaration]
+   99 |     DesalocaClinica(clinica);
+      |     ^~~~~~~~~~~~~~~
+main.c:59:28: warning: ‘/medicos.bin’ directive writing 12 bytes into a region of size between 1 and 200 [-Wformat-overflow=]
+   59 |     sprintf(arqMedicos, "%s/medicos.bin", caminho);
+      |                            ^~~~~~~~~~~~
+main.c:59:5: note: ‘sprintf’ output between 13 and 212 bytes into a destination of size 200
+   59 |     sprintf(arqMedicos, "%s/medicos.bin", caminho);
+      |     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+main.c:60:32: warning: ‘/secretarios.bin’ directive writing 16 bytes into a region of size between 1 and 200 [-Wformat-overflow=]
+   60 |     sprintf(arqSecretarios, "%s/secretarios.bin", caminho);
+      |                                ^~~~~~~~~~~~~~~~
+main.c:60:5: note: ‘sprintf’ output between 17 and 216 bytes into a destination of size 200
+   60 |     sprintf(arqSecretarios, "%s/secretarios.bin", caminho);
+      |     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+main.c:61:30: warning: ‘/pacientes.bin’ directive writing 14 bytes into a region of size between 1 and 200 [-Wformat-overflow=]
+   61 |     sprintf(arqPacientes, "%s/pacientes.bin", caminho);
+      |                              ^~~~~~~~~~~~~~
+main.c:61:5: note: ‘sprintf’ output between 15 and 214 bytes into a destination of size 200
+   61 |     sprintf(arqPacientes, "%s/pacientes.bin", caminho);
+      |     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+main.c:62:30: warning: ‘/consultas.bin’ directive writing 14 bytes into a region of size between 1 and 200 [-Wformat-overflow=]
+   62 |     sprintf(arqConsultas, "%s/consultas.bin", caminho);
+      |                              ^~~~~~~~~~~~~~
+main.c:62:5: note: ‘sprintf’ output between 15 and 214 bytes into a destination of size 200
+   62 |     sprintf(arqConsultas, "%s/consultas.bin", caminho);
+      |     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+main.c:63:27: warning: ‘/lesoes.bin’ directive writing 11 bytes into a region of size between 1 and 200 [-Wformat-overflow=]
+   63 |     sprintf(arqLesoes, "%s/lesoes.bin", caminho);
+      |                           ^~~~~~~~~~~
+main.c:63:5: note: ‘sprintf’ output between 12 and 211 bytes into a destination of size 200
+   63 |     sprintf(arqLesoes, "%s/lesoes.bin", caminho);
+      |     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+tAgente.c: In function ‘ObtemNomeAgente’:
+tAgente.c:115:1: warning: control reaches end of non-void function [-Wreturn-type]
+  115 | }
+      | ^
+tAgente.c: In function ‘ObtemDataNascimentoAgente’:
+tAgente.c:123:1: warning: control reaches end of non-void function [-Wreturn-type]
+  123 | }
+      | ^
+tAgente.c: In function ‘ObtemCPFAgente’:
+tAgente.c:131:1: warning: control reaches end of non-void function [-Wreturn-type]
+  131 | }
+      | ^
 tBiopsia.c: In function ‘desalocaBiopsia’:
-tBiopsia.c:45:1: warning: control reaches end of non-void function [-Wreturn-type]
-   45 | }
+tBiopsia.c:44:1: warning: control reaches end of non-void function [-Wreturn-type]
+   44 | }
       | ^
-tDocumento.c:12:1: warning: useless storage class specifier in empty declaration
-   12 | };
+tConsulta.c: In function ‘criaConsulta’:
+tConsulta.c:16:15: warning: statement with no effect [-Wunused-value]
+   16 |     c->lesoes == NULL;
+      |               ^
+tConsulta.c: In function ‘GeraBiopsia’:
+tConsulta.c:185:86: warning: passing argument 5 of ‘insereDocumentoFila’ from incompatible pointer type [-Wincompatible-pointer-types]
+  185 |         insereDocumentoFila(fila, b, imprimeNaTelaBiospsia, imprimeEmArquivoBiopsia, desalocaBiopsia);
+      |                                                                                      ^~~~~~~~~~~~~~~
+      |                                                                                      |
+      |                                                                                      tBiopsia * (*)(void *)
+In file included from tConsulta.h:7,
+                 from tConsulta.c:1:
+tFila.h:30:44: note: expected ‘func_ptr_desaloca’ {aka ‘void (*)(void *)’} but argument is of type ‘tBiopsia * (*)(void *)’
+   30 |                          func_ptr_desaloca desaloca);
+      |                          ~~~~~~~~~~~~~~~~~~^~~~~~~~
+tConsulta.c: In function ‘GeraEncaminhamento’:
+tConsulta.c:201:38: warning: passing argument 3 of ‘insereDocumentoFila’ from incompatible pointer type [-Wincompatible-pointer-types]
+  201 |         insereDocumentoFila(fila, e, ImprimeTelaEncaminhamento, ImprimeArquivoEncaminhamento, DesalocaEncaminhamento);
+      |                                      ^~~~~~~~~~~~~~~~~~~~~~~~~
+      |                                      |
+      |                                      void (*)(tEncaminhamento *)
+In file included from tConsulta.h:7,
+                 from tConsulta.c:1:
+tFila.h:28:71: note: expected ‘func_ptr_imprimeNaTela’ {aka ‘void (*)(void *)’} but argument is of type ‘void (*)(tEncaminhamento *)’
+   28 | void insereDocumentoFila(tFila *f, void *dado, func_ptr_imprimeNaTela imprimeNaTela,
+      |                                                ~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~
+tConsulta.c:201:65: warning: passing argument 4 of ‘insereDocumentoFila’ from incompatible pointer type [-Wincompatible-pointer-types]
+  201 |         insereDocumentoFila(fila, e, ImprimeTelaEncaminhamento, ImprimeArquivoEncaminhamento, DesalocaEncaminhamento);
+      |                                                                 ^~~~~~~~~~~~~~~~~~~~~~~~~~~~
+      |                                                                 |
+      |                                                                 void (*)(tEncaminhamento *, void *)
+In file included from tConsulta.h:7,
+                 from tConsulta.c:1:
+tFila.h:29:52: note: expected ‘func_ptr_imprimeEmArquivo’ {aka ‘void (*)(void *, char *)’} but argument is of type ‘void (*)(tEncaminhamento *, void *)’
+   29 |                          func_ptr_imprimeEmArquivo ImprimeEmArquivo,
+      |                          ~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~
+tMedico.c: In function ‘ObtemNomeMedico’:
+tMedico.c:83:1: warning: control reaches end of non-void function [-Wreturn-type]
+   83 | }
       | ^
-tReceita.c:17:1: warning: useless storage class specifier in empty declaration
-   17 | };
+tMedico.c: In function ‘ObtemCRMMedico’:
+tMedico.c:89:1: warning: control reaches end of non-void function [-Wreturn-type]
+   89 | }
       | ^
-tReceita.c: In function ‘imprimeEmArquivoReceita’:
-tReceita.c:90:18: warning: too many arguments for format [-Wformat-extra-args]
-   90 |     fprintf(arq, "USO ORAL\n\n", r->tipoUso);
-      |                  ^~~~~~~~~~~~~~
-tReceita.c:92:18: warning: too many arguments for format [-Wformat-extra-args]
-   92 |     fprintf(arq, "USO TOPICO\n\n", r->tipoUso);
-      |                  ^~~~~~~~~~~~~~~~

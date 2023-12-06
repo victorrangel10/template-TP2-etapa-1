@@ -11,7 +11,7 @@
 
 typedef struct tConsulta tConsulta;
 
-tConsulta* criaConsulta(tMedico* medico, tAgente* paciente);
+tConsulta* criaConsulta(char* crm,char*nomeapl, tAgente* paciente) ;
 
 void DesalocaConsulta(tConsulta* c);
 

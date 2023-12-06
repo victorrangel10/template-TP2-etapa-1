@@ -4,7 +4,7 @@
 #include <stdlib.h>
 #include <string.h>
 
-typedef struct tDocumento {
+ struct tDocumento {
   void *dado;
   func_ptr_imprimeNaTela imprime_tela;
   func_ptr_imprimeEmArquivo imprime_arquivo;

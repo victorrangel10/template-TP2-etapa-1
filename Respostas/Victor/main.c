@@ -2,42 +2,113 @@
 #include <stdlib.h>
 
 #include "tAgente.h"
+#include "tClinica.h"
+#include "tConsulta.h"
+#include "tDocumento.h"
+#include "tFila.h"
 #include "tMedico.h"
 #include "tSecretario.h"
-#include "tFila.h"
-#include "tDocumento.h"
-#include "tConsulta.h"
 
-
-tAgente * CadastraPaciente(){
+tAgente* CadastraPaciente() {
     printf("#################### CADASTRO PACIENTE #######################\n");
-    tAgente * a = LeAgente();
+    tAgente* a = LeAgente();
     printf("CADASTRO REALIZADO COM SUCESSO. PRESSIONE QUALQUER TECLA PARA VOLTAR PARA O MENU INICIAL\n");
     printf("###############################################################");
     scanf("%*c");
     return a;
 }
 
+int verificaTam(const char * caminho_do_arquivo) {
+    // Caminho para o arquivo binário
+   
+    // Abre o arquivo em modo de leitura binária
+    FILE *arquivo = fopen(caminho_do_arquivo, "rb");
+
+    if (arquivo == NULL) {
+        perror("Erro ao abrir o arquivo");
+        return 1;
+    }
+
+    // Move o ponteiro para o final do arquivo
+    fseek(arquivo, 0, SEEK_END);
+
+    // Obtém a posição atual do ponteiro
+    long tamanho_do_arquivo = ftell(arquivo);
+
+
+    rewind(arquivo);
+
+   
+    fclose(arquivo);
+
+    return tamanho_do_arquivo;
+}
 
 int main() {
-    FILE* banco = fopen("teste.bin", "wb");
+    printf("################################################\n");
+    printf("DIGITE O CAMINHO DO BANCO DE DADOS:\n");
+    char caminho[200];
+    scanf("%s\n", caminho);
+    printf("################################################\n");
+    char arqSecretarios[200];
+    char arqMedicos[200];
+    char arqPacientes[200];
+    char arqConsultas[200];
+    char arqLesoes[200];
 
-    tFila * fila = criaFila();
+    sprintf(arqMedicos, "%s/medicos.bin", caminho);
+    sprintf(arqSecretarios, "%s/secretarios.bin", caminho);
+    sprintf(arqPacientes, "%s/pacientes.bin", caminho);
+    sprintf(arqConsultas, "%s/consultas.bin", caminho);
+    sprintf(arqLesoes, "%s/lesoes.bin", caminho);
 
-    tAgente * paciente = CadastraPaciente();
+    FILE* bancoSecretarios = fopen(arqSecretarios,"a+b");
+    FILE* bancoMedicos = fopen(arqMedicos,"a+b");
 
-    tMedico * medico = LeMedico();
+    FILE* bancoPacientes = fopen(arqPacientes,"a+b");
+    FILE* bancoConsultas = fopen(arqConsultas,"a+b");
+    FILE* bancoLesoes = fopen(arqLesoes,"a+b");
 
-    tConsulta * consulta = criaConsulta(medico,paciente);
-    RealizaConsulta(consulta,fila);
-    printf("CHEGOU\n");
-    DesalocaConsulta(consulta);
+    tClinica * clinica = CriaClinica();
 
-    printf("CHEGOU1\n");
+    int ehNecessarioLogin=0;
+    if (!verificaTam(arqMedicos) && !verificaTam(arqSecretarios))
+    {
+        
+        CadastraSecretarioClinica(clinica,bancoSecretarios);
 
-    desalocaFila(fila);
-       printf("CHEGOU2\n");
+    }else{
+        ehNecessarioLogin=1;
+        if (verificaTam(arqMedicos))
+        {
+            RecuperaMedicosClinica(clinica);
+        }if (verificaTam(arqSecretarios))
+        {
+            RecuperaSecretariosClinica(clinica);
+        }if (verificaTam(arqPacientes))
+        {
+            RecuperaPacientesClinica(clinica);
+        }
+        
+        
+    }
+    int cargo=0;
+    if (ehNecessarioLogin)
+    {
+        cargo=ChecaLogin(clinica);
+    }
 
-    fclose(banco);
+    RodaPrograma(cargo);
+
+    DesalocaClinica(clinica);
+    fclose(bancoSecretarios);
+    fclose(bancoLesoes);
+    fclose(bancoConsultas);
+    fclose(bancoPacientes);
+    fclose(bancoMedicos);
+
     return 0;
+
+    
+    
 }

@@ -4,8 +4,6 @@
 #include "tEncaminhamento.h"
 
 
-
-
 struct tEncaminhamento
 {
     char  nomePaciente[101];
