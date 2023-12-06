@@ -12,6 +12,9 @@
 tAgente * CadastraPaciente(){
     printf("#################### CADASTRO PACIENTE #######################\n");
     tAgente * a = LeAgente();
+    printf("CADASTRO REALIZADO COM SUCESSO. PRESSIONE QUALQUER TECLA PARA VOLTAR PARA O MENU INICIAL\n");
+    printf("###############################################################");
+    scanf("%*c");
     return a;
 }
 
@@ -21,7 +24,7 @@ int main() {
 
     tFila * fila = criaFila();
 
-    tAgente * paciente = LeAgente();
+    tAgente * paciente = CadastraPaciente();
 
     tMedico * medico = LeMedico();
 

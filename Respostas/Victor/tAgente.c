@@ -30,23 +30,23 @@ tAgente* LeAgente() {
 
     printf("NOME COMPLETO: ");
     scanf("%[^\n]%*c", agente->nome);
-    printf(" nome eh %s", agente->nome);
+    printf(" nome eh %s\n", agente->nome);
 
     printf("CPF: ");
     scanf("%[^\n]%*c", agente->cpf);
-    printf("cpf eh %s", agente->cpf);
+    printf("cpf eh %s\n", agente->cpf);
 
     printf("DATA DE NASCIMENTO: ");
     scanf("%[^\n]%*c", agente->dataNascimento);
-    printf("data eh %s", agente->dataNascimento);
+    printf("data eh %s\n", agente->dataNascimento);
 
     printf("TELEFONE: ");
     scanf("%[^\n]%*c", agente->telefone);
-    printf("tel eh %s", agente->telefone);
+    printf("tel eh %s\n", agente->telefone);
 
     printf("GENERO: ");
     scanf("%[^\n]%*c", agente->genero);
-    printf("genero eh %s", agente->genero);
+    printf("genero eh %s\n", agente->genero);
 
     return agente;
 }

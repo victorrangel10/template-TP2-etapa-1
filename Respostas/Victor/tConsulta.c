@@ -35,6 +35,7 @@ void RealizaConsulta(tConsulta* consulta, tFila* fila) {
     printf("DATA DA CONSULTA:\n");
     char dataCon[10];
     scanf("%[^\n]%*c", dataCon);
+    printf("DATA EH %s\n",dataCon);
     printf("POSSUI DIABETES:");
     scanf("%d", &consulta->diabetes);
     printf("FUMANTE:");
@@ -118,9 +119,12 @@ void RealizaConsulta(tConsulta* consulta, tFila* fila) {
         printf("ENVIAR PARA CRIOTERAPIA: ");
         scanf("%d", &crio);
 
+
+        printf(" DIAG: %s \n REGIAO: %s\n",diag,regiao);
         char rotulo[6];
         sprintf(rotulo, "L%d", consulta->nlesoes);
-        printf(" ROTULO EH %s\n", rotulo);
+
+        printf("ROTULO EH %s\n", rotulo);
 
         consulta->lesoes = realloc(consulta->lesoes, consulta->nlesoes * sizeof(tLesao*));
 
@@ -132,9 +136,7 @@ void RealizaConsulta(tConsulta* consulta, tFila* fila) {
 
         printf("LESAO REGISTRADA COM SUCESSO. PRESSIONE QUALQUER TECLA PARA VOLTAR AO MENU ANTERIOR\n");
         printf("############################################################\n");
-        scanf("%*[^\n]");
-        scanf("%*c");
-        scanf("%*c");
+        scanf("%*c\n");
     }
 
     void CadastraReceita(tConsulta * consulta, tFila * fila) {
@@ -167,6 +169,8 @@ void RealizaConsulta(tConsulta* consulta, tFila* fila) {
 
         printf("RECEITA ENVIADA PARA FILA DE IMPRESSAO. PRESSIONE QUALQUER TECLA PARA RETORNAR AO MENU ANTERIOR\n");
         printf("############################################################\n");
+         while (getchar() != '\n');
+    
     }
 
     void GeraBiopsia(tConsulta * consulta, tFila * fila) {
@@ -180,8 +184,8 @@ void RealizaConsulta(tConsulta* consulta, tFila* fila) {
         tBiopsia* b = criaBiopsia(ObtemNomeAgente(consulta->paciente), consulta->nlesoes, ObtemCPFAgente(consulta->paciente), consulta->lesoes, ObtemNomeMedico(consulta->medico), ObtemCRMMedico(consulta->medico), consulta->data);
         insereDocumentoFila(fila, b, imprimeNaTelaBiospsia, imprimeEmArquivoBiopsia, desalocaBiopsia);
         printf("SOLICITACAO DE BIOPSIA ENVIADA PARA FILA DE IMPRESSAO. PRESSIONE QUALQUER TECLA PARA RETORNAR AO MENU ANTERIOR\n");
-        scanf("%*[^\n]\n");
         printf("############################################################\n");
+        while (getchar() != '\n');
     }
 
     void GeraEncaminhamento(tConsulta * consulta, tFila * fila) {
@@ -196,6 +200,6 @@ void RealizaConsulta(tConsulta* consulta, tFila* fila) {
         tEncaminhamento* e = CriaEncaminhamento(ObtemNomeAgente(consulta->paciente), ObtemCPFAgente(consulta->paciente), especialidade, motivo, ObtemNomeMedico(consulta->medico), ObtemCRMMedico(consulta->medico), consulta->data);
         insereDocumentoFila(fila, e, ImprimeTelaEncaminhamento, ImprimeArquivoEncaminhamento, DesalocaEncaminhamento);
         printf("ENCAMINHAMENTO ENVIADO PARA FILA DE IMPRESSAO. PRESSIONE QUALQUER TECLA PARA RETORNAR AO MENU ANTERIOR\n");
-        scanf("%*[^\n]\n");
         printf("############################################################\n");
+        while (getchar() != '\n');
     }
