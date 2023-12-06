@@ -4,65 +4,36 @@
 #include "tAgente.h"
 #include "tMedico.h"
 #include "tSecretario.h"
+#include "tFila.h"
+#include "tDocumento.h"
+#include "tConsulta.h"
 
-/*void RealizaConsulta(tMedico* medico) {
-    printf("#################### CONSULTA MEDICA #######################\n");
-    printf("CPF DO PACIENTE: ");
-    char cpf[15];
-    scanf("%s", cpf);
 
-    tAgente* paciente = VerificaCPFExistente(cpf);
+tAgente * CadastraPaciente(){
+    printf("#################### CADASTRO PACIENTE #######################\n");
+    tAgente * a = LeAgente();
+    return a;
+}
 
-    if (paciente == NULL) {
-        printf("PACIENTE SEM CADASTRO\n\n");
-        printf("PRESSIONE QUALQUER TECLA PARA VOLTAR PARA O MENU INICAL\n");
-        printf("############################################################");
-        scanf("%[^\n]");
-        scanf("%*c");
-        return;
-    }
-
-    printf("- NOME: %s\n", ObtemNomeAgente(paciente));
-    printf("- DATA DE NASCIMENTO: %s\n", ObtemDataNascimentoAgente(paciente));
-
-    printf("DATA DA CONSULTA:\n");
-    char dataCon[10];
-    scanf("%s", dataCon);
-    int diabetes, fumante, alergia, cancer;
-    scanf("%d %d %d %d", &diabetes, &fumante, &alergia, &cancer);
-
-    char tipoPele[5];
-    scanf("%s", tipoPele);
-
-    atualizaInformacoesPaciente(paciente, diabetes, fumante, alergia, cancer,
-                                TransformaTipoPeleInteiro(tipoPele));
-
-    int opt = 0;
-    while (opt != 5) {
-        ImprimeMenuConsulta();
-        scanf("%d", &opt);
-        switch (opt) {
-            case 1:
-                CadastraLesao(medico, paciente);
-                break;
-            case 2:
-
-                break;
-
-            default:
-                break;
-        }
-    }
-}*/
 
 int main() {
     FILE* banco = fopen("teste.bin", "wb");
 
-    tSecretario* s = LeSecretario();
+    tFila * fila = criaFila();
 
-    SalvaSecretario(banco, s);
+    tAgente * paciente = LeAgente();
 
-    LiberaSecretario(s);
+    tMedico * medico = LeMedico();
+
+    tConsulta * consulta = criaConsulta(medico,paciente);
+    RealizaConsulta(consulta,fila);
+    printf("CHEGOU\n");
+    DesalocaConsulta(consulta);
+
+    printf("CHEGOU1\n");
+
+    desalocaFila(fila);
+       printf("CHEGOU2\n");
 
     fclose(banco);
     return 0;
