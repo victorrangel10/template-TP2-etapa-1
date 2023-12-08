@@ -125,7 +125,7 @@ int main() {
     char crmUsuario[15];
 
     if (ehNecessarioLogin) {
-        cargo = ChecaLoginClinica(clinica, &nomeUsuario, &cpfUsuario, &crmUsuario);
+        cargo = ChecaLoginClinica(clinica, nomeUsuario, cpfUsuario, crmUsuario);
     } else {
         cargo = 1;
     }

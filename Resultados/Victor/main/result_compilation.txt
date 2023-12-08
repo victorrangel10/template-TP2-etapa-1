@@ -1,43 +1,31 @@
 main.c: In function ‘main’:
-main.c:98:15: warning: implicit declaration of function ‘ChecaLogin’ [-Wimplicit-function-declaration]
-   98 |         cargo=ChecaLogin(clinica);
-      |               ^~~~~~~~~~
-main.c:101:5: warning: implicit declaration of function ‘RodaPrograma’ [-Wimplicit-function-declaration]
-  101 |     RodaPrograma(cargo);
-      |     ^~~~~~~~~~~~
-main.c:103:5: warning: implicit declaration of function ‘DesalocaClinica’ [-Wimplicit-function-declaration]
-  103 |     DesalocaClinica(clinica);
-      |     ^~~~~~~~~~~~~~~
-main.c:59:28: warning: ‘/medicos.bin’ directive writing 12 bytes into a region of size between 1 and 200 [-Wformat-overflow=]
-   59 |     sprintf(arqMedicos, "%s/medicos.bin", caminho);
-      |                            ^~~~~~~~~~~~
-main.c:59:5: note: ‘sprintf’ output between 13 and 212 bytes into a destination of size 200
-   59 |     sprintf(arqMedicos, "%s/medicos.bin", caminho);
-      |     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-main.c:60:32: warning: ‘/secretarios.bin’ directive writing 16 bytes into a region of size between 1 and 200 [-Wformat-overflow=]
-   60 |     sprintf(arqSecretarios, "%s/secretarios.bin", caminho);
-      |                                ^~~~~~~~~~~~~~~~
-main.c:60:5: note: ‘sprintf’ output between 17 and 216 bytes into a destination of size 200
-   60 |     sprintf(arqSecretarios, "%s/secretarios.bin", caminho);
-      |     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-main.c:61:30: warning: ‘/pacientes.bin’ directive writing 14 bytes into a region of size between 1 and 200 [-Wformat-overflow=]
-   61 |     sprintf(arqPacientes, "%s/pacientes.bin", caminho);
-      |                              ^~~~~~~~~~~~~~
-main.c:61:5: note: ‘sprintf’ output between 15 and 214 bytes into a destination of size 200
-   61 |     sprintf(arqPacientes, "%s/pacientes.bin", caminho);
-      |     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-main.c:62:30: warning: ‘/consultas.bin’ directive writing 14 bytes into a region of size between 1 and 200 [-Wformat-overflow=]
-   62 |     sprintf(arqConsultas, "%s/consultas.bin", caminho);
-      |                              ^~~~~~~~~~~~~~
-main.c:62:5: note: ‘sprintf’ output between 15 and 214 bytes into a destination of size 200
-   62 |     sprintf(arqConsultas, "%s/consultas.bin", caminho);
-      |     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-main.c:63:27: warning: ‘/lesoes.bin’ directive writing 11 bytes into a region of size between 1 and 200 [-Wformat-overflow=]
-   63 |     sprintf(arqLesoes, "%s/lesoes.bin", caminho);
-      |                           ^~~~~~~~~~~
-main.c:63:5: note: ‘sprintf’ output between 12 and 211 bytes into a destination of size 200
-   63 |     sprintf(arqLesoes, "%s/lesoes.bin", caminho);
-      |     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+main.c:128:44: warning: passing argument 2 of ‘ChecaLoginClinica’ from incompatible pointer type [-Wincompatible-pointer-types]
+  128 |         cargo = ChecaLoginClinica(clinica, &nomeUsuario, &cpfUsuario, &crmUsuario);
+      |                                            ^~~~~~~~~~~~
+      |                                            |
+      |                                            char (*)[101]
+In file included from main.c:5:
+tClinica.h:47:42: note: expected ‘char *’ but argument is of type ‘char (*)[101]’
+   47 | int ChecaLoginClinica(tClinica* c, char* nome, char* cpf, char* crm);
+      |                                    ~~~~~~^~~~
+main.c:128:58: warning: passing argument 3 of ‘ChecaLoginClinica’ from incompatible pointer type [-Wincompatible-pointer-types]
+  128 |         cargo = ChecaLoginClinica(clinica, &nomeUsuario, &cpfUsuario, &crmUsuario);
+      |                                                          ^~~~~~~~~~~
+      |                                                          |
+      |                                                          char (*)[15]
+In file included from main.c:5:
+tClinica.h:47:54: note: expected ‘char *’ but argument is of type ‘char (*)[15]’
+   47 | int ChecaLoginClinica(tClinica* c, char* nome, char* cpf, char* crm);
+      |                                                ~~~~~~^~~
+main.c:128:71: warning: passing argument 4 of ‘ChecaLoginClinica’ from incompatible pointer type [-Wincompatible-pointer-types]
+  128 |         cargo = ChecaLoginClinica(clinica, &nomeUsuario, &cpfUsuario, &crmUsuario);
+      |                                                                       ^~~~~~~~~~~
+      |                                                                       |
+      |                                                                       char (*)[15]
+In file included from main.c:5:
+tClinica.h:47:65: note: expected ‘char *’ but argument is of type ‘char (*)[15]’
+   47 | int ChecaLoginClinica(tClinica* c, char* nome, char* cpf, char* crm);
+      |                                                           ~~~~~~^~~
 tAgente.c: In function ‘ObtemNomeAgente’:
 tAgente.c:115:1: warning: control reaches end of non-void function [-Wreturn-type]
   115 | }
@@ -54,55 +42,74 @@ tBiopsia.c: In function ‘desalocaBiopsia’:
 tBiopsia.c:44:1: warning: control reaches end of non-void function [-Wreturn-type]
    44 | }
       | ^
-tClinica.c: In function ‘SalvaPacientesClinica’:
-tClinica.c:126:19: warning: passing argument 1 of ‘fwrite’ makes pointer from integer without a cast [-Wint-conversion]
-  126 |     fwrite(clinica->nPacientes, sizeof(int), 1, clinica);
-      |            ~~~~~~~^~~~~~~~~~~~
-      |                   |
-      |                   int
-In file included from tClinica.h:4,
-                 from tClinica.c:2:
-/usr/include/stdio.h:681:46: note: expected ‘const void * restrict’ but argument is of type ‘int’
-  681 | extern size_t fwrite (const void *__restrict __ptr, size_t __size,
-      |                       ~~~~~~~~~~~~~~~~~~~~~~~^~~~~
-tClinica.c:126:49: warning: passing argument 4 of ‘fwrite’ from incompatible pointer type [-Wincompatible-pointer-types]
-  126 |     fwrite(clinica->nPacientes, sizeof(int), 1, clinica);
-      |                                                 ^~~~~~~
-      |                                                 |
-      |                                                 tClinica *
-In file included from tClinica.h:4,
-                 from tClinica.c:2:
-/usr/include/stdio.h:682:52: note: expected ‘FILE * restrict’ but argument is of type ‘tClinica *’
-  682 |                       size_t __n, FILE *__restrict __s);
-      |                                   ~~~~~~~~~~~~~~~~~^~~
-tClinica.c: In function ‘SalvaSecretariosClinica’:
-tClinica.c:155:19: warning: passing argument 1 of ‘fwrite’ makes pointer from integer without a cast [-Wint-conversion]
-  155 |     fwrite(clinica->nSecretarios, sizeof(int), 1, clinica);
-      |            ~~~~~~~^~~~~~~~~~~~~~
-      |                   |
-      |                   int
-In file included from tClinica.h:4,
-                 from tClinica.c:2:
-/usr/include/stdio.h:681:46: note: expected ‘const void * restrict’ but argument is of type ‘int’
-  681 | extern size_t fwrite (const void *__restrict __ptr, size_t __size,
-      |                       ~~~~~~~~~~~~~~~~~~~~~~~^~~~~
-tClinica.c:155:51: warning: passing argument 4 of ‘fwrite’ from incompatible pointer type [-Wincompatible-pointer-types]
-  155 |     fwrite(clinica->nSecretarios, sizeof(int), 1, clinica);
-      |                                                   ^~~~~~~
-      |                                                   |
-      |                                                   tClinica *
-In file included from tClinica.h:4,
-                 from tClinica.c:2:
-/usr/include/stdio.h:682:52: note: expected ‘FILE * restrict’ but argument is of type ‘tClinica *’
-  682 |                       size_t __n, FILE *__restrict __s);
-      |                                   ~~~~~~~~~~~~~~~~~^~~
+tClinica.c: In function ‘RealizaConsultaClinica’:
+tClinica.c:30:25: warning: implicit declaration of function ‘BuscaPacienteClinica’; did you mean ‘BuscaPacientesClinica’? [-Wimplicit-function-declaration]
+   30 |     tAgente* paciente = BuscaPacienteClinica(clinica, cpfPaciente);
+      |                         ^~~~~~~~~~~~~~~~~~~~
+      |                         BuscaPacientesClinica
+tClinica.c:30:25: warning: initialization of ‘tAgente *’ from ‘int’ makes pointer from integer without a cast [-Wint-conversion]
+tClinica.c:34:78: warning: value computed is not used [-Wunused-value]
+   34 |         printf("PRESSIONE QUALQUER TECLA PARA VOLTAR PARA O MENU INICIAL\n") /
+      |         ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+   35 |             printf("##########################################################");
+      |             ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+tClinica.c:49:41: warning: passing argument 1 of ‘realloc’ makes pointer from integer without a cast [-Wint-conversion]
+   49 |     clinica->consultas = realloc(clinica->nConsultas, (clinica->nConsultas + 1) * sizeof(tConsulta*));
+      |                                  ~~~~~~~^~~~~~~~~~~~
+      |                                         |
+      |                                         int
+In file included from tMedico.h:5,
+                 from tClinica.h:9,
+                 from tClinica.c:4:
+/usr/include/stdlib.h:551:29: note: expected ‘void *’ but argument is of type ‘int’
+  551 | extern void *realloc (void *__ptr, size_t __size)
+      |                       ~~~~~~^~~~~
+tClinica.c: In function ‘ChecaLoginClinica’:
+tClinica.c:331:27: warning: assignment to ‘char’ from ‘char *’ makes integer from pointer without a cast [-Wint-conversion]
+  331 |                     *nome = ObtemNomeSecretario(c->secretarios[i]);
+      |                           ^
+tClinica.c:333:26: warning: assignment to ‘char’ from ‘char *’ makes integer from pointer without a cast [-Wint-conversion]
+  333 |                     *cpf = ObtemCPFSecretario(c->secretarios[i]);
+      |                          ^
+tClinica.c:335:26: warning: assignment to ‘char’ from ‘void *’ makes integer from pointer without a cast [-Wint-conversion]
+  335 |                     *crm = NULL;
+      |                          ^
+tClinica.c:338:27: warning: assignment to ‘char’ from ‘char *’ makes integer from pointer without a cast [-Wint-conversion]
+  338 |                     *nome = ObtemNomeSecretario(c->secretarios[i]);
+      |                           ^
+tClinica.c:340:26: warning: assignment to ‘char’ from ‘char *’ makes integer from pointer without a cast [-Wint-conversion]
+  340 |                     *cpf = ObtemCPFSecretario(c->secretarios[i]);
+      |                          ^
+tClinica.c:342:26: warning: assignment to ‘char’ from ‘void *’ makes integer from pointer without a cast [-Wint-conversion]
+  342 |                     *crm = NULL;
+      |                          ^
+tClinica.c:354:23: warning: assignment to ‘char’ from ‘char *’ makes integer from pointer without a cast [-Wint-conversion]
+  354 |                 *nome = ObtemNomeMedico(c->medicos[i]);
+      |                       ^
+tClinica.c:355:22: warning: assignment to ‘char’ from ‘char *’ makes integer from pointer without a cast [-Wint-conversion]
+  355 |                 *cpf = ObtemCPFMedico(c->medicos[i]);
+      |                      ^
+tClinica.c:356:22: warning: assignment to ‘char’ from ‘char *’ makes integer from pointer without a cast [-Wint-conversion]
+  356 |                 *crm = ObtemCRMMedico(c->medicos[i]);
+      |                      ^
+tClinica.c: In function ‘BuscaPacientesClinica’:
+tClinica.c:426:103: warning: passing argument 5 of ‘insereDocumentoFila’ from incompatible pointer type [-Wincompatible-pointer-types]
+  426 |             insereDocumentoFila(clinica->filaImpressao, l, imprimeNaTelaLista, imprimeEmArquivoLista, desalocaLista);
+      |                                                                                                       ^~~~~~~~~~~~~
+      |                                                                                                       |
+      |                                                                                                       tLista * (*)(void *)
+In file included from tClinica.h:11,
+                 from tClinica.c:4:
+tFila.h:30:44: note: expected ‘func_ptr_desaloca’ {aka ‘void (*)(void *)’} but argument is of type ‘tLista * (*)(void *)’
+   30 |                          func_ptr_desaloca desaloca);
+      |                          ~~~~~~~~~~~~~~~~~~^~~~~~~~
 tConsulta.c: In function ‘criaConsulta’:
 tConsulta.c:18:15: warning: statement with no effect [-Wunused-value]
    18 |     c->lesoes == NULL;
       |               ^
 tConsulta.c: In function ‘GeraBiopsia’:
-tConsulta.c:185:82: warning: passing argument 5 of ‘insereDocumentoFila’ from incompatible pointer type [-Wincompatible-pointer-types]
-  185 |     insereDocumentoFila(fila, b, imprimeNaTelaBiospsia, imprimeEmArquivoBiopsia, desalocaBiopsia);
+tConsulta.c:196:82: warning: passing argument 5 of ‘insereDocumentoFila’ from incompatible pointer type [-Wincompatible-pointer-types]
+  196 |     insereDocumentoFila(fila, b, imprimeNaTelaBiospsia, imprimeEmArquivoBiopsia, desalocaBiopsia);
       |                                                                                  ^~~~~~~~~~~~~~~
       |                                                                                  |
       |                                                                                  tBiopsia * (*)(void *)
@@ -112,11 +119,8 @@ tFila.h:30:44: note: expected ‘func_ptr_desaloca’ {aka ‘void (*)(void *)�
    30 |                          func_ptr_desaloca desaloca);
       |                          ~~~~~~~~~~~~~~~~~~^~~~~~~~
 tConsulta.c: In function ‘GeraEncaminhamento’:
-tConsulta.c:197:23: warning: unknown escape sequence: '\-'
-  197 |     scanf("%[^\-n]%*c", especialidade);
-      |                       ^
-tConsulta.c:202:34: warning: passing argument 3 of ‘insereDocumentoFila’ from incompatible pointer type [-Wincompatible-pointer-types]
-  202 |     insereDocumentoFila(fila, e, ImprimeTelaEncaminhamento, ImprimeArquivoEncaminhamento, DesalocaEncaminhamento);
+tConsulta.c:213:34: warning: passing argument 3 of ‘insereDocumentoFila’ from incompatible pointer type [-Wincompatible-pointer-types]
+  213 |     insereDocumentoFila(fila, e, ImprimeTelaEncaminhamento, ImprimeArquivoEncaminhamento, DesalocaEncaminhamento);
       |                                  ^~~~~~~~~~~~~~~~~~~~~~~~~
       |                                  |
       |                                  void (*)(tEncaminhamento *)
@@ -125,8 +129,8 @@ In file included from tConsulta.h:7,
 tFila.h:28:71: note: expected ‘func_ptr_imprimeNaTela’ {aka ‘void (*)(void *)’} but argument is of type ‘void (*)(tEncaminhamento *)’
    28 | void insereDocumentoFila(tFila *f, void *dado, func_ptr_imprimeNaTela imprimeNaTela,
       |                                                ~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~
-tConsulta.c:202:61: warning: passing argument 4 of ‘insereDocumentoFila’ from incompatible pointer type [-Wincompatible-pointer-types]
-  202 |     insereDocumentoFila(fila, e, ImprimeTelaEncaminhamento, ImprimeArquivoEncaminhamento, DesalocaEncaminhamento);
+tConsulta.c:213:61: warning: passing argument 4 of ‘insereDocumentoFila’ from incompatible pointer type [-Wincompatible-pointer-types]
+  213 |     insereDocumentoFila(fila, e, ImprimeTelaEncaminhamento, ImprimeArquivoEncaminhamento, DesalocaEncaminhamento);
       |                                                             ^~~~~~~~~~~~~~~~~~~~~~~~~~~~
       |                                                             |
       |                                                             void (*)(tEncaminhamento *, void *)
@@ -135,34 +139,55 @@ In file included from tConsulta.h:7,
 tFila.h:29:52: note: expected ‘func_ptr_imprimeEmArquivo’ {aka ‘void (*)(void *, char *)’} but argument is of type ‘void (*)(tEncaminhamento *, void *)’
    29 |                          func_ptr_imprimeEmArquivo ImprimeEmArquivo,
       |                          ~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~
-tConsulta.c: In function ‘SalvaConsultaBin’:
-tConsulta.c:213:34: warning: passing argument 1 of ‘RegistraAgenteBancoDados’ from incompatible pointer type [-Wincompatible-pointer-types]
-  213 |         RegistraAgenteBancoDados(bancoConsulta, c->paciente);
-      |                                  ^~~~~~~~~~~~~
-      |                                  |
-      |                                  FILE *
-In file included from tMedico.h:7,
-                 from tConsulta.h:9,
-                 from tConsulta.c:1:
-tAgente.h:8:40: note: expected ‘tAgente *’ but argument is of type ‘FILE *’
-    8 | void RegistraAgenteBancoDados(tAgente* agente, FILE* banco);
-      |                               ~~~~~~~~~^~~~~~
-tConsulta.c:213:50: warning: passing argument 2 of ‘RegistraAgenteBancoDados’ from incompatible pointer type [-Wincompatible-pointer-types]
-  213 |         RegistraAgenteBancoDados(bancoConsulta, c->paciente);
-      |                                                 ~^~~~~~~~~~
-      |                                                  |
-      |                                                  tAgente *
-In file included from tMedico.h:7,
-                 from tConsulta.h:9,
-                 from tConsulta.c:1:
-tAgente.h:8:54: note: expected ‘FILE *’ but argument is of type ‘tAgente *’
-    8 | void RegistraAgenteBancoDados(tAgente* agente, FILE* banco);
-      |                                                ~~~~~~^~~~~
+tLista.c: In function ‘criaLista’:
+tLista.c:20:25: warning: implicit declaration of function ‘ClonaAgente’ [-Wimplicit-function-declaration]
+   20 |         l->agentes[i] = ClonaAgente(agentes[i]);
+      |                         ^~~~~~~~~~~
+tLista.c:20:23: warning: assignment to ‘tAgente *’ from ‘int’ makes pointer from integer without a cast [-Wint-conversion]
+   20 |         l->agentes[i] = ClonaAgente(agentes[i]);
+      |                       ^
+tLista.c: In function ‘desalocaLista’:
+tLista.c:32:27: warning: passing argument 1 of ‘LiberaAgente’ from incompatible pointer type [-Wincompatible-pointer-types]
+   32 |         LiberaAgente(lista->agentes);
+      |                      ~~~~~^~~~~~~~~
+      |                           |
+      |                           tAgente **
+In file included from tLista.h:6,
+                 from tLista.c:1:
+tAgente.h:12:28: note: expected ‘tAgente *’ but argument is of type ‘tAgente **’
+   12 | void LiberaAgente(tAgente* a);
+      |                   ~~~~~~~~~^
+tLista.c: In function ‘imprimeNaTelaLista’:
+tLista.c:41:22: warning: format ‘%d’ expects argument of type ‘int’, but argument 2 has type ‘size_t’ {aka ‘long unsigned int’} [-Wformat=]
+   41 |             printf("%d - %s(%s)\n", i, ObtemNomeAgente(l->agentes[i]), ObtemCPFAgente(l->agentes[i]));
+      |                     ~^              ~
+      |                      |              |
+      |                      int            size_t {aka long unsigned int}
+      |                     %ld
+tLista.c: In function ‘imprimeEmArquivoLista’:
+tLista.c:57:28: warning: format ‘%d’ expects argument of type ‘int’, but argument 3 has type ‘size_t’ {aka ‘long unsigned int’} [-Wformat=]
+   57 |             fprintf(arq, "%d - %s(%s)\n", i, ObtemNomeAgente(l->agentes[i]), ObtemCPFAgente(l->agentes[i]));
+      |                           ~^              ~
+      |                            |              |
+      |                            int            size_t {aka long unsigned int}
+      |                           %ld
+tLista.c: In function ‘desalocaLista’:
+tLista.c:35:1: warning: control reaches end of non-void function [-Wreturn-type]
+   35 | }
+      | ^
 tMedico.c: In function ‘ObtemNomeMedico’:
-tMedico.c:83:1: warning: control reaches end of non-void function [-Wreturn-type]
-   83 | }
+tMedico.c:87:1: warning: control reaches end of non-void function [-Wreturn-type]
+   87 | }
       | ^
 tMedico.c: In function ‘ObtemCRMMedico’:
-tMedico.c:89:1: warning: control reaches end of non-void function [-Wreturn-type]
-   89 | }
+tMedico.c:93:1: warning: control reaches end of non-void function [-Wreturn-type]
+   93 | }
+      | ^
+tMedico.c: In function ‘ObtemCPFMedico’:
+tMedico.c:99:1: warning: control reaches end of non-void function [-Wreturn-type]
+   99 | }
+      | ^
+tSecretario.c: In function ‘EhAdminSecretario’:
+tSecretario.c:90:1: warning: control reaches end of non-void function [-Wreturn-type]
+   90 | }
       | ^

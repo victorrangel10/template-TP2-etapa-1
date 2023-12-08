@@ -15,7 +15,7 @@ tConsulta* criaConsulta(char* crm, char* nomeapl, tAgente* paciente) {
     strcpy(c->nomeAplicador, nomeapl);
     strcpy(c->CRM, crm);
     c->paciente = paciente;
-    c->lesoes == NULL;
+    c->lesoes = NULL;
     return c;
 }
 
@@ -173,9 +173,20 @@ void CadastraReceita(tConsulta* consulta, tFila* fila) {
         ;
 }
 
+int TemLesaoCirurgicaConsulta(tConsulta* c) {
+    if (c) {
+        for (size_t i = 0; i < c->nlesoes; i++) {
+            if (VaiPraCirurgiaLesao(c->lesoes[i])) {
+                return 1;
+            }
+        }
+    }
+    return 0;
+}
+
 void GeraBiopsia(tConsulta* consulta, tFila* fila) {
     printf("#################### CONSULTA MEDICA ######################\n");
-    if (consulta->nlesoes == 0) {
+    if (!TemLesaoCirurgicaConsulta(consulta)) {
         printf("NAO E POSSIVEL SOLICITAR BIOPSIA SEM LESAO CIRURGICA. PRESSIONE QUALQUER TECLA PARA RETORNAR AO MENU ANTERIOR\n");
         scanf("%*[^\n]\n");
         return;
@@ -194,12 +205,13 @@ void GeraEncaminhamento(tConsulta* consulta, tFila* fila) {
     printf("ENCAMINHAMENTO:\n");
     printf("ESPECIALIDADE ENCAMINHADA:");
     char especialidade[100], motivo[100];
-    scanf("%[^\-n]%*c", especialidade);
+    scanf("%[^\n]%*c", especialidade);
     printf("MOTIVO: ");
     scanf("%[^\n]%*c", motivo);
 
     tEncaminhamento* e = CriaEncaminhamento(ObtemNomeAgente(consulta->paciente), ObtemCPFAgente(consulta->paciente), especialidade, motivo, consulta->nomeAplicador, consulta->CRM, consulta->data);
     insereDocumentoFila(fila, e, ImprimeTelaEncaminhamento, ImprimeArquivoEncaminhamento, DesalocaEncaminhamento);
+
     printf("ENCAMINHAMENTO ENVIADO PARA FILA DE IMPRESSAO. PRESSIONE QUALQUER TECLA PARA RETORNAR AO MENU ANTERIOR\n");
     printf("############################################################\n");
     while (getchar() != '\n')
@@ -210,11 +222,9 @@ void SalvaConsultaBin(FILE* bancoConsulta, FILE* bancoLesoes, tConsulta* c) {
     if (c) {
         fwrite(c, sizeof(tConsulta), 1, bancoConsulta);
 
-        RegistraAgenteBancoDados(bancoConsulta, c->paciente);
+        RegistraAgenteBancoDados(c->paciente, bancoConsulta);
 
         fwrite(&(c->nlesoes), sizeof(int), 1, bancoConsulta);
-
-        fwrite(c->lesoes, sizeof(tLesao*), c->nlesoes, bancoConsulta);
 
         SalvaLesoes(c->lesoes, c->nlesoes, bancoLesoes);
 
@@ -238,7 +248,7 @@ void RecuperaLesoesConsulta(FILE* banco, int num, tConsulta* consulta) {
     }
 }
 
-tConsulta* RecuperaConsulta(FILE* bancoConsulta) {
+tConsulta* RecuperaConsulta(FILE* bancoConsulta, FILE* bancoLesoes) {
     tConsulta* c = malloc(sizeof(tConsulta));
 
     fread(c, sizeof(tConsulta), 1, bancoConsulta);
@@ -247,15 +257,13 @@ tConsulta* RecuperaConsulta(FILE* bancoConsulta) {
 
     fread(&c->nlesoes, sizeof(int), 1, bancoConsulta);
 
-    fread(c->lesoes, sizeof(tLesao*), c->nlesoes, bancoConsulta);
+    RecuperaLesoesConsulta(bancoLesoes, c->nlesoes, c);
 
-    RecuperaLesoesConsulta(bancoConsulta,c->nlesoes,c);
+    fread(c->data, sizeof(char), 15, bancoConsulta);
 
-    fread(c->data,sizeof(char),15,bancoConsulta);
+    fread(c->nomeAplicador, sizeof(char), 101, bancoConsulta);
 
-    fread(c->nomeAplicador,sizeof(char),101,bancoConsulta);
-
-    fread(c->CRM,sizeof(char),15,bancoConsulta);
+    fread(c->CRM, sizeof(char), 15, bancoConsulta);
 
     return c;
 }

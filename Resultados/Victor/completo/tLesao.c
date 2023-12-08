@@ -38,6 +38,11 @@ void desalocaLesao(void *dado) {
     }
 }
 
+
+int VaiPraCirurgiaLesao(tLesao * t){
+    return t->vaiPraCirurgia;
+}
+
 void ImprimeLesao(tLesao *l) {
     printf("%s - %s - %s - %dMM\n", l->rotulo, l->diagnostico, l->regiao,
            l->tamanho);

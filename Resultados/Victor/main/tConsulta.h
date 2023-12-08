@@ -33,4 +33,4 @@ void SalvaLesoes(tLesao** lesoes, int num, FILE* bancoLesoes);
 
 void RecuperaLesoesConsulta(FILE* banco, int num, tConsulta* consulta);
 
-tConsulta* RecuperaConsulta(FILE* bancoConsulta);
+tConsulta* RecuperaConsulta(FILE* bancoConsulta, FILE * bancoLesoes);

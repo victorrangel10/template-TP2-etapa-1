@@ -19,4 +19,6 @@ void SalvaLesao(FILE* banco,tLesao* lesao);
 
 tLesao* RecuperaLesao(FILE * banco);
 
+int VaiPraCirurgiaLesao(tLesao * t);
+
 #endif

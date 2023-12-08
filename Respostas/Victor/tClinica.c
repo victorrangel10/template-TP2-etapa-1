@@ -20,6 +20,15 @@ struct tClinica {
     int nConsultas;
 };
 
+tAgente* BuscaPacienteClinica(tClinica* c, char* cpf) {
+    for (size_t i = 0; i < c->nPacientes; i++) {
+        if (strcmp(ObtemNomeAgente(c->pacientes[i]), cpf) == 0) {
+            return c->pacientes[i];
+        }
+    }
+    return NULL;
+}
+
 void RealizaConsultaClinica(tClinica* clinica, FILE* banco, char* nomeAtendente, char* cpfAtendente, char* crmAtendente) {
     printf("#################### CONSULTA MEDICA #######################\n");
     printf("CPF DO PACIENTE:");
@@ -31,8 +40,8 @@ void RealizaConsultaClinica(tClinica* clinica, FILE* banco, char* nomeAtendente,
 
     if (paciente == NULL) {
         printf("PACIENTE SEM CADASTRO\n\n");
-        printf("PRESSIONE QUALQUER TECLA PARA VOLTAR PARA O MENU INICIAL\n") /
-            printf("##########################################################");
+        printf("PRESSIONE QUALQUER TECLA PARA VOLTAR PARA O MENU INICIAL\n");
+        printf("##########################################################");
         scanf("%*c");
         while (getchar() != '\n')
             ;
@@ -46,7 +55,7 @@ void RealizaConsultaClinica(tClinica* clinica, FILE* banco, char* nomeAtendente,
 
     tConsulta* consulta = criaConsulta(crmAtendente, nomeAtendente, paciente);
 
-    clinica->consultas = realloc(clinica->nConsultas, (clinica->nConsultas + 1) * sizeof(tConsulta*));
+    clinica->consultas = realloc(clinica->consultas, (clinica->nConsultas + 1) * sizeof(tConsulta*));
 
     clinica->consultas[clinica->nConsultas] = consulta;
 
@@ -328,16 +337,16 @@ int ChecaLoginClinica(tClinica* c, char* nome, char* cpf, char* crm) {
             // Verifica se a senha eh igual
             if (strcmp(senha, ObtemSenhaSecretario(c->secretarios[i])) == 0) {
                 if (EhAdminSecretario(c->secretarios[i])) {
-                    *nome = ObtemNomeSecretario(c->secretarios[i]);
+                    strcpy(nome, ObtemNomeSecretario(c->secretarios[i]));
 
-                    *cpf = ObtemCPFSecretario(c->secretarios[i]);
+                    strcpy(cpf, ObtemCPFSecretario(c->secretarios[i]));
 
-                    *crm = NULL;
+                    crm = NULL;
                     return 1;
                 } else {
-                    *nome = ObtemNomeSecretario(c->secretarios[i]);
+                    strcpy(nome, ObtemNomeSecretario(c->secretarios[i]));
 
-                    *cpf = ObtemCPFSecretario(c->secretarios[i]);
+                    strcpy(cpf, ObtemCPFSecretario(c->secretarios[i]));
 
                     *crm = NULL;
                     return 2;
@@ -393,18 +402,14 @@ void GeraMenu(int tipoUsuario) {
     printf("###############################################################\n");
 }
 
-int temNomeIgualPacientesClinica(tClinica * c,char * nome){
-    for (size_t i = 0; i < c->nPacientes; i++)
-    {
-        if (strcmp(ObtemNomeAgente(c->pacientes[i]),nome)==0)
-        {
+int temNomeIgualPacientesClinica(tClinica* c, char* nome) {
+    for (size_t i = 0; i < c->nPacientes; i++) {
+        if (strcmp(ObtemNomeAgente(c->pacientes[i]), nome) == 0) {
             return 1;
         }
-        
     }
     return 0;
-} 
-
+}
 
 void BuscaPacientesClinica(tClinica* clinica) {
     printf("#################### BUSCAR PACIENTES #######################\n");

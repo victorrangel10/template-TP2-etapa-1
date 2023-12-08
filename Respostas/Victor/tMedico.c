@@ -51,9 +51,6 @@ void SalvaMedico(FILE* banco, tMedico* medico) {
     fwrite(medico->senha, sizeof(char), strlen(medico->senha) + 1, banco);
 }
 
-char* ObtemNomeMedico(tMedico* m) {
-    return ObtemNomeAgente(m->pessoa);
-}
 
 tMedico* RecuperaMedico(FILE* banco) {
     tMedico* medico = malloc(sizeof(tMedico));

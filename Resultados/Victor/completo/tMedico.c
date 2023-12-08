@@ -24,13 +24,14 @@ tMedico* LeMedico() {
     printf("#################### CADASTRO MEDICO #######################\n");
     medico->pessoa = LeAgente();  // Usando LeAgente() para ler os dados do agente
     printf("CRM: ");
-    while (getchar() != '\n');
+
     scanf("%[^\n]%*c", medico->CRM);
 
     printf("NOME DE USUARIO: ");
-    while (getchar() != '\n');
-    scanf("%[^\n]%*c", medico->usuario);
+    scanf("%[^\n]", medico->usuario);
     printf("USER EH %s\n", medico->usuario);
+    while (getchar() != '\n')
+        ;
     printf("SENHA: ");
     scanf("%[^\n]%*c", medico->senha);
     printf("SENHA EH %s\n", medico->senha);
@@ -49,6 +50,7 @@ void SalvaMedico(FILE* banco, tMedico* medico) {
     fwrite(medico->usuario, sizeof(char), strlen(medico->usuario) + 1, banco);
     fwrite(medico->senha, sizeof(char), strlen(medico->senha) + 1, banco);
 }
+
 
 tMedico* RecuperaMedico(FILE* banco) {
     tMedico* medico = malloc(sizeof(tMedico));
@@ -71,9 +73,11 @@ void LiberaMedico(tMedico* m) {
     if (m->pessoa) {
         LiberaAgente(m->pessoa);
     }
-    if (m) {
+    printf("CHEGOU3\n");
+    if (m != NULL) {
         free(m);
     }
+    printf("CHEGOU44\n");
 }
 
 char* ObtemNomeMedico(tMedico* m) {
@@ -86,4 +90,18 @@ char* ObtemCRMMedico(tMedico* m) {
     if (m) {
         return m->CRM;
     }
+}
+
+char* ObtemCPFMedico(tMedico* m) {
+    if (m) {
+        return ObtemCPFAgente(m->pessoa);
+    }
+}
+
+char* ObtemLoginMedico(tMedico* m) {
+    return m->usuario;
+}
+
+char* ObtemSenhaMedico(tMedico* m) {
+    return m->senha;
 }
