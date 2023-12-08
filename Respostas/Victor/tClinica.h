@@ -9,6 +9,7 @@
 #include "tFila.h"
 #include "tMedico.h"
 #include "tSecretario.h"
+#include "tLista.h"
 
 typedef struct tClinica tClinica;
 

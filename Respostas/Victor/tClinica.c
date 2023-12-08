@@ -20,8 +20,39 @@ struct tClinica {
     int nConsultas;
 };
 
-void RealizaConsultaClinica(tClinica* clinica, FILE* banco, char * nomeAtendente, char *cpfAtendente, char* crmAtendente){
-    tConsulta* consulta = criaConsulta();
+void RealizaConsultaClinica(tClinica* clinica, FILE* banco, char* nomeAtendente, char* cpfAtendente, char* crmAtendente) {
+    printf("#################### CONSULTA MEDICA #######################\n");
+    printf("CPF DO PACIENTE:");
+    char cpfPaciente[15];
+    scanf("%[^\n]", cpfPaciente);
+    while (getchar() != '\n')
+        ;
+    tAgente* paciente = BuscaPacienteClinica(clinica, cpfPaciente);
+
+    if (paciente == NULL) {
+        printf("PACIENTE SEM CADASTRO\n\n");
+        printf("PRESSIONE QUALQUER TECLA PARA VOLTAR PARA O MENU INICIAL\n") /
+            printf("##########################################################");
+        scanf("%*c");
+        while (getchar() != '\n')
+            ;
+        return;
+    }
+
+    printf("---\n");
+    printf("-NOME:%s\n", ObtemNomeAgente(paciente));
+    printf("-DATA DE NASCIMENTO:%s", ObtemDataNascimentoAgente(paciente));
+    printf("---\n");
+
+    tConsulta* consulta = criaConsulta(crmAtendente, nomeAtendente, paciente);
+
+    clinica->consultas = realloc(clinica->nConsultas, (clinica->nConsultas + 1) * sizeof(tConsulta*));
+
+    clinica->consultas[clinica->nConsultas] = consulta;
+
+    clinica->nConsultas++;
+
+    RealizaConsulta(consulta, clinica->filaImpressao);
 }
 
 void SalvaClinicaBinario(tClinica* clinica, FILE* bancoCLINICA) {
@@ -360,4 +391,40 @@ void GeraMenu(int tipoUsuario) {
     }
 
     printf("###############################################################\n");
+}
+
+int temNomeIgualPacientesClinica(tClinica * c,char * nome){
+    for (size_t i = 0; i < c->nPacientes; i++)
+    {
+        if (strcmp(ObtemNomeAgente(c->pacientes[i]),nome)==0)
+        {
+            return 1;
+        }
+        
+    }
+    return 0;
+} 
+
+
+void BuscaPacientesClinica(tClinica* clinica) {
+    printf("#################### BUSCAR PACIENTES #######################\n");
+    printf("NOME DO PACIENTE: ");
+    char nomeBuscado[101];
+    scanf("%[^\n]", nomeBuscado);
+    while (getchar() != '\n')
+        ;
+    if (temNomeIgualPacientesClinica(clinica, nomeBuscado)) {
+        printf("PACIENTES ENCONTRADOS \n");
+        tLista* l = criaLista(nomeBuscado, clinica->pacientes, clinica->nPacientes);
+        imprimeNaTelaLista(l);
+        printf("ESCOLHA UMA OPCAO:\n");
+        printf("\t(1) ENVIAR LISTA PARA IMPRESSAO");
+        printf("\t(2) RETORNAR AO MENU PRINCIPAL");
+        int opt;
+        scanf("%d", &opt);
+        if (opt == 2) {
+            insereDocumentoFila(clinica->filaImpressao, l, imprimeNaTelaLista, imprimeEmArquivoLista, desalocaLista);
+        }
+        return;
+    }
 }

@@ -16,4 +16,5 @@ tBiopsia* desalocaBiopsia(void* dado);
 void imprimeNaTelaBiospsia(void* dado);
 
 void imprimeEmArquivoBiopsia(void* dado,char * path);
+
 #endif

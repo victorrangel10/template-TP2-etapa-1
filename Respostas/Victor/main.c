@@ -41,6 +41,8 @@ void GeraMenu(int tipoUsuario) {
     } else if (tipoUsuario == 3) {  // Para medico
         printf("(4) REALIZAR CONSULTA\n");
         printf("(5) BUSCAR PACIENTES\n");
+        printf("(6) RELATORIO GERAL\n");
+        printf("(7) FILA DE IMPRESSAO\n");
         printf("(8) FINALIZAR O PROGRAMA\n");
     }
 
@@ -116,44 +118,45 @@ int main() {
         CadastraSecretarioClinica(clinica, bancoSecretarios);
     }
 
-    //Checa informacoes de login e senha
+    // Checa informacoes de login e senha
     int cargo;
     char nomeUsuario[101];
     char cpfUsuario[15];
     char crmUsuario[15];
 
     if (ehNecessarioLogin) {
-        cargo = ChecaLoginClinica(clinica,&nomeUsuario,&cpfUsuario,&crmUsuario);
+        cargo = ChecaLoginClinica(clinica, &nomeUsuario, &cpfUsuario, &crmUsuario);
     } else {
         cargo = 1;
     }
 
-    //Comeca o programa de fato
+    // Comeca o programa de fato
     int opt;
     do {
         GeraMenu(cargo);
-        scanf("%d",&opt);
-        switch (opt)
-        {
-        case 1:
-            CadastraSecretarioClinica(clinica,bancoSecretarios);
+        scanf("%d", &opt);
+        switch (opt) {
+            case 1:
+                CadastraSecretarioClinica(clinica, bancoSecretarios);
+                break;
+            case 2:
+                CadastraMedicoClinica(clinica, bancoMedicos);
+                break;
+            case 3:
+                CadastraPacienteClinica(clinica, bancoPacientes);
+                break;
+            case 4:
+                RealizaConsultaClinica(clinica, bancoConsultas, nomeUsuario, cpfUsuario, crmUsuario);
+                break;
+            case 5:
+                BuscaPacientesClinica(clinica);
             break;
-         case 2:
-            CadastraMedicoClinica(clinica,bancoMedicos);
-            break;
-         case 3:
-            CadastraPacienteClinica(clinica,bancoPacientes);
-            break;
-         case 4:
-            RealizaConsultaClinica(clinica,bancoConsultas,nomeUsuario,cpfUsuario,crmUsuario);
-            break;
-        
-        default:
-            break;
+            default:
+                break;
         }
     } while (opt != 8);
 
-    //Fecha tudo e salva no banco
+    // Fecha tudo e salva no banco
     fclose(bancoClinica);
     bancoClinica = fopen(arqClinica, "wb");
     SalvaClinicaBinario(clinica, bancoClinica);
