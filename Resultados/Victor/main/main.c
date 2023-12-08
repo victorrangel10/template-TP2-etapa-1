@@ -81,11 +81,15 @@ int main() {
         ehNecessarioLogin=1;
         if (verificaTam(arqMedicos))
         {
-            RecuperaMedicosClinica(clinica);
+            RecuperaMedicosClinica(clinica,bancoMedicos);
         }if (verificaTam(arqSecretarios))
         {
-            RecuperaSecretariosClinica(clinica);
+            RecuperaSecretariosClinica(clinica,bancoSecretarios);
+        }if (verificaTam(arqPacientes))
+        {
+            RecuperaPacientesClinica(clinica,bancoPacientes);
         }
+        
         
     }
     int cargo=0;
@@ -102,6 +106,8 @@ int main() {
     fclose(bancoConsultas);
     fclose(bancoPacientes);
     fclose(bancoMedicos);
+
+    return 0;
 
     
     

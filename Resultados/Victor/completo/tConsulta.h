@@ -11,7 +11,7 @@
 
 typedef struct tConsulta tConsulta;
 
-tConsulta* criaConsulta(tMedico* medico, tAgente* paciente);
+tConsulta* criaConsulta(char* crm,char*nomeapl, tAgente* paciente);
 
 void DesalocaConsulta(tConsulta* c);
 
@@ -26,3 +26,11 @@ void CadastraReceita(tConsulta* consulta, tFila* fila);
 void GeraBiopsia(tConsulta* consulta, tFila* fila);
 
 void GeraEncaminhamento(tConsulta* consulta, tFila* fila);
+
+void SalvaConsultaBin(FILE* bancoConsulta, FILE* bancoLesoes, tConsulta* c);
+
+void SalvaLesoes(tLesao** lesoes, int num, FILE* bancoLesoes);
+
+void RecuperaLesoesConsulta(FILE* banco, int num, tConsulta* consulta);
+
+tConsulta* RecuperaConsulta(FILE* bancoConsulta);

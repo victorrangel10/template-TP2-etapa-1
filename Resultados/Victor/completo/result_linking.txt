@@ -1,6 +1,5 @@
 /usr/bin/ld: Resultados/Victor/completo/main.o: in function `main':
-main.c:(.text+0x363): undefined reference to `RecuperaSecretariosClinica'
-/usr/bin/ld: main.c:(.text+0x38a): undefined reference to `ChecaLogin'
-/usr/bin/ld: main.c:(.text+0x3a2): undefined reference to `RodaPrograma'
-/usr/bin/ld: main.c:(.text+0x3b6): undefined reference to `DesalocaClinica'
+main.c:(.text+0x3c3): undefined reference to `ChecaLogin'
+/usr/bin/ld: main.c:(.text+0x3db): undefined reference to `RodaPrograma'
+/usr/bin/ld: main.c:(.text+0x3ef): undefined reference to `DesalocaClinica'
 collect2: error: ld returned 1 exit status

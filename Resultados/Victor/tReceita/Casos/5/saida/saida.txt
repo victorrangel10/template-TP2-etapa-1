@@ -1,0 +1,244 @@
+################################################
+DIGITE O CAMINHO DO BANCO DE DADOS: ################################################
+Caminho do banco de dados: Resultados/Victor/tReceita/Casos/5/../../
+Caminho da pasta de saida: Resultados/Victor/tReceita/Casos/5/saida
+######################## ACESSO MINI-SADE ######################
+DIGITE SEU LOGIN: DIGITE SUA SENHA: ###############################################################
+####################### MENU PRINCIPAL #########################
+ESCOLHA UMA OPCAO:
+	(1) CADASTRAR SECRETARIO
+	(2) CADASTRAR MEDICO
+	(3) CADASTRAR PACIENTE
+	(4) REALIZAR CONSULTA
+	(5) BUSCAR PACIENTES
+	(6) RELATORIO GERAL
+	(7) FILA DE IMPRESSAO
+	(8) FINALIZAR O PROGRAMA
+###############################################################
+#################### CADASTRO PACIENTE #######################
+NOME COMPLETO: CPF: DATA DE NASCIMENTO: TELEFONE: GENERO: CPF JA EXISTENTE. OPERACAO NAO PERMITIDA.
+####################### MENU PRINCIPAL #########################
+ESCOLHA UMA OPCAO:
+	(1) CADASTRAR SECRETARIO
+	(2) CADASTRAR MEDICO
+	(3) CADASTRAR PACIENTE
+	(4) REALIZAR CONSULTA
+	(5) BUSCAR PACIENTES
+	(6) RELATORIO GERAL
+	(7) FILA DE IMPRESSAO
+	(8) FINALIZAR O PROGRAMA
+###############################################################
+#################### CADASTRO PACIENTE #######################
+NOME COMPLETO: CPF: DATA DE NASCIMENTO: TELEFONE: GENERO: 
+CADASTRO REALIZADO COM SUCESSO. PRESSIONE QUALQUER TECLA PARA VOLTAR PARA O MENU INICIAL
+###############################################################
+####################### MENU PRINCIPAL #########################
+ESCOLHA UMA OPCAO:
+	(1) CADASTRAR SECRETARIO
+	(2) CADASTRAR MEDICO
+	(3) CADASTRAR PACIENTE
+	(4) REALIZAR CONSULTA
+	(5) BUSCAR PACIENTES
+	(6) RELATORIO GERAL
+	(7) FILA DE IMPRESSAO
+	(8) FINALIZAR O PROGRAMA
+###############################################################
+#################### BUSCAR PACIENTES #######################
+NOME DO PACIENTE: PACIENTES ENCONTRADOS:
+1 - VAINE (524.456.852-98)
+
+#################### BUSCAR PACIENTES #######################
+ESCOLHA UMA OPCAO:
+	(1) ENVIAR LISTA PARA IMPRESSAO
+	(2) RETORNAR AO MENU PRINCIPAL
+############################################################
+
+LISTA ENVIADA PARA FILA DE IMPRESSAO. PRESSIONE QUALQUER TECLA PARA RETORNAR AO MENU PRINCIPAL
+############################################################
+####################### MENU PRINCIPAL #########################
+ESCOLHA UMA OPCAO:
+	(1) CADASTRAR SECRETARIO
+	(2) CADASTRAR MEDICO
+	(3) CADASTRAR PACIENTE
+	(4) REALIZAR CONSULTA
+	(5) BUSCAR PACIENTES
+	(6) RELATORIO GERAL
+	(7) FILA DE IMPRESSAO
+	(8) FINALIZAR O PROGRAMA
+###############################################################
+#################### CONSULTA MEDICA #######################
+CPF DO PACIENTE: ---
+-NOME: LEONA
+-DATA DE NASCIMENTO: 15/10/1980
+---
+DATA DA CONSULTA: POSSUI DIABETES: FUMANTE: ALERGIA A MEDICAMENTO: HISTORICO DE CANCER: TIPO DE PELE: 
+############################################################
+#################### CONSULTA MEDICA #######################
+ESCOLHA UMA OPCAO:
+	(1) CADASTRAR LESAO
+	(2) GERAR RECEITA MEDICA
+	(3) SOLICITACAO DE BIOPSIA
+	(4) ENCAMINHAMENTO
+	(5) ENCERRAR CONSULTA
+############################################################
+#################### CONSULTA MEDICA #######################
+CADASTRO DE LESAO:
+DIAGNOSTICO CLINICO: REGIAO DO CORPO: TAMANHO: ENVIAR PARA CIRURGIA: ENVIAR PARA CRIOTERAPIA: 
+LESAO REGISTRADA COM SUCESSO. PRESSIONE QUALQUER TECLA PARA RETORNAR AO MENU ANTERIOR
+############################################################
+#################### CONSULTA MEDICA #######################
+ESCOLHA UMA OPCAO:
+	(1) CADASTRAR LESAO
+	(2) GERAR RECEITA MEDICA
+	(3) SOLICITACAO DE BIOPSIA
+	(4) ENCAMINHAMENTO
+	(5) ENCERRAR CONSULTA
+############################################################
+#################### CONSULTA MEDICA #######################
+RECEITA MEDICA:
+TIPO DE USO: NOME DO MEDICAMENTO: TIPO DE MEDICAMENTO: QUANTIDADE: INSTRUCOES DE USO: 
+RECEITA ENVIADA PARA FILA DE IMPRESSAO. PRESSIONE QUALQUER TECLA PARA RETORNAR AO MENU ANTERIOR
+############################################################
+#################### CONSULTA MEDICA #######################
+ESCOLHA UMA OPCAO:
+	(1) CADASTRAR LESAO
+	(2) GERAR RECEITA MEDICA
+	(3) SOLICITACAO DE BIOPSIA
+	(4) ENCAMINHAMENTO
+	(5) ENCERRAR CONSULTA
+############################################################
+#################### CONSULTA MEDICA #######################
+SOLICITACAO DE BIOPSIA ENVIADA PARA FILA DE IMPRESSAO. PRESSIONE QUALQUER TECLA PARA RETORNAR AO MENU ANTERIOR
+############################################################
+#################### CONSULTA MEDICA #######################
+ESCOLHA UMA OPCAO:
+	(1) CADASTRAR LESAO
+	(2) GERAR RECEITA MEDICA
+	(3) SOLICITACAO DE BIOPSIA
+	(4) ENCAMINHAMENTO
+	(5) ENCERRAR CONSULTA
+############################################################
+#################### CONSULTA MEDICA #######################
+ENCAMINHAMENTO:
+ESPECIALIDADE ENCAMINHADA: MOTIVO: 
+ENCAMINHAMENTO ENVIADO PARA FILA DE IMPRESSAO. PRESSIONE QUALQUER TECLA PARA RETORNAR AO MENU ANTERIOR
+############################################################
+#################### CONSULTA MEDICA #######################
+ESCOLHA UMA OPCAO:
+	(1) CADASTRAR LESAO
+	(2) GERAR RECEITA MEDICA
+	(3) SOLICITACAO DE BIOPSIA
+	(4) ENCAMINHAMENTO
+	(5) ENCERRAR CONSULTA
+############################################################
+####################### MENU PRINCIPAL #########################
+ESCOLHA UMA OPCAO:
+	(1) CADASTRAR SECRETARIO
+	(2) CADASTRAR MEDICO
+	(3) CADASTRAR PACIENTE
+	(4) REALIZAR CONSULTA
+	(5) BUSCAR PACIENTES
+	(6) RELATORIO GERAL
+	(7) FILA DE IMPRESSAO
+	(8) FINALIZAR O PROGRAMA
+###############################################################
+#################### RELATORIO GERAL #######################
+NUMERO TOTAL DE PACIENTES ATENDIDOS: 4
+IDADE MEDIA: 42
+DISTRIBUICAO POR GENERO:
+- FEMININO: 3
+- MASCULINO: 2
+- OUTROS: 3
+TAMANHO MEDIO DAS LESOES: 17
+NUMERO TOTAL DE LESOES: 7
+NUMERO TOTAL DE CIRURGIAS: 5
+NUMERO TOTAL DE CRIOTERAPIA: 2
+
+ESCOLHA UMA OPCAO:
+	(1) ENVIAR PARA IMPRESSAO
+	(2) RETORNAR AO MENU PRINCIPAL
+############################################################
+
+RELATÓRIO ENVIADO PARA FILA DE IMPRESSAO. PRESSIONE QUALQUER TECLA PARA RETORNAR AO MENU ANTERIOR
+############################################################
+####################### MENU PRINCIPAL #########################
+ESCOLHA UMA OPCAO:
+	(1) CADASTRAR SECRETARIO
+	(2) CADASTRAR MEDICO
+	(3) CADASTRAR PACIENTE
+	(4) REALIZAR CONSULTA
+	(5) BUSCAR PACIENTES
+	(6) RELATORIO GERAL
+	(7) FILA DE IMPRESSAO
+	(8) FINALIZAR O PROGRAMA
+###############################################################
+################ FILA DE IMPRESSAO MEDICA ##################
+ESCOLHA UMA OPCAO:
+	(1) EXECUTAR FILA DE IMPRESSAO
+	(2) RETORNAR AO MENU PRINCIPAL
+############################################################
+################ FILA DE IMPRESSAO MEDICA ##################
+EXECUTANDO FILA DE IMPRESSAO:
+1 - VAINE (524.456.852-98)
+
+RECEITUARIO
+NOME: LEONA
+
+USO ORAL
+
+DIPIRONA
+30 COMPRIMIDO
+
+USAR EM CASO DE MUITA DOR
+
+ ()
+10/10/2020
+
+PACIENTE: LEONA
+CPF: 245.632.548-10
+
+SOLICITACAO DE BIOPSIA PARA AS LESOES:
+L1 - MELANOMA - MAO - 30MM
+
+ ()
+10/10/2020
+
+PACIENTE: LEONA
+CPF: 245.632.548-10
+
+ESPECIALIDADE ENCAMINHADA: CARDIOLOGIA
+MOTIVO: REALIZAR CARDIOGRAMA COMPLETO PARA CIRURGIA
+
+ ()
+10/10/2020
+
+NUMERO TOTAL DE PACIENTES ATENDIDOS: 4
+IDADE MEDIA: 42
+DISTRIBUICAO POR GENERO:
+- FEMININO: 3
+- MASCULINO: 2
+- OUTROS: 3
+TAMANHO MEDIO DAS LESOES: 17
+NUMERO TOTAL DE LESOES: 7
+NUMERO TOTAL DE CIRURGIAS: 5
+NUMERO TOTAL DE CRIOTERAPIA: 2
+
+
+PRESSIONE QUALQUER TECLA PARA VOLTAR PARA O MENU ANTERIOR
+############################################################
+################ FILA DE IMPRESSAO MEDICA ##################
+ESCOLHA UMA OPCAO:
+	(1) EXECUTAR FILA DE IMPRESSAO
+	(2) RETORNAR AO MENU PRINCIPAL
+############################################################
+####################### MENU PRINCIPAL #########################
+ESCOLHA UMA OPCAO:
+	(1) CADASTRAR SECRETARIO
+	(2) CADASTRAR MEDICO
+	(3) CADASTRAR PACIENTE
+	(4) REALIZAR CONSULTA
+	(5) BUSCAR PACIENTES
+	(6) RELATORIO GERAL
+	(7) FILA DE IMPRESSAO
+	(8) FINALIZAR O PROGRAMA
+###############################################################

@@ -94,7 +94,85 @@ void LiberaClinica(tClinica* clinica) {
     }
 }
 
-void RecuperaMedicosClinica(tClinica* clinica, FILE* bancoMedicos) {    
+void SalvaMedicosClinica(tClinica* clinica, FILE* bancoMedicos) {
+    fwrite(&clinica->nMedicos, sizeof(int), 1, bancoMedicos);
 
-    
+    for (size_t i = 0; i < clinica->nMedicos; i++) {
+        SalvaMedico(bancoMedicos, clinica->medicos[i]);
+    }
+}
+
+
+void RecuperaMedicosClinica(tClinica* clinica, FILE* bancoMedicos) {
+    // Lê o número total de médicos
+    fread(&clinica->nMedicos, sizeof(int), 1, bancoMedicos);
+
+    // Aloca memória para a quantidade correta de médicos na clínica
+    clinica->medicos = malloc(clinica->nMedicos * sizeof(tMedico*));
+    if (clinica->medicos == NULL) {
+        perror("Erro ao alocar memória para médicos");
+        exit(EXIT_FAILURE);
+    }
+
+    // Itera sobre cada médico e os recupera do arquivo
+    for (size_t i = 0; i < clinica->nMedicos; i++) {
+        clinica->medicos[i] = RecuperaMedico(bancoMedicos);
+    }
+}
+
+
+void SalvaPacientesClinica(tClinica* clinica,FILE* bancoPacientes) {
+    // Salva o número total de pacientes
+    fwrite(clinica->nPacientes, sizeof(int), 1, clinica);
+
+    // Itera sobre cada paciente e o salva no arquivo
+    for (int i = 0; i < clinica->nPacientes; i++) {
+        RegistraAgenteBancoDados(clinica->pacientes[i],bancoPacientes);
+    }
+}
+
+
+void RecuperaPacientesClinica(tClinica* clinica, FILE* bancoPaciente) {
+    // Lê o número total de pacientes
+    fread(&clinica->nPacientes, sizeof(int), 1, bancoPaciente);
+
+    // Aloca memória para a quantidade correta de médicos na clínica
+    clinica->pacientes = malloc(clinica->nPacientes * sizeof(tMedico*));
+    if (clinica->pacientes == NULL) {
+        perror("Erro ao alocar memória para pacientes");
+        exit(EXIT_FAILURE);
+    }
+
+    // Itera sobre cada paciente e os recupera do arquivo
+    for (size_t i = 0; i < clinica->nPacientes; i++) {
+        clinica->pacientes[i] = RecuperaAgenteBancoDados(bancoPaciente);
+    }
+}
+
+
+void SalvaSecretariosClinica(tClinica* clinica,FILE* bancoSecretarios) {
+    // Salva o número total de pacientes
+    fwrite(clinica->nSecretarios, sizeof(int), 1, clinica);
+
+    // Itera sobre cada paciente e o salva no arquivo
+    for (int i = 0; i < clinica->nSecretarios; i++) {
+        SalvaSecretario(bancoSecretarios,clinica->secretarios[i]);
+    }
+}
+
+void RecuperaSecretariosClinica(tClinica* clinica, FILE* banco) {
+    // Lê o número total de pacientes
+    fread(&clinica->nSecretarios, sizeof(int), 1, banco);
+
+    // Aloca memória para a quantidade correta de médicos na clínica
+    clinica->secretarios = malloc(clinica->nSecretarios * sizeof(tSecretario*));
+    if (clinica->secretarios == NULL) {
+        perror("Erro ao alocar memória para pacientes");
+        exit(EXIT_FAILURE);
+    }
+
+    // Itera sobre cada paciente e os recupera do arquivo
+    for (size_t i = 0; i < clinica->nPacientes; i++) {
+        clinica->secretarios[i] = RecuperaSecretario(banco);
+    }
 }

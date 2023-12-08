@@ -47,6 +47,9 @@ tSecretario* RecuperaSecretario(FILE* banco) {
     return secretario;
 }
 
+char * ObtemNomeSecretario(tSecretario * s){
+    return ObtemNomeAgente(s->pessoa);
+}
 tSecretario* LeSecretario() {
     tSecretario* secretario = calloc(1, sizeof(tSecretario));
     if (secretario == NULL) {
@@ -68,6 +71,23 @@ tSecretario* LeSecretario() {
     return secretario;
 }
 
+char* ObtemSenhaSecretario(tSecretario* s) {
+    return s->senha;
+}
+
+char* ObtemLoginSecretario(tSecretario* s) {
+    return s->usuario;
+}
+
+int EhAdminSecretario(tSecretario* s) {
+    if (strcmp(s->acesso, "ADMIN") == 0) {
+        return 1;
+    } else if (strcmp(s->acesso, "USER") == 0) {
+        return 0;
+    } else {
+        printf("SECRETARIO COM VALOR DE ACESSO INVALIDO\n");
+    }
+}
 void LiberaSecretario(tSecretario* s) {
     if (s->pessoa) {
         free(s->pessoa);
@@ -75,4 +95,8 @@ void LiberaSecretario(tSecretario* s) {
     if (s) {
         free(s);
     }
+}
+
+char * ObtemCPFSecretario(tSecretario * s){
+    return ObtemCPFAgente(s->pessoa);
 }

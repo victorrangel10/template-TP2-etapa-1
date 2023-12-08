@@ -194,12 +194,13 @@ void GeraEncaminhamento(tConsulta* consulta, tFila* fila) {
     printf("ENCAMINHAMENTO:\n");
     printf("ESPECIALIDADE ENCAMINHADA:");
     char especialidade[100], motivo[100];
-    scanf("%[^\-n]%*c", especialidade);
+    scanf("%[^\n]%*c", especialidade);
     printf("MOTIVO: ");
     scanf("%[^\n]%*c", motivo);
 
     tEncaminhamento* e = CriaEncaminhamento(ObtemNomeAgente(consulta->paciente), ObtemCPFAgente(consulta->paciente), especialidade, motivo, consulta->nomeAplicador, consulta->CRM, consulta->data);
-    insereDocumentoFila(fila, e, ImprimeTelaEncaminhamento, ImprimeArquivoEncaminhamento, DesalocaEncaminhamento);
+    insereDocumentoFila(fila, e, ImprimeTelaEncaminhamento,ImprimeArquivoEncaminhamento ,DesalocaEncaminhamento);
+    
     printf("ENCAMINHAMENTO ENVIADO PARA FILA DE IMPRESSAO. PRESSIONE QUALQUER TECLA PARA RETORNAR AO MENU ANTERIOR\n");
     printf("############################################################\n");
     while (getchar() != '\n')
@@ -210,11 +211,9 @@ void SalvaConsultaBin(FILE* bancoConsulta, FILE* bancoLesoes, tConsulta* c) {
     if (c) {
         fwrite(c, sizeof(tConsulta), 1, bancoConsulta);
 
-        RegistraAgenteBancoDados(bancoConsulta, c->paciente);
+        RegistraAgenteBancoDados(c->paciente,bancoConsulta);
 
-        fwrite(&c->nlesoes,sizeof(int),1,bancoConsulta);
-
-        fwrite(c->lesoes, sizeof(tLesao*), c->nlesoes, bancoConsulta);
+        fwrite(&(c->nlesoes), sizeof(int), 1, bancoConsulta);
 
         SalvaLesoes(c->lesoes, c->nlesoes, bancoLesoes);
 
@@ -227,19 +226,33 @@ void SalvaConsultaBin(FILE* bancoConsulta, FILE* bancoLesoes, tConsulta* c) {
 }
 
 void SalvaLesoes(tLesao** lesoes, int num, FILE* bancoLesoes) {
-    fwrite(&num, sizeof(char), 1, bancoLesoes);
     for (size_t i = 0; i < num; i++) {
         SalvaLesao(bancoLesoes, lesoes[i]);
     }
 }
 
-void RecuperaLesoesConsulta(FILE* bancoConsulta, tConsulta* consulta) {
-    fread(consulta, sizeof(tConsulta), 1, bancoConsulta);
-
-    consulta->paciente = RecuperaAgenteBancoDados(bancoConsulta);
-
-    fread(&consulta->nlesoes,)
+void RecuperaLesoesConsulta(FILE* banco, int num, tConsulta* consulta) {
+    for (size_t i = 0; i < num; i++) {
+        consulta->lesoes[i] = RecuperaLesao(banco);
+    }
 }
 
-void RecuperaConsulta() {
+tConsulta* RecuperaConsulta(FILE* bancoConsulta, FILE * bancoLesoes) {
+    tConsulta* c = malloc(sizeof(tConsulta));
+
+    fread(c, sizeof(tConsulta), 1, bancoConsulta);
+
+    c->paciente = RecuperaAgenteBancoDados(bancoConsulta);
+
+    fread(&c->nlesoes, sizeof(int), 1, bancoConsulta);
+
+    RecuperaLesoesConsulta(bancoLesoes,c->nlesoes,c);
+
+    fread(c->data,sizeof(char),15,bancoConsulta);
+
+    fread(c->nomeAplicador,sizeof(char),101,bancoConsulta);
+
+    fread(c->CRM,sizeof(char),15,bancoConsulta);
+
+    return c;
 }
