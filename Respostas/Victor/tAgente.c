@@ -18,6 +18,7 @@ struct tAgente {
     int ehFumante;
     int possuiHistoricoCancer;
     int tipoPele;
+    int jaFoiAtendido;
 };
 
 tAgente* LeAgente() {
@@ -64,6 +65,14 @@ void RegistraAgenteBancoDados(tAgente* agente, FILE* banco) {
     fwrite(agente->genero, sizeof(char), strlen(agente->genero) + 1, banco);
     fwrite(agente->nome, sizeof(char), strlen(agente->nome) + 1, banco);
     fwrite(agente->telefone, sizeof(char), strlen(agente->telefone) + 1, banco);
+}
+
+void AtendePaciente(tAgente * a){
+    a->jaFoiAtendido =1;
+}
+
+int JaFoiAtendidoPaciente(tAgente * a){
+    return a->jaFoiAtendido;
 }
 
 tAgente* RecuperaAgenteBancoDados(FILE* banco) {

@@ -34,3 +34,15 @@ void SalvaLesoes(tLesao** lesoes, int num, FILE* bancoLesoes);
 void RecuperaLesoesConsulta(FILE* banco, int num, tConsulta* consulta);
 
 tConsulta* RecuperaConsulta(FILE* bancoConsulta, FILE * bancoLesoes);
+
+tAgente * ObtemPacienteConsulta(tConsulta* c);
+
+int ObtemNLesoesConsulta(tConsulta * c);
+
+int ObtemTamanhoLesoes(tConsulta * consulta);
+
+int ObtemTotalCrioterapias(tConsulta * consulta);
+
+int ObtemTotalCirurgias(tConsulta * consulta);
+
+int ObtemIdadePaciente(tConsulta* c);

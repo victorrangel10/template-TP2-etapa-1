@@ -21,4 +21,8 @@ char * ObtemDataNascimentoAgente(tAgente * a);
 
 char* ObtemCPFAgente(tAgente* a);
 
+int JaFoiAtendidoPaciente(tAgente * a);
+
+void AtendeuPaciente(tAgente * a);
+
 #endif

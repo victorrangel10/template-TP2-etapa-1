@@ -66,7 +66,7 @@ void RealizaConsulta(tConsulta* consulta, tFila* fila) {
     // ---------------------------------------------------------------------------------------------------------------
 
     int opt = 0;
-
+    AtendeuPaciente(consulta->paciente);
     do {
         ImprimeMenuConsulta();
         scanf("%d", &opt);
@@ -90,6 +90,37 @@ void RealizaConsulta(tConsulta* consulta, tFila* fila) {
                 break;
         }
     } while (opt != 5);
+}
+tAgente* ObtemPacienteConsulta(tConsulta* c) {
+    return c->paciente;
+}
+
+int ObtemNLesoesConsulta(tConsulta* c) {
+    return c->nlesoes;
+}
+
+int ObtemTamanhoLesoes(tConsulta* consulta) {
+    int tmp = 0;
+    for (size_t i = 0; i < consulta->nlesoes; i++) {
+        tmp += ObtemTamanhoLesao(consulta->lesoes[i]);
+    }
+    return tmp;
+}
+
+int ObtemTotalCrioterapias(tConsulta* consulta) {
+    int tmp = 0;
+    for (size_t i = 0; i < consulta->nlesoes; i++) {
+        tmp += VaiPraCrioterapiaLesao(consulta->lesoes[i]);
+    }
+    return tmp;
+}
+
+int ObtemTotalCirurgias(tConsulta* consulta) {
+    int tmp = 0;
+    for (size_t i = 0; i < consulta->nlesoes; i++) {
+        tmp += VaiPraCirurgiaLesao(consulta->lesoes[i]);
+    }
+    return tmp;
 }
 
 void ImprimeMenuConsulta() {
@@ -266,4 +297,26 @@ tConsulta* RecuperaConsulta(FILE* bancoConsulta, FILE* bancoLesoes) {
     fread(c->CRM, sizeof(char), 15, bancoConsulta);
 
     return c;
+}
+
+int ObtemIdadePaciente(tConsulta* c) {
+    char* data = ObtemDataNascimentoAgente(c->paciente);
+    int dia, mes, ano;
+    sscanf(data, "%d/%d/%d", &dia, &mes, &ano);
+
+    int diaC, mesC, anoC;
+    sscanf(c->data, "%d/%d/%d", &diaC, &mesC, &anoC);
+
+    if (mesC > mes) {
+        return anoC - ano;
+    } else if (mesC == mes) {
+        if (dia == diaC) {
+            return anoC - ano;
+        } else {
+            return anoC - ano + 1;
+        }
+
+    } else {
+        return anoC - ano + 1;
+    }
 }

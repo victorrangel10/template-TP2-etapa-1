@@ -66,6 +66,11 @@ void SalvaLesao(FILE *banco, tLesao *lesao) {
     }
 }
 
+int ObtemTamanhoLesao(tLesao* l){
+    return l->tamanho;
+}
+
+
 tLesao *RecuperaLesao(FILE *banco) {
     tLesao *l = calloc(1, sizeof(tLesao));
     if (l == NULL) {

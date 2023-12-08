@@ -81,7 +81,13 @@ char* ObtemCaminhoBancodeDados() {
     return caminho;
 }
 
-int main() {
+int main(int argc, char* argv[]) {
+    if (argc<2)
+    {
+        printf("Erro: favor informar diretorio para impresao de arquivos");
+        return 0;
+    }
+    
     char* caminho = ObtemCaminhoBancodeDados();
     char arqSecretarios[200];
     char arqMedicos[200];
@@ -150,7 +156,13 @@ int main() {
                 break;
             case 5:
                 BuscaPacientesClinica(clinica);
-            break;
+                break;
+            case 6:
+
+                break;
+
+            case 7:
+                ExibeMenuFilaClinica(clinica,argv[1]);
             default:
                 break;
         }

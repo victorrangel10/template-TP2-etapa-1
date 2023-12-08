@@ -21,4 +21,6 @@ tLesao* RecuperaLesao(FILE * banco);
 
 int VaiPraCirurgiaLesao(tLesao * t);
 
+int ObtemTamanhoLesao(tLesao* l);
+
 #endif

@@ -433,3 +433,51 @@ void BuscaPacientesClinica(tClinica* clinica) {
         return;
     }
 }
+
+void ExibeMenuFilaClinica(tClinica* clinica, char* path) {
+    printf("################ FILA DE IMPRESSAO MEDICA ##################\n");
+    printf("ESCOLHA UMA OPCAO:\n");
+    printf("\t(1) EXECUTAR FILA DE IMPRESSAO\n");
+    printf("\t(2) RETORNAR AO MENU PRINCIPAL\n");
+    int opt;
+    scanf("%d", &opt);
+    printf("############################################################");
+    if (opt == 2) {
+        return;
+    }
+
+    printf("################ FILA DE IMPRESSAO MEDICA ##################\n");
+    printf("EXECUTANDO FILA DE IMPRESSAO:\n");
+    imprimeFila(clinica->filaImpressao, path);
+
+    printf("PRESSIONE QUALQUER TECLA PARA VOLTAR PARA O MENU ANTERIOR\n");
+    printf("############################################################\n");
+}
+
+void GeraRelatorioGeral(tClinica* clinica) {
+    tConsulta** c = clinica->consultas;
+
+    int atendidos = 0, sumIdades = 0, masc = 0, fem = 0, outros = 0, sumTamLesoes = 0, totalLesoes = 0, cirurgias = 0, crioterapia = 0;
+    for (size_t i = 0; i < clinica->nConsultas; i++) {
+        // Numero de pacientes atendidos
+        if (!JaFoiAtendidoPaciente(ObtemPacienteConsulta(clinica->consultas[i]))) {
+            atendidos++;
+        }
+        // Idades
+        sumIdades += ObtemIdadePaciente(ObtemPacienteConsulta(clinica->consultas[i]));
+        // Contador de sexo
+        char* sexoCidadao = ObtemGeneroPacienteObtemPacienteConsulta(clinica->consultas[i]);
+        if (strcmp(sexoCidadao, "MASCULINO") == 0) {
+            masc++;
+        } else if (strcmp(sexoCidadao, "FEMININO") == 0) {
+            fem++;
+        } else if (strcmp(sexoCidadao, "OUTROS") == 0) {
+            outros++;
+        }
+        // Lesoes
+        totalLesoes += ObtemNLesoesConsulta(clinica->consultas[i]);
+        sumTamLesoes += ObtemTamanhoLesoes(clinica->consultas[i]);
+        crioterapia += ObtemTotalCrioterapias(clinica->consultas[i]);
+        cirurgias += ObtemTotalCirurgias(clinica->consultas[i]);
+    }
+}
