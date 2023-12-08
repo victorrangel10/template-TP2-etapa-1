@@ -1,21 +1,32 @@
 #ifndef _TCLINICA_H_
 #define _TCLINICA_H_
 
-#include <stdio.h>
-#include <stdlib.h>
+#define SECRETARIO 1
+#define MEDICO 2
+#define PACIENTE 3
 
 #include "tAgente.h"
-#include "tConsulta.h"
-#include "tFila.h"
 #include "tMedico.h"
 #include "tSecretario.h"
+#include "tFila.h"
+#include "tConsulta.h"
 #include "tLista.h"
 
 typedef struct tClinica tClinica;
 
-tClinica* CriaClinica();
+void RealizaConsultaClinica(tClinica* clinica, FILE* banco, char* nomeAtendente, char* cpfAtendente, char* crmAtendente);
 
-int ChecaLoginClinica(tClinica* c, char* nome, char* cpf, char* crm);
+void SalvaClinicaBinario(tClinica* clinica, FILE* bancoCLINICA);
+
+tClinica* RecuperaClinicaBinario(FILE* bancoCLINICA, FILE* bancoMEDICOS, FILE* bancoPACIENTES, FILE* bancoLESOES, FILE* bancoSECRETARIOS, FILE* bancoCONSULTAS);
+
+void RecuperaSecretariosClinica(tClinica* clinica, FILE* banco);
+
+void RecuperaMedicosClinica(tClinica* clinica, FILE* bancoMedicos);
+
+void RecuperaPacientesClinica(tClinica* clinica, FILE* bancoPaciente);
+
+tClinica* CriaClinica();
 
 void CadastraPacienteClinica(tClinica* clinica, FILE* pathBanco);
 
@@ -23,25 +34,20 @@ void CadastraMedicoClinica(tClinica* clinica, FILE* Banco);
 
 void CadastraSecretarioClinica(tClinica* clinica, FILE* banco);
 
+int TemCPFIgualClinica(tClinica* clinica, char* cpf, int cargo);
+
 void DesalocaClinica(tClinica* clinica);
 
 void SalvaMedicosClinica(tClinica* clinica, FILE* bancoMedicos);
 
-void RecuperaMedicosClinica(tClinica* clinica, FILE* bancoMedicos);
-
-void SalvaPacientesClinica(tClinica* clinica, FILE* bancoPacientes);
-
-void RecuperaPacientesClinica(tClinica* clinica, FILE* bancoPaciente);
-
 void SalvaSecretariosClinica(tClinica* clinica, FILE* bancoSecretarios);
 
-void RecuperaSecretariosClinica(tClinica* clinica, FILE* banco);
+int ObtemNMEdicosClinica(tClinica* c);
 
-tClinica* RecuperaClinicaBinario(FILE* bancoCLINICA, FILE* bancoMEDICOS, FILE* bancoPACIENTES, FILE* bancoLESOES, FILE* bancoSECRETARIOS, FILE* bancoCONSULTAS);
+int ChecaLoginClinica(tClinica* c, char* nome, char* cpf, char* crm);
 
-void SalvaClinicaBinario(tClinica* clinica, FILE* bancoCLINICA);
+void GeraMenu(int tipoUsuario);
 
-int ObtemNMEdicosClinica(tClinica * c);
+void BuscaPacientesClinica(tClinica* clinica);
 
-void RealizaConsultaClinica(tClinica* clinica, FILE* banco, char * nomeAtendente, char *cpfAtendente, char* crmAtendente);
 #endif
