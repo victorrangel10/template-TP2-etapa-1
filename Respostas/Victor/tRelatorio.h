@@ -1,13 +1,13 @@
 #ifndef _TRELATORIO_H_
 #define _TRELATORIO_H_
 
-#include "tLesao.h"
 #include <stdio.h>
+
+#include "tLesao.h"
 
 typedef struct tRelatorio tRelatorio;
 
-tRelatorio* criaRelatorio(char* nomePaciente, int qtd, char* cpf, tLesao** lesoes,
-                           char* nomemedico, char* crm, char* data);
+tRelatorio* criaRelatorio(int sumIdades, int nIdades, int masc, int fem, int outros, int nLesoes, int sumTamLesoes, int cir, int criots, int natendidos);
 
 tRelatorio* desalocaRelatorio(void* dado);
 

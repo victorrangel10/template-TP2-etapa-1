@@ -9,18 +9,20 @@ tLesao *criaLesao(char *rotulo, char *diagnostico, char *regiao, int tamanho, in
 
 void desalocaLesao(void *dado);
 
-void ImprimeLesao(tLesao *l) ;
+void ImprimeLesao(tLesao *l);
 
-void ImprimeEmArquivoLesao(tLesao *l,FILE * arq);
+void ImprimeEmArquivoLesao(tLesao *l, FILE *arq);
 
-int VaiPraCrioterapiaLesao(tLesao * l);
+int VaiPraCrioterapiaLesao(tLesao *l);
 
-void SalvaLesao(FILE* banco,tLesao* lesao);
+tLesao *ClonaLesao(tLesao *l);
 
-tLesao* RecuperaLesao(FILE * banco);
+void SalvaLesao(FILE *banco, tLesao *lesao);
 
-int VaiPraCirurgiaLesao(tLesao * t);
+tLesao *RecuperaLesao(FILE *banco);
 
-int ObtemTamanhoLesao(tLesao* l);
+int VaiPraCirurgiaLesao(tLesao *t);
+
+int ObtemTamanhoLesao(tLesao *l);
 
 #endif

@@ -16,6 +16,8 @@ tLista* criaLista(char* nome, tAgente** agentes, int nAgentes) {
     tLista* l = calloc(1, sizeof(tLista));
     strcpy(l->nomeBuscado, nome);
 
+    l->agentes = malloc(nAgentes * sizeof(tAgente*));
+    l->nAgentes = nAgentes;
     for (size_t i = 0; i < nAgentes; i++) {
         l->agentes[i] = ClonaAgente(agentes[i]);
     }
@@ -29,7 +31,7 @@ tLista* desalocaLista(void* dado) {
         for (size_t i = 0; i < lista->nAgentes; i++) {
             LiberaAgente(lista->agentes[i]);
         }
-        LiberaAgente(lista->agentes);
+        free(lista->agentes);
     }
     free(lista);
 }
@@ -38,7 +40,7 @@ void imprimeNaTelaLista(void* dado) {
     tLista* l = (tLista*)dado;
     for (size_t i = 0; i < l->nAgentes; i++) {
         if (strcmp(l->nomeBuscado, ObtemNomeAgente(l->agentes[i])) == 0) {
-            printf("%d - %s(%s)\n", i, ObtemNomeAgente(l->agentes[i]), ObtemCPFAgente(l->agentes[i]));
+            printf("%d - %s(%s)\n", i+1, ObtemNomeAgente(l->agentes[i]), ObtemCPFAgente(l->agentes[i]));
         }
     }
 }

@@ -48,11 +48,11 @@ void imprimeNaTelaRelatorio(void* dado) {
 
     printf("- MASCULINO: %d\n", r->masc);
 
-    printf("- OUTROS: %d", r->outros);
+    printf("- OUTROS: %d\n", r->outros);
 
     int tammediolesoes = r->sumTamLesoes / r->nLesoes;
 
-    printf("TAMANHO MEDIO DAS LESOES: %d", tammediolesoes);
+    printf("TAMANHO MEDIO DAS LESOES: %d\n", tammediolesoes);
 
     printf("NUMERO TOTAL DE LESOES: %d\n", r->nLesoes);
 
@@ -71,30 +71,29 @@ void imprimeEmArquivoRelatorio(void* dado, char* path) {
         exit(EXIT_FAILURE);
     }
 
-    fprintf(arq,"NUMERO TOTAL DE PACIENTES ATENDIDOS: %d\n", r->nAtendidos);
+    fprintf(arq, "NUMERO TOTAL DE PACIENTES ATENDIDOS: %d\n", r->nAtendidos);
 
     int mediaIdade = r->sumIdades / r->nAtendidos;
 
-    fprintf(arq,"IDADE MEDIA: %d\n", mediaIdade);
+    fprintf(arq, "IDADE MEDIA: %d\n", mediaIdade);
 
-    fprintf(arq,"DISTRIBUICAO POR GENERO:\n");
+    fprintf(arq, "DISTRIBUICAO POR GENERO:\n");
 
-    fprintf(arq,"- FEMININO: %d\n", r->fem);
+    fprintf(arq, "- FEMININO: %d\n", r->fem);
 
-    fprintf(arq,"- MASCULINO: %d\n", r->masc);
+    fprintf(arq, "- MASCULINO: %d\n", r->masc);
 
-    fprintf(arq,"- OUTROS: %d", r->outros);
+    fprintf(arq, "- OUTROS: %d", r->outros);
 
     int tammediolesoes = r->sumTamLesoes / r->nLesoes;
 
-    fprintf(arq,"TAMANHO MEDIO DAS LESOES: %d", tammediolesoes);
+    fprintf(arq, "TAMANHO MEDIO DAS LESOES: %d", tammediolesoes);
 
-    fprintf(arq,"NUMERO TOTAL DE LESOES: %d\n", r->nLesoes);
+    fprintf(arq, "NUMERO TOTAL DE LESOES: %d\n", r->nLesoes);
 
-    fprintf(arq,"NUMERO TOTAL DE CIRURGIAS: %d\n", r->cirugias);
+    fprintf(arq, "NUMERO TOTAL DE CIRURGIAS: %d\n", r->cirugias);
 
-    fprintf(arq,"NUMERO TOTAL DE CRIOTERAPIA: %d\n", r->crioterapias);
+    fprintf(arq, "NUMERO TOTAL DE CRIOTERAPIA: %d\n", r->crioterapias);
 
     fclose(arq);
-
 }

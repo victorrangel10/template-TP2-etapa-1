@@ -32,7 +32,7 @@ tReceita *criaReceita(char *nomePaciente, eTipoUso tipoUso,
   strcpy(r->tipoMedicamento, tipoMedicamento);
   strcpy(r->instrucoes, instrucoes);
   strcpy(r->nomeMedico, nomeMedico);
-  strcpy(r->CRM, CRM);
+  if(CRM) (r->CRM, CRM);
   strcpy(r->data, dataStr);
   return r;
 }

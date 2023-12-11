@@ -11,6 +11,7 @@
 #include "tFila.h"
 #include "tConsulta.h"
 #include "tLista.h"
+#include "tRelatorio.h"
 
 typedef struct tClinica tClinica;
 
@@ -49,5 +50,9 @@ int ChecaLoginClinica(tClinica* c, char* nome, char* cpf, char* crm);
 void GeraMenu(int tipoUsuario);
 
 void BuscaPacientesClinica(tClinica* clinica);
+
+void GeraRelatorioGeral(tClinica* clinica);
+
+void ExibeMenuFilaClinica(tClinica* clinica, char* path);
 
 #endif
