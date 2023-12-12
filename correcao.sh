@@ -810,7 +810,7 @@ script_com_pesos()
                                 filename_out=$(basename -- "$output")   # Get only the file name without the full path
 
                                 binary=$STUDENT_RESULT_FOLDER/$src_file_dir/prog
-                                valgrind_args="--leak-check=full --log-file=$DIR_CASE/result_valgrind.txt"
+                                valgrind_args="--leak-check=full --track-origins=yes --log-file=$DIR_CASE/result_valgrind.txt"
                                 # output=$(timeout 5 valgrind $valgrind_args $binary < $txt_input_file > $output 2>&1)
 
                                 if [ "$IGNORE_VALGRIND" = "false" ]; then

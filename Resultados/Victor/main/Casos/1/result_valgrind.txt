@@ -1,37 +1,15 @@
-==57710== Memcheck, a memory error detector
-==57710== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
-==57710== Using Valgrind-3.18.1 and LibVEX; rerun with -h for copyright info
-==57710== Command: Resultados/Victor/main/prog Resultados/Victor/main/Casos/1
-==57710== Parent PID: 57709
-==57710== 
-==57710== Syscall param write(buf) points to uninitialised byte(s)
-==57710==    at 0x498BA77: write (write.c:26)
-==57710==    by 0x4901EEC: _IO_file_write@@GLIBC_2.2.5 (fileops.c:1180)
-==57710==    by 0x49039E0: new_do_write (fileops.c:448)
-==57710==    by 0x49039E0: _IO_new_do_write (fileops.c:425)
-==57710==    by 0x49039E0: _IO_do_write@@GLIBC_2.2.5 (fileops.c:422)
-==57710==    by 0x4902FD7: _IO_file_close_it@@GLIBC_2.2.5 (fileops.c:135)
-==57710==    by 0x48F5D8E: fclose@@GLIBC_2.2.5 (iofclose.c:53)
-==57710==    by 0x109C75: main (in /home/victor/template-TP2-etapa-1/Resultados/Victor/main/prog)
-==57710==  Address 0x4aa611f is 15 bytes inside a block of size 4,096 alloc'd
-==57710==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
-==57710==    by 0x48F5BA3: _IO_file_doallocate (filedoalloc.c:101)
-==57710==    by 0x4904CDF: _IO_doallocbuf (genops.c:347)
-==57710==    by 0x4903F5F: _IO_file_overflow@@GLIBC_2.2.5 (fileops.c:744)
-==57710==    by 0x49026D4: _IO_new_file_xsputn (fileops.c:1243)
-==57710==    by 0x49026D4: _IO_file_xsputn@@GLIBC_2.2.5 (fileops.c:1196)
-==57710==    by 0x48F6FD6: fwrite (iofwrite.c:39)
-==57710==    by 0x10F3C0: SalvaSecretario (in /home/victor/template-TP2-etapa-1/Resultados/Victor/main/prog)
-==57710==    by 0x10B461: CadastraSecretarioClinica (in /home/victor/template-TP2-etapa-1/Resultados/Victor/main/prog)
-==57710==    by 0x109A0F: main (in /home/victor/template-TP2-etapa-1/Resultados/Victor/main/prog)
-==57710== 
-==57710== 
-==57710== HEAP SUMMARY:
-==57710==     in use at exit: 0 bytes in 0 blocks
-==57710==   total heap usage: 65 allocs, 65 frees, 67,094 bytes allocated
-==57710== 
-==57710== All heap blocks were freed -- no leaks are possible
-==57710== 
-==57710== Use --track-origins=yes to see where uninitialised values come from
-==57710== For lists of detected and suppressed errors, rerun with: -s
-==57710== ERROR SUMMARY: 1 errors from 1 contexts (suppressed: 0 from 0)
+==82450== Memcheck, a memory error detector
+==82450== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
+==82450== Using Valgrind-3.18.1 and LibVEX; rerun with -h for copyright info
+==82450== Command: Resultados/Victor/main/prog Resultados/Victor/main/Casos/1
+==82450== Parent PID: 82449
+==82450== 
+==82450== 
+==82450== HEAP SUMMARY:
+==82450==     in use at exit: 0 bytes in 0 blocks
+==82450==   total heap usage: 65 allocs, 65 frees, 67,094 bytes allocated
+==82450== 
+==82450== All heap blocks were freed -- no leaks are possible
+==82450== 
+==82450== For lists of detected and suppressed errors, rerun with: -s
+==82450== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)

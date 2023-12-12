@@ -19,26 +19,26 @@ tBiopsia.c:58:1: warning: control reaches end of non-void function [-Wreturn-typ
    58 | }
       | ^
 tClinica.c: In function ‘ChecaLoginClinica’:
-tClinica.c:375:15: warning: format ‘%[^
+tClinica.c:401:13: warning: format ‘%[^
    ’ expects argument of type ‘char *’, but argument 2 has type ‘char (*)[100]’ [-Wformat=]
-  375 |     scanf("%[^\n]", &login);
-      |            ~~~^~    ~~~~~~
-      |               |     |
-      |               |     char (*)[100]
-      |               char *
-tClinica.c:380:15: warning: format ‘%[^
+  401 |   scanf("%[^\n]", &login);
+      |          ~~~^~    ~~~~~~
+      |             |     |
+      |             |     char (*)[100]
+      |             char *
+tClinica.c:406:13: warning: format ‘%[^
    ’ expects argument of type ‘char *’, but argument 2 has type ‘char (*)[100]’ [-Wformat=]
-  380 |     scanf("%[^\n]", &senha);
-      |            ~~~^~    ~~~~~~
-      |               |     |
-      |               |     char (*)[100]
-      |               char *
+  406 |   scanf("%[^\n]", &senha);
+      |          ~~~^~    ~~~~~~
+      |             |     |
+      |             |     char (*)[100]
+      |             char *
 tClinica.c: In function ‘BuscaPacientesClinica’:
-tClinica.c:464:103: warning: passing argument 5 of ‘insereDocumentoFila’ from incompatible pointer type [-Wincompatible-pointer-types]
-  464 |             insereDocumentoFila(clinica->filaImpressao, l, imprimeNaTelaLista, imprimeEmArquivoLista, desalocaLista);
-      |                                                                                                       ^~~~~~~~~~~~~
-      |                                                                                                       |
-      |                                                                                                       tLista * (*)(void *)
+tClinica.c:492:50: warning: passing argument 5 of ‘insereDocumentoFila’ from incompatible pointer type [-Wincompatible-pointer-types]
+  492 |                           imprimeEmArquivoLista, desalocaLista);
+      |                                                  ^~~~~~~~~~~~~
+      |                                                  |
+      |                                                  tLista * (*)(void *)
 In file included from tConsulta.h:7,
                  from tClinica.h:9,
                  from tClinica.c:4:
@@ -46,14 +46,14 @@ tFila.h:30:44: note: expected ‘func_ptr_desaloca’ {aka ‘void (*)(void *)�
    30 |                          func_ptr_desaloca desaloca);
       |                          ~~~~~~~~~~~~~~~~~~^~~~~~~~
 tClinica.c: In function ‘GeraRelatorioGeral’:
-tClinica.c:549:13: warning: unused variable ‘n’ [-Wunused-variable]
-  549 |         int n = 0;
-      |             ^
-tClinica.c:585:109: warning: passing argument 5 of ‘insereDocumentoFila’ from incompatible pointer type [-Wincompatible-pointer-types]
-  585 |         insereDocumentoFila(clinica->filaImpressao, rel, imprimeNaTelaRelatorio, imprimeEmArquivoRelatorio, desalocaRelatorio);
-      |                                                                                                             ^~~~~~~~~~~~~~~~~
-      |                                                                                                             |
-      |                                                                                                             tRelatorio * (*)(void *)
+tClinica.c:583:9: warning: unused variable ‘n’ [-Wunused-variable]
+  583 |     int n = 0;
+      |         ^
+tClinica.c:622:52: warning: passing argument 5 of ‘insereDocumentoFila’ from incompatible pointer type [-Wincompatible-pointer-types]
+  622 |                         imprimeEmArquivoRelatorio, desalocaRelatorio);
+      |                                                    ^~~~~~~~~~~~~~~~~
+      |                                                    |
+      |                                                    tRelatorio * (*)(void *)
 In file included from tConsulta.h:7,
                  from tClinica.h:9,
                  from tClinica.c:4:
@@ -61,44 +61,44 @@ tFila.h:30:44: note: expected ‘func_ptr_desaloca’ {aka ‘void (*)(void *)�
    30 |                          func_ptr_desaloca desaloca);
       |                          ~~~~~~~~~~~~~~~~~~^~~~~~~~
 tConsulta.c: In function ‘GeraBiopsia’:
-tConsulta.c:251:82: warning: passing argument 5 of ‘insereDocumentoFila’ from incompatible pointer type [-Wincompatible-pointer-types]
-  251 |     insereDocumentoFila(fila, b, imprimeNaTelaBiospsia, imprimeEmArquivoBiopsia, desalocaBiopsia);
-      |                                                                                  ^~~~~~~~~~~~~~~
-      |                                                                                  |
-      |                                                                                  tBiopsia * (*)(void *)
+tConsulta.c:267:23: warning: passing argument 5 of ‘insereDocumentoFila’ from incompatible pointer type [-Wincompatible-pointer-types]
+  267 |                       desalocaBiopsia);
+      |                       ^~~~~~~~~~~~~~~
+      |                       |
+      |                       tBiopsia * (*)(void *)
 In file included from tConsulta.h:7,
                  from tConsulta.c:1:
 tFila.h:30:44: note: expected ‘func_ptr_desaloca’ {aka ‘void (*)(void *)’} but argument is of type ‘tBiopsia * (*)(void *)’
    30 |                          func_ptr_desaloca desaloca);
       |                          ~~~~~~~~~~~~~~~~~~^~~~~~~~
 tConsulta.c: In function ‘GeraEncaminhamento’:
-tConsulta.c:272:34: warning: passing argument 3 of ‘insereDocumentoFila’ from incompatible pointer type [-Wincompatible-pointer-types]
-  272 |     insereDocumentoFila(fila, e, ImprimeTelaEncaminhamento, ImprimeArquivoEncaminhamento, DesalocaEncaminhamento);
-      |                                  ^~~~~~~~~~~~~~~~~~~~~~~~~
-      |                                  |
-      |                                  void (*)(tEncaminhamento *)
+tConsulta.c:293:32: warning: passing argument 3 of ‘insereDocumentoFila’ from incompatible pointer type [-Wincompatible-pointer-types]
+  293 |   insereDocumentoFila(fila, e, ImprimeTelaEncaminhamento,
+      |                                ^~~~~~~~~~~~~~~~~~~~~~~~~
+      |                                |
+      |                                void (*)(tEncaminhamento *)
 In file included from tConsulta.h:7,
                  from tConsulta.c:1:
 tFila.h:28:71: note: expected ‘func_ptr_imprimeNaTela’ {aka ‘void (*)(void *)’} but argument is of type ‘void (*)(tEncaminhamento *)’
    28 | void insereDocumentoFila(tFila *f, void *dado, func_ptr_imprimeNaTela imprimeNaTela,
       |                                                ~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~
-tConsulta.c:272:61: warning: passing argument 4 of ‘insereDocumentoFila’ from incompatible pointer type [-Wincompatible-pointer-types]
-  272 |     insereDocumentoFila(fila, e, ImprimeTelaEncaminhamento, ImprimeArquivoEncaminhamento, DesalocaEncaminhamento);
-      |                                                             ^~~~~~~~~~~~~~~~~~~~~~~~~~~~
-      |                                                             |
-      |                                                             void (*)(tEncaminhamento *, void *)
+tConsulta.c:294:23: warning: passing argument 4 of ‘insereDocumentoFila’ from incompatible pointer type [-Wincompatible-pointer-types]
+  294 |                       ImprimeArquivoEncaminhamento, DesalocaEncaminhamento);
+      |                       ^~~~~~~~~~~~~~~~~~~~~~~~~~~~
+      |                       |
+      |                       void (*)(tEncaminhamento *, void *)
 In file included from tConsulta.h:7,
                  from tConsulta.c:1:
 tFila.h:29:52: note: expected ‘func_ptr_imprimeEmArquivo’ {aka ‘void (*)(void *, char *)’} but argument is of type ‘void (*)(tEncaminhamento *, void *)’
    29 |                          func_ptr_imprimeEmArquivo ImprimeEmArquivo,
       |                          ~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~
 tConsulta.c: In function ‘TemConsultaComMesmoPaciente’:
-tConsulta.c:334:27: warning: format ‘%d’ expects argument of type ‘int’, but argument 2 has type ‘size_t’ {aka ‘long unsigned int’} [-Wformat=]
-  334 |         printf("ITERACAO %d\n", i);
-      |                          ~^     ~
-      |                           |     |
-      |                           int   size_t {aka long unsigned int}
-      |                          %ld
+tConsulta.c:359:23: warning: format ‘%d’ expects argument of type ‘int’, but argument 2 has type ‘size_t’ {aka ‘long unsigned int’} [-Wformat=]
+  359 |     printf("ITERACAO %d\n", i);
+      |                      ~^     ~
+      |                       |     |
+      |                       int   size_t {aka long unsigned int}
+      |                      %ld
 tLista.c: In function ‘desalocaLista’:
 tLista.c:37:1: warning: control reaches end of non-void function [-Wreturn-type]
    37 | }
