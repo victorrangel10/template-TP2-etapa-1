@@ -44,7 +44,7 @@ tLesao *criaLesao(char *rotulo, char *diagnostico, char *regiao, int tamanho,
 }
 
 void desalocaLesao(void *dado) {
-    if (dado) {
+    if (dado!=NULL) {
         free(dado);
     }
 }

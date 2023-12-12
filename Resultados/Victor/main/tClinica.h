@@ -6,15 +6,16 @@
 #define PACIENTE 3
 
 #include "tAgente.h"
-#include "tMedico.h"
-#include "tSecretario.h"
-#include "tFila.h"
 #include "tConsulta.h"
+#include "tFila.h"
 #include "tLista.h"
+#include "tMedico.h"
+#include "tRelatorio.h"
+#include "tSecretario.h"
 
 typedef struct tClinica tClinica;
 
-void RealizaConsultaClinica(tClinica* clinica, FILE* banco, char* nomeAtendente, char* cpfAtendente, char* crmAtendente);
+void RealizaConsultaClinica(tClinica* clinica, FILE* bancoConsulta, FILE* bancoLesoes, char* nomeAtendente, char* cpfAtendente, char* crmAtendente);
 
 void SalvaClinicaBinario(tClinica* clinica, FILE* bancoCLINICA);
 
@@ -49,5 +50,9 @@ int ChecaLoginClinica(tClinica* c, char* nome, char* cpf, char* crm);
 void GeraMenu(int tipoUsuario);
 
 void BuscaPacientesClinica(tClinica* clinica);
+
+void GeraRelatorioGeral(tClinica* clinica);
+
+void ExibeMenuFilaClinica(tClinica* clinica, char* path);
 
 #endif

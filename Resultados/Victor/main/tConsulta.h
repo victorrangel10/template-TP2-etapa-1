@@ -11,11 +11,10 @@
 
 typedef struct tConsulta tConsulta;
 
-tConsulta* criaConsulta(char* crm,char*nomeapl, tAgente* paciente);
+tConsulta* criaConsulta(char* crm, char* nomeapl, tAgente* paciente);
 
 void DesalocaConsulta(tConsulta* c);
-
-void RealizaConsulta(tConsulta* consulta, tFila* fila);
+void RealizaConsulta(tConsulta* consulta, tFila* fila, FILE* bancoConsulta, FILE* bancoLesoes);
 
 void ImprimeMenuConsulta();
 
@@ -33,4 +32,18 @@ void SalvaLesoes(tLesao** lesoes, int num, FILE* bancoLesoes);
 
 void RecuperaLesoesConsulta(FILE* banco, int num, tConsulta* consulta);
 
-tConsulta* RecuperaConsulta(FILE* bancoConsulta, FILE * bancoLesoes);
+tConsulta* RecuperaConsulta(FILE* bancoConsulta, FILE* bancoLesoes);
+
+tAgente* ObtemPacienteConsulta(tConsulta* c);
+
+int ObtemNLesoesConsulta(tConsulta* c);
+
+int ObtemTamanhoLesoes(tConsulta* consulta);
+
+int ObtemTotalCrioterapias(tConsulta* consulta);
+
+int ObtemTotalCirurgias(tConsulta* consulta);
+
+char* ObtemGeneroPacienteConsulta(tConsulta* c);
+
+int TemConsultaComMesmoPaciente(tConsulta** consultas, tConsulta* c, int n);

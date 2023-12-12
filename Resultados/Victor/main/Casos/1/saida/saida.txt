@@ -1,1 +1,308 @@
-valgrind: Resultados/Victor/main/prog: No such file or directory
+################################################
+DIGITE O CAMINHO DO BANCO DE DADOS:
+digite o caminho:caminho eh:Resultados/Victor/main/Casos/1/../../
+################################################
+O arquivo está vazio.
+#################### CADASTRO SECRETARIO #######################
+NOME COMPLETO:  nome eh HEIMERDINGER
+CPF: cpf eh 456.987.123-96
+DATA DE NASCIMENTO: data eh 20/10/1945
+TELEFONE: tel eh (90)99876-1234
+GENERO: genero eh MASCULINO
+NOME DE USUARIO: LOGIN EH heimer
+SENHA: SENHA EH science!
+NIVEL DE ACESSO: ACESSO EH ADMIN
+CADASTRO REALIZADO COM SUCESSO. PRESSIONE QUALQUER TECLA PARA VOLTAR PARA O MENU INICIAL
+######################## ACESSO MINI-SADE #####################
+DIGITE SEU LOGIN: login eh  heimer
+DIGITE SUA SENHA: senha eh: science!LOGIN EH :heimer
+CARGO EH 1
+####################### MENU PRINCIPAL #########################
+ESCOLHA UMA OPCAO:
+(1) CADASTRAR SECRETARIO
+(2) CADASTRAR MEDICO
+(3) CADASTRAR PACIENTE
+(4) REALIZAR CONSULTA
+(5) BUSCAR PACIENTES
+(6) RELATORIO GERAL
+(7) FILA DE IMPRESSAO
+(8) FINALIZAR O PROGRAMA
+###############################################################
+opt eh: 2
+#################### CADASTRO MEDICO #######################
+NOME COMPLETO:  nome eh DR. MUNDO
+CPF: cpf eh 564.587.965-85
+DATA DE NASCIMENTO: data eh 15/05/1988
+TELEFONE: tel eh (34)98761-2345
+GENERO: genero eh OUTROS
+CRM: NOME DE USUARIO: USER EH mundo
+SENHA: SENHA EH a4548
+CADASTRO REALIZADO COM SUCESSO. PRESSIONE QUALQUER TECLA PARA VOLTAR PARA O MENU INICIAL
+CADASTRO REALIZADO COM SUCESSO. PRESSIONE QUALQUER TECLA PARA VOLTAR PARA O MENU INICIAL
+###############################################################
+####################### MENU PRINCIPAL #########################
+ESCOLHA UMA OPCAO:
+(1) CADASTRAR SECRETARIO
+(2) CADASTRAR MEDICO
+(3) CADASTRAR PACIENTE
+(4) REALIZAR CONSULTA
+(5) BUSCAR PACIENTES
+(6) RELATORIO GERAL
+(7) FILA DE IMPRESSAO
+(8) FINALIZAR O PROGRAMA
+###############################################################
+opt eh: 3
+#################### CADASTRO PACIENTE #######################
+NOME COMPLETO:  nome eh VAINE
+CPF: cpf eh 524.456.852-98
+DATA DE NASCIMENTO: data eh 02/04/1985
+TELEFONE: tel eh (27)98733-1236
+GENERO: genero eh FEMININO
+CADASTRO REALIZADO COM SUCESSO. PRESSIONE QUALQUER TECLA PARA VOLTAR PARA O MENU INICIAL
+###################################################################################### MENU PRINCIPAL #########################
+ESCOLHA UMA OPCAO:
+(1) CADASTRAR SECRETARIO
+(2) CADASTRAR MEDICO
+(3) CADASTRAR PACIENTE
+(4) REALIZAR CONSULTA
+(5) BUSCAR PACIENTES
+(6) RELATORIO GERAL
+(7) FILA DE IMPRESSAO
+(8) FINALIZAR O PROGRAMA
+###############################################################
+opt eh: 3
+#################### CADASTRO PACIENTE #######################
+NOME COMPLETO:  nome eh TRYNDAMERE
+CPF: cpf eh 200.171.256-10
+DATA DE NASCIMENTO: data eh 01/01/1975
+TELEFONE: tel eh (27)90044-1226
+GENERO: genero eh OUTROS
+CADASTRO REALIZADO COM SUCESSO. PRESSIONE QUALQUER TECLA PARA VOLTAR PARA O MENU INICIAL
+###################################################################################### MENU PRINCIPAL #########################
+ESCOLHA UMA OPCAO:
+(1) CADASTRAR SECRETARIO
+(2) CADASTRAR MEDICO
+(3) CADASTRAR PACIENTE
+(4) REALIZAR CONSULTA
+(5) BUSCAR PACIENTES
+(6) RELATORIO GERAL
+(7) FILA DE IMPRESSAO
+(8) FINALIZAR O PROGRAMA
+###############################################################
+opt eh: 5
+#################### BUSCAR PACIENTES #######################
+NOME DO PACIENTE: PACIENTES ENCONTRADOS 
+1 - VAINE (524.456.852-98)
+
+ESCOLHA UMA OPCAO:
+	(1) ENVIAR LISTA PARA IMPRESSAO	(2) RETORNAR AO MENU PRINCIPALLISTA ENVIADA PARA FILA DE IMPRESSAO. PRESSIONE QUALQUER TECLA PARA RETORNAR AO MENU PRINCIPAL
+############################################################
+####################### MENU PRINCIPAL #########################
+ESCOLHA UMA OPCAO:
+(1) CADASTRAR SECRETARIO
+(2) CADASTRAR MEDICO
+(3) CADASTRAR PACIENTE
+(4) REALIZAR CONSULTA
+(5) BUSCAR PACIENTES
+(6) RELATORIO GERAL
+(7) FILA DE IMPRESSAO
+(8) FINALIZAR O PROGRAMA
+###############################################################
+opt eh: 4
+#################### CONSULTA MEDICA #######################
+CPF DO PACIENTE:---
+-NOME: VAINE
+-DATA DE NASCIMENTO: 02/04/1985---
+DATA DA CONSULTA:
+DATA EH 10/10/2023
+POSSUI DIABETES:FUMANTE:ALERGIA A MEDICAMENTO: HISTORICO DE CANCER: TIPO DE PELE: ############################################################
+TIPO PELE EH 2
+#################### CONSULTA MEDICA #######################
+ESCOLHA UMA OPCAO:
+	(1) CADASTRAR LESAO
+	(2) GERAR RECEITA MEDICA
+	(3) SOLICITACAO DE BIOPSIA
+	(4) ENCAMINHAMENTO
+	(5) ENCERRAR CONSULTA
+############################################################
+#################### CONSULTA MEDICA #######################
+DIAGNOSTICO CLINICO: REGIAO DO CORPO: TAMANHO: ENVIAR PARA CIRURGIA: ENVIAR PARA CRIOTERAPIA: DIAG: NEVO 
+ REGIAO: DORSO
+ROTULO EH L1
+LESAO COM TAMANHO 10 CADASTRADA
+LESAO REGISTRADA COM SUCESSO. PRESSIONE QUALQUER TECLA PARA VOLTAR AO MENU ANTERIOR
+############################################################
+#################### CONSULTA MEDICA #######################
+ESCOLHA UMA OPCAO:
+	(1) CADASTRAR LESAO
+	(2) GERAR RECEITA MEDICA
+	(3) SOLICITACAO DE BIOPSIA
+	(4) ENCAMINHAMENTO
+	(5) ENCERRAR CONSULTA
+############################################################
+#################### CONSULTA MEDICA #######################
+RECEITA MEDICA:
+TIPO DE USO: NOME DO MEDICAMENTO: TIPO DE MEDICAMENTO: QUANTIDADE: INSTRUCOES DE USO: RECEITA ENVIADA PARA FILA DE IMPRESSAO. PRESSIONE QUALQUER TECLA PARA RETORNAR AO MENU ANTERIOR
+############################################################
+#################### CONSULTA MEDICA #######################
+ESCOLHA UMA OPCAO:
+	(1) CADASTRAR LESAO
+	(2) GERAR RECEITA MEDICA
+	(3) SOLICITACAO DE BIOPSIA
+	(4) ENCAMINHAMENTO
+	(5) ENCERRAR CONSULTA
+############################################################
+#################### CONSULTA MEDICA ######################
+SOLICITACAO DE BIOPSIA ENVIADA PARA FILA DE IMPRESSAO. PRESSIONE QUALQUER TECLA PARA RETORNAR AO MENU ANTERIOR
+############################################################
+#################### CONSULTA MEDICA #######################
+ESCOLHA UMA OPCAO:
+	(1) CADASTRAR LESAO
+	(2) GERAR RECEITA MEDICA
+	(3) SOLICITACAO DE BIOPSIA
+	(4) ENCAMINHAMENTO
+	(5) ENCERRAR CONSULTA
+############################################################
+#################### CONSULTA MEDICA ######################
+ENCAMINHAMENTO:
+ESPECIALIDADE ENCAMINHADA:MOTIVO: ENCAMINHAMENTO ENVIADO PARA FILA DE IMPRESSAO. PRESSIONE QUALQUER TECLA PARA RETORNAR AO MENU ANTERIOR
+############################################################
+#################### CONSULTA MEDICA #######################
+ESCOLHA UMA OPCAO:
+	(1) CADASTRAR LESAO
+	(2) GERAR RECEITA MEDICA
+	(3) SOLICITACAO DE BIOPSIA
+	(4) ENCAMINHAMENTO
+	(5) ENCERRAR CONSULTA
+############################################################
+CONSULTA NUMERO 1 COM PACIENTE VAINE de idade 38 com 1 lesoes realizada e salva
+
+
+
+
+
+ PACIENTE VAINE ATENDIDO
+
+
+
+
+
+####################### MENU PRINCIPAL #########################
+ESCOLHA UMA OPCAO:
+(1) CADASTRAR SECRETARIO
+(2) CADASTRAR MEDICO
+(3) CADASTRAR PACIENTE
+(4) REALIZAR CONSULTA
+(5) BUSCAR PACIENTES
+(6) RELATORIO GERAL
+(7) FILA DE IMPRESSAO
+(8) FINALIZAR O PROGRAMA
+###############################################################
+opt eh: 6
+NUMERO TOTAL DE PACIENTES ATENDIDOS: 1
+IDADE MEDIA: 43
+DISTRIBUICAO POR GENERO:
+- FEMININO: 1
+- MASCULINO: 0
+- OUTROS: 1
+TAMANHO MEDIO DAS LESOES: 10
+NUMERO TOTAL DE LESOES: 1
+NUMERO TOTAL DE CIRURGIAS: 1
+NUMERO TOTAL DE CRIOTERAPIA: 0
+
+SELECIONE UMA OPCAO: 
+	 (1) ENVIAR PARA LISTA DE IMPRESAO
+	 (2) RETORNAR AO MENU PRINCIPAL 
+DOCUMENTO ENVIADO PARA LISTA DE IMPRESSAO. PRESSIONE QUALQUER TECLA PARA RETORNAR AO MENU INICIAL
+#################################
+####################### MENU PRINCIPAL #########################
+ESCOLHA UMA OPCAO:
+(1) CADASTRAR SECRETARIO
+(2) CADASTRAR MEDICO
+(3) CADASTRAR PACIENTE
+(4) REALIZAR CONSULTA
+(5) BUSCAR PACIENTES
+(6) RELATORIO GERAL
+(7) FILA DE IMPRESSAO
+(8) FINALIZAR O PROGRAMA
+###############################################################
+opt eh: 7
+################ FILA DE IMPRESSAO MEDICA ##################
+ESCOLHA UMA OPCAO:
+	(1) EXECUTAR FILA DE IMPRESSAO
+	(2) RETORNAR AO MENU PRINCIPAL
+############################################################################ FILA DE IMPRESSAO MEDICA ##################
+EXECUTANDO FILA DE IMPRESSAO:
+1 - VAINE (524.456.852-98)
+
+RECEITUARIO
+NOME: VAINE
+
+USO ORAL
+
+DIPIRONA 500MG
+12 COMPRIMIDOS
+
+USAR DE 12 EM 12H EM CASO DE DOR
+
+ ()
+10/10/2023
+
+PACIENTE: VAINE
+CPF: 524.456.852-98
+
+SOLICITACAO DE BIOPSIA PARA AS LESOES:
+L1 - NEVO - DORSO - 10MM
+
+ ()
+10/10/2023
+
+PACIENTE: VAINE
+CPF: 524.456.852-98
+
+ESPECIALIDADE ENCAMINHADA: CARDIOLOGIA
+MOTIVO:PACIENTE PRECISA DE ANALISE DE RISCO PARA CIRURGIA
+
+ ()
+10/10/2023
+
+NUMERO TOTAL DE PACIENTES ATENDIDOS: 1
+IDADE MEDIA: 43
+DISTRIBUICAO POR GENERO:
+- FEMININO: 1
+- MASCULINO: 0
+- OUTROS: 1
+TAMANHO MEDIO DAS LESOES: 10
+NUMERO TOTAL DE LESOES: 1
+NUMERO TOTAL DE CIRURGIAS: 1
+NUMERO TOTAL DE CRIOTERAPIA: 0
+
+PRESSIONE QUALQUER TECLA PARA VOLTAR PARA O MENU ANTERIOR
+############################################################
+################ FILA DE IMPRESSAO MEDICA ##################
+ESCOLHA UMA OPCAO:
+	(1) EXECUTAR FILA DE IMPRESSAO
+	(2) RETORNAR AO MENU PRINCIPAL
+################################################################################### MENU PRINCIPAL #########################
+ESCOLHA UMA OPCAO:
+(1) CADASTRAR SECRETARIO
+(2) CADASTRAR MEDICO
+(3) CADASTRAR PACIENTE
+(4) REALIZAR CONSULTA
+(5) BUSCAR PACIENTES
+(6) RELATORIO GERAL
+(7) FILA DE IMPRESSAO
+(8) FINALIZAR O PROGRAMA
+###############################################################
+opt eh: 8
+entrou pra liberar pacientes 
+Liberando Paciente VAINE
+Liberando Paciente TRYNDAMERE
+PACIENTES LIBERADOS
+entrou pra liberar medicos 
+Liberando MEDICO DR. MUNDO
+MEDICOS LIBERADOS
+entrou pra liberar SECRETARIOS 
+Liberando SECRETARIO HEIMERDINGER
+SECRETARIOS LIBERADOS
+CHEGOU AQUI4

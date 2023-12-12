@@ -15,8 +15,11 @@ struct tClinica {
 
     tFila* filaImpressao;
     int nDocsFila;
+
     tConsulta** consultas;
     int nConsultas;
+
+    int nAtendidosPreviamente;
 };
 
 tAgente* BuscaPacienteClinica(tClinica* c, char* cpf) {
@@ -28,7 +31,7 @@ tAgente* BuscaPacienteClinica(tClinica* c, char* cpf) {
     return NULL;
 }
 
-void RealizaConsultaClinica(tClinica* clinica, FILE* banco, char* nomeAtendente, char* cpfAtendente, char* crmAtendente) {
+void RealizaConsultaClinica(tClinica* clinica, FILE* bancoConsulta, FILE* bancoLesoes, char* nomeAtendente, char* cpfAtendente, char* crmAtendente) {
     printf("#################### CONSULTA MEDICA #######################\n");
     printf("CPF DO PACIENTE:");
     char cpfPaciente[15];
@@ -54,7 +57,7 @@ void RealizaConsultaClinica(tClinica* clinica, FILE* banco, char* nomeAtendente,
 
     tConsulta* consulta = criaConsulta(crmAtendente, nomeAtendente, paciente);
 
-    RealizaConsulta(consulta, clinica->filaImpressao);
+    RealizaConsulta(consulta, clinica->filaImpressao, bancoConsulta, bancoLesoes);
 
     clinica->consultas = realloc(clinica->consultas, (clinica->nConsultas + 1) * sizeof(tConsulta*));
 
@@ -62,7 +65,12 @@ void RealizaConsultaClinica(tClinica* clinica, FILE* banco, char* nomeAtendente,
 
     clinica->nConsultas++;
 
-    printf("CONSULTA NUMERO %d COM PACIENTE %s de idade %d com %d lesoes realizada e salva\n", clinica->nConsultas, ObtemNomeAgente(ObtemPacienteConsulta(clinica->consultas[clinica->nConsultas - 1])), ObtemIdadePaciente(clinica->consultas[clinica->nConsultas - 1]), ObtemNLesoesConsulta(clinica->consultas[clinica->nConsultas - 1]));
+    printf("CONSULTA NUMERO %d COM PACIENTE %s de idade %d com %d lesoes realizada e salva\n", clinica->nConsultas, ObtemNomeAgente(ObtemPacienteConsulta(clinica->consultas[clinica->nConsultas - 1])), ObtemIdadePaciente(ObtemPacienteConsulta(clinica->consultas[clinica->nConsultas - 1])), ObtemNLesoesConsulta(clinica->consultas[clinica->nConsultas - 1]));
+
+    AtendeuPaciente(paciente);
+    if (JaFoiAtendidoPaciente(paciente)) {
+        printf("\n\n\n\n\n PACIENTE %s ATENDIDO\n\n\n\n\n\n", ObtemNomeAgente(paciente));
+    }
 }
 
 void SalvaClinicaBinario(tClinica* clinica, FILE* bancoCLINICA) {
@@ -131,6 +139,7 @@ tClinica* RecuperaClinicaBinario(FILE* bancoCLINICA, FILE* bancoMEDICOS, FILE* b
         c->consultas[i] = RecuperaConsulta(bancoCONSULTAS, bancoLESOES);
     }
 
+    c->filaImpressao = criaFila();
     return c;
 }
 
@@ -219,14 +228,24 @@ void CadastraMedicoClinica(tClinica* clinica, FILE* Banco) {
 
 void CadastraSecretarioClinica(tClinica* clinica, FILE* banco) {
     if (clinica) {
-        tSecretario* secretario = LeSecretario();
+        tSecretario* secretario;
 
-        printf("Secretario lido tem nome %s e login %s\n", ObtemNomeSecretario(secretario), ObtemLoginSecretario(secretario));
+        if (clinica->nSecretarios == 0) {
+            secretario = LePrimeiroSecretario();
+        } else {
+            secretario = LeSecretario();
+        }
+
         // Checagem de CPF
         if (TemCPFIgualClinica(clinica, ObtemCPFSecretario(secretario), SECRETARIO)) {
             LiberaSecretario(secretario);
             printf("CPF JA EXISTENTE. OPERACAO NAO PERMITIDA\n");
             return;
+        }
+        if (clinica->nSecretarios) {
+            printf("CADASTRO REALIZADO COM SUCESSO. PRESSIONE QUALQUER TECLA PARA VOLTAR PARA O MENU INICIAL\n");
+            while (getchar() != '\n')
+                ;
         }
 
         SalvaSecretario(banco, secretario);
@@ -309,7 +328,9 @@ void DesalocaClinica(tClinica* clinica) {
         }
         if (clinica->consultas) {
             for (size_t i = 0; i < clinica->nConsultas; i++) {
-                DesalocaConsulta(clinica->consultas[i]);
+                if (clinica->consultas[i]) {
+                    DesalocaConsulta(clinica->consultas[i]);
+                }
             }
             if (clinica->consultas) free(clinica->consultas);
         }
@@ -373,15 +394,14 @@ int ChecaLoginClinica(tClinica* c, char* nome, char* cpf, char* crm) {
             // Verifica se a senha eh igual
             if (strcmp(senha, ObtemSenhaSecretario(c->secretarios[i])) == 0) {
                 if (EhAdminSecretario(c->secretarios[i])) {
-                    strcpy(nome, ObtemNomeSecretario(c->secretarios[i]));
+                    *nome = '\0';
 
                     strcpy(cpf, ObtemCPFSecretario(c->secretarios[i]));
 
                     *crm = '\0';
                     return 1;
                 } else {
-                    strcpy(nome, ObtemNomeSecretario(c->secretarios[i]));
-
+                    *nome = '\0';
                     strcpy(cpf, ObtemCPFSecretario(c->secretarios[i]));
 
                     *crm = '\0';
@@ -425,6 +445,7 @@ void BuscaPacientesClinica(tClinica* clinica) {
     scanf("%[^\n]", nomeBuscado);
     while (getchar() != '\n')
         ;
+
     if (temNomeIgualPacientesClinica(clinica, nomeBuscado)) {
         printf("PACIENTES ENCONTRADOS \n");
 
@@ -439,55 +460,64 @@ void BuscaPacientesClinica(tClinica* clinica) {
         scanf("%d", &opt);
         while (getchar() != '\n')
             ;
-        if (opt == 2) {
+        if (opt == 1) {
             insereDocumentoFila(clinica->filaImpressao, l, imprimeNaTelaLista, imprimeEmArquivoLista, desalocaLista);
             printf("LISTA ENVIADA PARA FILA DE IMPRESSAO. PRESSIONE QUALQUER TECLA PARA RETORNAR AO MENU PRINCIPAL\n");
-
-            ;
+            printf("############################################################\n");
+            while (getchar() != '\n')
+                return;
+        } else if (opt == 2) {
+            desalocaLista(l);
         }
         printf("############################################################\n");
+    } else {
+        printf("NENHUM PACIENTE FOI ENCONTRADO. PRESSIONE QUALQUER TECLA PARA RETORNAR AO MENU ANTERIOR\n");
+        printf("############################################################\n");
         while (getchar() != '\n')
-            return;
+            ;
     }
 }
 
 void ExibeMenuFilaClinica(tClinica* clinica, char* path) {
-    printf("################ FILA DE IMPRESSAO MEDICA ##################\n");
-    printf("ESCOLHA UMA OPCAO:\n");
-    printf("\t(1) EXECUTAR FILA DE IMPRESSAO\n");
-    printf("\t(2) RETORNAR AO MENU PRINCIPAL\n");
-    printf("############################################################");
-    int opt;
-    scanf("%d", &opt);
-    while (getchar() != '\n')
-        ;
-    if (opt == 2) {
-        return;
-    }
-    if (opt == 1) {
-        printf("################ FILA DE IMPRESSAO MEDICA ##################\n");
-        printf("EXECUTANDO FILA DE IMPRESSAO:\n");
-        imprimeFila(clinica->filaImpressao, path);
+    int opt = 0;
 
-        printf("PRESSIONE QUALQUER TECLA PARA VOLTAR PARA O MENU ANTERIOR\n");
-        printf("############################################################\n");
+    do {
+        printf("################ FILA DE IMPRESSAO MEDICA ##################\n");
+        printf("ESCOLHA UMA OPCAO:\n");
+        printf("\t(1) EXECUTAR FILA DE IMPRESSAO\n");
+        printf("\t(2) RETORNAR AO MENU PRINCIPAL\n");
+        printf("############################################################");
+
+        scanf("%d", &opt);
         while (getchar() != '\n')
             ;
-    }
+
+        if (opt == 2) {
+            return;
+        }
+        if (opt == 1) {
+            printf("################ FILA DE IMPRESSAO MEDICA ##################\n");
+            printf("EXECUTANDO FILA DE IMPRESSAO:\n");
+            imprimeFila(clinica->filaImpressao, path);
+
+            printf("PRESSIONE QUALQUER TECLA PARA VOLTAR PARA O MENU ANTERIOR\n");
+            printf("############################################################\n");
+            while (getchar() != '\n')
+                ;
+        }
+    } while (opt != 2);
 }
 
 void GeraRelatorioGeral(tClinica* clinica) {
-    tConsulta** c = clinica->consultas;
-
     int atendidos = 0, sumIdades = 0, masc = 0, fem = 0, outros = 0, sumTamLesoes = 0, totalLesoes = 0, cirurgias = 0, crioterapia = 0;
-    for (size_t i = 0; i < clinica->nConsultas; i++) {
-        // Numero de pacientes atendidos
-        if (!JaFoiAtendidoPaciente(ObtemPacienteConsulta(clinica->consultas[i]))) {
-              AtendeuPaciente(ObtemPacienteConsulta(clinica->consultas[i]));
-            atendidos++;
-            sumIdades += ObtemIdadePaciente((clinica->consultas[i]));
-            char* sexoCidadao = ObtemGeneroAgente(ObtemPacienteConsulta(clinica->consultas[i]));
 
+    for (size_t i = 0; i < clinica->nPacientes; i++) {
+        if (!FoiContadoPaciente(clinica->pacientes[i])) {
+            ContaPaciente(clinica->pacientes[i]);
+
+            sumIdades += ObtemIdadePaciente(clinica->pacientes[i]);
+
+            char* sexoCidadao = ObtemGeneroAgente(clinica->pacientes[i]);
             if (strcmp(sexoCidadao, "MASCULINO") == 0) {
                 masc++;
             } else if (strcmp(sexoCidadao, "FEMININO") == 0) {
@@ -496,20 +526,51 @@ void GeraRelatorioGeral(tClinica* clinica) {
                 outros++;
             }
         }
-        // Idades
+        int tmp = 0;
 
-        // Contador de sexo
+        for (size_t k = 0; k < clinica->nConsultas; k++) {
+            if (strcmp(ObtemCPFAgente(clinica->pacientes[i]), ObtemCPFAgente(ObtemPacienteConsulta(clinica->consultas[k]))) == 0) {
+                tmp++;
+                if (tmp == 1) {
+                    atendidos++;
+                }
+            }
+        }
+    }
 
-        // Lesoes
+    //----------------------------------------------------------------------------------------------------------------------------------------------------------
+
+    for (size_t i = 0; i < clinica->nConsultas; i++) {
         totalLesoes += ObtemNLesoesConsulta(clinica->consultas[i]);
         sumTamLesoes += ObtemTamanhoLesoes(clinica->consultas[i]);
         crioterapia += ObtemTotalCrioterapias(clinica->consultas[i]);
         cirurgias += ObtemTotalCirurgias(clinica->consultas[i]);
+
+        int n = 0;
+
+        /* if (!TemConsultaComMesmoPaciente(clinica->consultas, clinica->consultas[i], clinica->nConsultas)) {
+             if (tamVet == 0) {
+                 tamVet++;
+                 vetorCPF = malloc(tamVet * sizeof(char*));
+                 vetorCPF[tamVet - 1] = malloc(strlen(ObtemCPFAgente(ObtemPacienteConsulta(clinica->consultas[i]))) + 1);
+                 strcpy(vetorCPF[tamVet - 1] , ObtemCPFAgente(ObtemPacienteConsulta(clinica->consultas[i])));
+                 atendidos++;
+             }
+
+             for (size_t k = 0; k < tamVet; k++) {
+                 if (strcmp(vetorCPF[k], ObtemCPFAgente(ObtemPacienteConsulta(clinica->consultas[i]))) == 0) {  // se eh igual a outro cpf
+                     continue;
+                 } else {  // senao
+                     tamVet++;
+                     vetorCPF = realloc(vetorCPF, tamVet * sizeof(char*));
+                     vetorCPF[tamVet - 1] = malloc(strlen(ObtemCPFAgente(ObtemPacienteConsulta(clinica->consultas[i]))) + 1);
+                     strcpy(vetorCPF[tamVet - 1], (ObtemPacienteConsulta(clinica->consultas[i])));
+                 }
+             }
+         }*/
     }
 
-    printf("SUM IDADES EH %d MASC EH %d FEM EH %d OUTROS EH %d TOTAL LESOES EH %d SUM TAM LESOES EH %d CIR EH %d CRIO EH %d ATENDIDOS EH %d\n", sumIdades, masc, fem, outros, totalLesoes, sumTamLesoes, cirurgias, crioterapia, atendidos);
-
-    tRelatorio* rel = criaRelatorio(sumIdades, clinica->nConsultas, masc, fem, outros, totalLesoes, sumTamLesoes, cirurgias, crioterapia, atendidos);
+    tRelatorio* rel = criaRelatorio(sumIdades, clinica->nConsultas, masc, fem, outros, totalLesoes, sumTamLesoes, cirurgias, crioterapia, atendidos, clinica->nPacientes);
 
     imprimeNaTelaRelatorio(rel);
 

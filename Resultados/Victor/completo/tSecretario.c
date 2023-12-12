@@ -21,12 +21,13 @@ typedef enum {
 void SalvaSecretario(FILE* banco, tSecretario* secretario) {
     fwrite(secretario, sizeof(tSecretario), 1, banco);
 
-    if (secretario->pessoa != NULL) {
+    if (secretario->pessoa) {
         RegistraAgenteBancoDados(secretario->pessoa, banco);  // Chamada à função para salvar a estrutura tAgente
     }
-    fwrite(secretario->usuario, sizeof(char), strlen(secretario->usuario) + 1, banco);
+
+    /*fwrite(secretario->usuario, sizeof(char), strlen(secretario->usuario) + 1, banco);
     fwrite(secretario->senha, sizeof(char), strlen(secretario->senha) + 1, banco);
-    fwrite(secretario->acesso, sizeof(char), strlen(secretario->acesso) + 1, banco);
+    fwrite(secretario->acesso, sizeof(char), strlen(secretario->acesso) + 1, banco);*/
 }
 
 tSecretario* RecuperaSecretario(FILE* banco) {
@@ -40,14 +41,14 @@ tSecretario* RecuperaSecretario(FILE* banco) {
 
     secretario->pessoa = RecuperaAgenteBancoDados(banco);
 
-    fread(secretario->usuario, sizeof(char), 21, banco);
+    /*fread(secretario->usuario, sizeof(char), 21, banco);
     fread(secretario->senha, sizeof(char), 21, banco);
-    fread(secretario->acesso, sizeof(char), 10, banco);
+    fread(secretario->acesso, sizeof(char), 10, banco);*/
 
     return secretario;
 }
 
-char * ObtemNomeSecretario(tSecretario * s){
+char* ObtemNomeSecretario(tSecretario* s) {
     return ObtemNomeAgente(s->pessoa);
 }
 tSecretario* LeSecretario() {
@@ -61,13 +62,53 @@ tSecretario* LeSecretario() {
     printf("#################### CADASTRO SECRETARIO #######################\n");
     secretario->pessoa = LeAgente();  // Usando LeAgente() para ler os dados do agente
     printf("NOME DE USUARIO: ");
-    scanf("%[^\n]%*c", secretario->usuario);
-    printf("SENHA: ");
-    scanf("%[^\n]%*c", secretario->senha);
-    printf("NIVEL DE ACESSO: ");
-    scanf("%[^\n]%*c", secretario->acesso);
+    scanf("%[^\n]", secretario->usuario);
 
+    while (getchar() != '\n')
+        ;
+    printf("LOGIN EH %s\n", secretario->usuario);
+    printf("SENHA: ");
+    scanf("%[^\n]", secretario->senha);
+    while (getchar() != '\n')
+        ;
+    printf("SENHA EH %s\n", secretario->senha);
+    printf("NIVEL DE ACESSO: ");
+    scanf("%[^\n]", secretario->acesso);
+    while (getchar() != '\n')
+        ;
+    printf("ACESSO EH %s\n", secretario->acesso);
+    return secretario;
+}
+
+tSecretario* LePrimeiroSecretario() {
+    tSecretario* secretario = malloc(sizeof(tSecretario));
+
+    if (secretario == NULL) {
+        perror("Erro ao alocar memória para secretário");
+        exit(EXIT_FAILURE);
+    }
+
+    // Lendo os dados do secretário
+    printf("#################### CADASTRO SECRETARIO #######################\n");
+    secretario->pessoa = LeAgente();  // Usando LeAgente() para ler os dados do agente
+    printf("NOME DE USUARIO: ");
+    scanf("%[^\n]", secretario->usuario);
+
+    while (getchar() != '\n')
+        ;
+    printf("LOGIN EH %s\n", secretario->usuario);
+    printf("SENHA: ");
+    scanf("%[^\n]", secretario->senha);
+    while (getchar() != '\n')
+        ;
+    printf("SENHA EH %s\n", secretario->senha);
+    printf("NIVEL DE ACESSO: ");
+    scanf("%[^\n]", secretario->acesso);
+    while (getchar() != '\n')
+        ;
+    printf("ACESSO EH %s\n", secretario->acesso);
     printf("CADASTRO REALIZADO COM SUCESSO. PRESSIONE QUALQUER TECLA PARA VOLTAR PARA O MENU INICIAL\n");
+
     return secretario;
 }
 
@@ -97,6 +138,6 @@ void LiberaSecretario(tSecretario* s) {
     }
 }
 
-char * ObtemCPFSecretario(tSecretario * s){
+char* ObtemCPFSecretario(tSecretario* s) {
     return ObtemCPFAgente(s->pessoa);
 }

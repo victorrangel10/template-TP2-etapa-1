@@ -14,30 +14,31 @@ tConsulta* criaConsulta(char* crm, char* nomeapl, tAgente* paciente) {
     tConsulta* c = calloc(1, sizeof(tConsulta));
     strcpy(c->nomeAplicador, nomeapl);
     strcpy(c->CRM, crm);
-    c->paciente = paciente;
-    c->lesoes == NULL;
+    c->paciente = ClonaAgente(paciente);
+    c->lesoes = NULL;
     return c;
 }
 
 void DesalocaConsulta(tConsulta* c) {
     if (c) {
-        if (c->lesoes != NULL) {
+        if (c->nlesoes) {
             for (size_t i = 0; i < c->nlesoes; i++) {
-                desalocaLesao(c->lesoes[i]);
+                if (c->lesoes[i]) desalocaLesao(c->lesoes[i]);
             }
             free(c->lesoes);
         }
+        LiberaAgente(c->paciente);
         free(c);
     }
 }
 
-void RealizaConsulta(tConsulta* consulta, tFila* fila) {
-    printf("- NOME: %s\n", ObtemNomeAgente(consulta->paciente));
-    printf("- DATA DE NASCIMENTO: %s\n", ObtemDataNascimentoAgente(consulta->paciente));
+void RealizaConsulta(tConsulta* consulta, tFila* fila, FILE* bancoConsulta, FILE* bancoLesoes) {
+    // printf("- NOME: %s\n", ObtemNomeAgente(consulta->paciente));
+    // printf("- DATA DE NASCIMENTO: %s\n", ObtemDataNascimentoAgente(consulta->paciente));
     printf("DATA DA CONSULTA:\n");
-    char dataCon[10];
-    scanf("%[^\n]%*c", dataCon);
-    printf("DATA EH %s\n", dataCon);
+
+    scanf("%[^\n]%*c", consulta->data);
+    printf("DATA EH %s\n", consulta->data);
     printf("POSSUI DIABETES:");
     scanf("%d", &consulta->diabetes);
     printf("FUMANTE:");
@@ -45,10 +46,12 @@ void RealizaConsulta(tConsulta* consulta, tFila* fila) {
     printf("ALERGIA A MEDICAMENTO: ");
     scanf("%d", &consulta->alergia);
     printf("HISTORICO DE CANCER: ");
-    scanf("%d%*[^\n]%*c", &consulta->cancer);
+    scanf("%d", &consulta->cancer);
     printf("TIPO DE PELE: ");
     char tipoPele[5];
-    scanf("%[^\n]%*c", tipoPele);
+    printf("############################################################\n");
+    while (getchar() != '\n')
+        scanf("%[^\n]%*c", tipoPele);
     scanf("%s", tipoPele);
 
     if (strcmp(tipoPele, "I") == 0) {
@@ -66,12 +69,11 @@ void RealizaConsulta(tConsulta* consulta, tFila* fila) {
     // ---------------------------------------------------------------------------------------------------------------
 
     int opt = 0;
-
     do {
         ImprimeMenuConsulta();
         scanf("%d", &opt);
-        scanf("%*[^\n]");
-        scanf("%*c");
+        while (getchar() != '\n')
+            ;
         switch (opt) {
             case 1:
                 CadastraLesao(consulta);
@@ -86,10 +88,42 @@ void RealizaConsulta(tConsulta* consulta, tFila* fila) {
                 GeraEncaminhamento(consulta, fila);
                 break;
             case 5:
-                return;
+                SalvaConsultaBin(bancoConsulta, bancoLesoes, consulta);
                 break;
         }
     } while (opt != 5);
+}
+
+tAgente* ObtemPacienteConsulta(tConsulta* c) {
+    return c->paciente;
+}
+
+int ObtemNLesoesConsulta(tConsulta* c) {
+    return c->nlesoes;
+}
+
+int ObtemTamanhoLesoes(tConsulta* consulta) {
+    int tmp = 0;
+    for (size_t i = 0; i < consulta->nlesoes; i++) {
+        tmp += ObtemTamanhoLesao(consulta->lesoes[i]);
+    }
+    return tmp;
+}
+
+int ObtemTotalCrioterapias(tConsulta* consulta) {
+    int tmp = 0;
+    for (size_t i = 0; i < consulta->nlesoes; i++) {
+        tmp += VaiPraCrioterapiaLesao(consulta->lesoes[i]);
+    }
+    return tmp;
+}
+
+int ObtemTotalCirurgias(tConsulta* consulta) {
+    int tmp = 0;
+    for (size_t i = 0; i < consulta->nlesoes; i++) {
+        tmp += VaiPraCirurgiaLesao(consulta->lesoes[i]);
+    }
+    return tmp;
 }
 
 void ImprimeMenuConsulta() {
@@ -104,13 +138,16 @@ void ImprimeMenuConsulta() {
 }
 
 void CadastraLesao(tConsulta* consulta) {
-    consulta->nlesoes++;
     printf("#################### CONSULTA MEDICA #######################\n");
     printf("DIAGNOSTICO CLINICO: ");
     char diag[100], regiao[100];
-    scanf("%[^\n]%*c", diag);
+    scanf("%[^\n]", diag);
+    while (getchar() != '\n')
+        ;
     printf("REGIAO DO CORPO: ");
-    scanf("%[^\n]%*c", regiao);
+    scanf("%[^\n]", regiao);
+    while (getchar() != '\n')
+        ;
     int tamanho = 0;
     printf("TAMANHO: ");
     scanf("%d", &tamanho);
@@ -123,9 +160,12 @@ void CadastraLesao(tConsulta* consulta) {
 
     printf("DIAG: %s \n REGIAO: %s\n", diag, regiao);
     char rotulo[6];
-    sprintf(rotulo, "L%d", consulta->nlesoes);
+    sprintf(rotulo, "L%d", consulta->nlesoes + 1);
+    while (getchar() != '\n')
+        ;
 
     printf("ROTULO EH %s\n", rotulo);
+    consulta->nlesoes++;
 
     consulta->lesoes = realloc(consulta->lesoes, consulta->nlesoes * sizeof(tLesao*));
 
@@ -135,9 +175,12 @@ void CadastraLesao(tConsulta* consulta) {
 
     // SalvaLesao()
 
+    printf("LESAO COM TAMANHO %d CADASTRADA\n", ObtemTamanhoLesao(consulta->lesoes[consulta->nlesoes - 1]));
+
     printf("LESAO REGISTRADA COM SUCESSO. PRESSIONE QUALQUER TECLA PARA VOLTAR AO MENU ANTERIOR\n");
     printf("############################################################\n");
-    scanf("%*c\n");
+    while (getchar() != '\n')
+        ;
 }
 
 void CadastraReceita(tConsulta* consulta, tFila* fila) {
@@ -147,19 +190,29 @@ void CadastraReceita(tConsulta* consulta, tFila* fila) {
     char tipoUso[100], nome[100], instruc[100], tipomed[100];
     int qtd;
     printf("TIPO DE USO: ");
-    scanf("%[^\n]%*c", tipoUso);
+    scanf("%[^\n]", tipoUso);
+    while (getchar() != '\n')
+        ;
     printf("NOME DO MEDICAMENTO: ");
-    scanf("%[^\n]%*c", nome);
+    scanf("%[^\n]", nome);
+    while (getchar() != '\n')
+        ;
     printf("TIPO DE MEDICAMENTO: ");
-    scanf("%[^\n]%*c", tipomed);
+    scanf("%[^\n]", tipomed);
+    while (getchar() != '\n')
+        ;
     printf("QUANTIDADE: ");
-    scanf("%d%*c", &qtd);
+    scanf("%d", &qtd);
+    while (getchar() != '\n')
+        ;
     printf("INSTRUCOES DE USO: ");
-    scanf("%[^\n]%*c", instruc);
+    scanf("%[^\n]", instruc);
+    while (getchar() != '\n')
+        ;
     int type = 0;
-    if (strcmp(tipoUso, "ORAL")) {
+    if (strcmp(tipoUso, "ORAL") == 0) {
         type = 0;
-    } else if (strcmp(tipoUso, "TOPICO")) {
+    } else if (strcmp(tipoUso, "TOPICO") == 0) {
         type = 1;
     }
 
@@ -188,7 +241,9 @@ void GeraBiopsia(tConsulta* consulta, tFila* fila) {
     printf("#################### CONSULTA MEDICA ######################\n");
     if (!TemLesaoCirurgicaConsulta(consulta)) {
         printf("NAO E POSSIVEL SOLICITAR BIOPSIA SEM LESAO CIRURGICA. PRESSIONE QUALQUER TECLA PARA RETORNAR AO MENU ANTERIOR\n");
-        scanf("%*[^\n]\n");
+        while (getchar() != '\n')
+            ;
+
         return;
     }
 
@@ -205,9 +260,13 @@ void GeraEncaminhamento(tConsulta* consulta, tFila* fila) {
     printf("ENCAMINHAMENTO:\n");
     printf("ESPECIALIDADE ENCAMINHADA:");
     char especialidade[100], motivo[100];
-    scanf("%[^\n]%*c", especialidade);
+    scanf("%[^\n]", especialidade);
+    while (getchar() != '\n')
+        ;
     printf("MOTIVO: ");
-    scanf("%[^\n]%*c", motivo);
+    scanf("%[^\n]", motivo);
+    while (getchar() != '\n')
+        ;
 
     tEncaminhamento* e = CriaEncaminhamento(ObtemNomeAgente(consulta->paciente), ObtemCPFAgente(consulta->paciente), especialidade, motivo, consulta->nomeAplicador, consulta->CRM, consulta->data);
     insereDocumentoFila(fila, e, ImprimeTelaEncaminhamento, ImprimeArquivoEncaminhamento, DesalocaEncaminhamento);
@@ -216,24 +275,6 @@ void GeraEncaminhamento(tConsulta* consulta, tFila* fila) {
     printf("############################################################\n");
     while (getchar() != '\n')
         ;
-}
-
-void SalvaConsultaBin(FILE* bancoConsulta, FILE* bancoLesoes, tConsulta* c) {
-    if (c) {
-        fwrite(c, sizeof(tConsulta), 1, bancoConsulta);
-
-        RegistraAgenteBancoDados(c->paciente, bancoConsulta);
-
-        fwrite(&(c->nlesoes), sizeof(int), 1, bancoConsulta);
-
-        SalvaLesoes(c->lesoes, c->nlesoes, bancoLesoes);
-
-        fwrite(c->data, sizeof(char), strlen(c->data) + 1, bancoConsulta);
-
-        fwrite(c->nomeAplicador, sizeof(char), strlen(c->nomeAplicador) + 1, bancoConsulta);
-
-        fwrite(c->CRM, sizeof(char), strlen(c->CRM) + 1, bancoConsulta);
-    }
 }
 
 void SalvaLesoes(tLesao** lesoes, int num, FILE* bancoLesoes) {
@@ -248,6 +289,22 @@ void RecuperaLesoesConsulta(FILE* banco, int num, tConsulta* consulta) {
     }
 }
 
+void SalvaConsultaBin(FILE* bancoConsulta, FILE* bancoLesoes, tConsulta* c) {
+    if (c) {
+        fwrite(c, sizeof(tConsulta), 1, bancoConsulta);
+
+        RegistraAgenteBancoDados(c->paciente, bancoConsulta);
+
+        SalvaLesoes(c->lesoes, c->nlesoes, bancoLesoes);
+
+        /*fwrite(c->data, sizeof(char), strlen(c->data) + 1, bancoConsulta);
+
+         fwrite(c->nomeAplicador, sizeof(char), strlen(c->nomeAplicador) + 1, bancoConsulta);
+
+         fwrite(c->CRM, sizeof(char), strlen(c->CRM) + 1, bancoConsulta);*/
+    }
+}
+
 tConsulta* RecuperaConsulta(FILE* bancoConsulta, FILE* bancoLesoes) {
     tConsulta* c = malloc(sizeof(tConsulta));
 
@@ -255,15 +312,33 @@ tConsulta* RecuperaConsulta(FILE* bancoConsulta, FILE* bancoLesoes) {
 
     c->paciente = RecuperaAgenteBancoDados(bancoConsulta);
 
-    fread(&c->nlesoes, sizeof(int), 1, bancoConsulta);
+    c->lesoes = malloc(c->nlesoes * sizeof(tLesao*));
 
     RecuperaLesoesConsulta(bancoLesoes, c->nlesoes, c);
 
-    fread(c->data, sizeof(char), 15, bancoConsulta);
+    /*  fread(c->data, sizeof(char), 15, bancoConsulta);
 
-    fread(c->nomeAplicador, sizeof(char), 101, bancoConsulta);
+      fread(c->nomeAplicador, sizeof(char), 101, bancoConsulta);
 
-    fread(c->CRM, sizeof(char), 15, bancoConsulta);
+      fread(c->CRM, sizeof(char), 15, bancoConsulta);*/
 
     return c;
+}
+char* ObtemGeneroPacienteConsulta(tConsulta* c) {
+    return ObtemGeneroAgente(c->paciente);
+}
+
+int TemConsultaComMesmoPaciente(tConsulta** consultas, tConsulta* c, int n) {
+    int tmp = 0;
+    for (size_t i = 0; i < n; i++) {
+        printf("ITERACAO %d\n", i);
+        printf("VENDO SE %s EH IGUAL A %s", ObtemNomeAgente(ObtemPacienteConsulta(consultas[i])), ObtemNomeAgente(ObtemPacienteConsulta(c)));
+
+        if (ObtemCPFAgente(ObtemPacienteConsulta(consultas[i])) == ObtemCPFAgente(ObtemPacienteConsulta(c)) && !JaFoiAtendidoPaciente(ObtemPacienteConsulta(consultas[i]))) {
+            printf("SIM EH IGUAL\n");
+            tmp++;
+            AtendeuPaciente(ObtemPacienteConsulta(consultas[i]));
+        }
+    }
+    return tmp > 1;
 }

@@ -46,11 +46,10 @@ void SalvaMedico(FILE* banco, tMedico* medico) {
     if (medico->pessoa != NULL) {
         RegistraAgenteBancoDados(medico->pessoa, banco);
     }
-    fwrite(medico->CRM, sizeof(char), strlen(medico->CRM) + 1, banco);
+    /*fwrite(medico->CRM, sizeof(char), strlen(medico->CRM) + 1, banco);
     fwrite(medico->usuario, sizeof(char), strlen(medico->usuario) + 1, banco);
-    fwrite(medico->senha, sizeof(char), strlen(medico->senha) + 1, banco);
+    fwrite(medico->senha, sizeof(char), strlen(medico->senha) + 1, banco);*/
 }
-
 
 tMedico* RecuperaMedico(FILE* banco) {
     tMedico* medico = malloc(sizeof(tMedico));
@@ -62,9 +61,9 @@ tMedico* RecuperaMedico(FILE* banco) {
     fread(medico, sizeof(tMedico), 1, banco);
 
     medico->pessoa = RecuperaAgenteBancoDados(banco);
-    fread(medico->CRM, sizeof(char), 13, banco);
-    fread(medico->usuario, sizeof(char), 21, banco);
-    fread(medico->senha, sizeof(char), 21, banco);
+    /*fread(medico->CRM, sizeof(char), 13, banco);
+        fread(medico->usuario, sizeof(char), 21, banco);
+        fread(medico->senha, sizeof(char), 21, banco);*/
 
     return medico;
 }
@@ -73,11 +72,10 @@ void LiberaMedico(tMedico* m) {
     if (m->pessoa) {
         LiberaAgente(m->pessoa);
     }
-    printf("CHEGOU3\n");
+
     if (m != NULL) {
         free(m);
     }
-    printf("CHEGOU44\n");
 }
 
 char* ObtemNomeMedico(tMedico* m) {

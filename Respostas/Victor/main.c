@@ -9,15 +9,6 @@
 #include "tMedico.h"
 #include "tSecretario.h"
 
-tAgente* CadastraPaciente() {
-    printf("#################### CADASTRO PACIENTE #######################\n");
-    tAgente* a = LeAgente();
-    printf("CADASTRO REALIZADO COM SUCESSO. PRESSIONE QUALQUER TECLA PARA VOLTAR PARA O MENU INICIAL\n");
-    printf("###############################################################");
-    scanf("%*c");
-    return a;
-}
-
 void GeraMenu(int tipoUsuario) {
     printf("####################### MENU PRINCIPAL #########################\n");
     printf("ESCOLHA UMA OPCAO:\n");
@@ -79,7 +70,6 @@ char* ObtemCaminhoBancodeDados(char* agrv) {
     scanf("%s", aux);
     while (getchar() != '\n')
         ;
-
     sprintf(caminho, "%s/%s", agrv, aux);
     printf("caminho eh:%s\n", caminho);
     printf("################################################\n");
@@ -120,12 +110,12 @@ int main(int argc, char* argv[]) {
 
     // Verifica se há dados registrados no banco da clinica e faz load
     if (verificaTam(bancoClinica)) {
-        rewind(bancoClinica);
-        rewind(bancoSecretarios);
-        rewind(bancoLesoes);
-        rewind(bancoMedicos);
-        rewind(bancoPacientes);
-        rewind(bancoConsultas);
+        /*   rewind(bancoClinica);
+           rewind(bancoSecretarios);
+           rewind(bancoLesoes);
+           rewind(bancoMedicos);
+           rewind(bancoPacientes);
+           rewind(bancoConsultas);*/
 
         clinica = RecuperaClinicaBinario(bancoClinica, bancoMedicos, bancoPacientes, bancoLesoes, bancoSecretarios, bancoConsultas);
     } else {
@@ -139,6 +129,8 @@ int main(int argc, char* argv[]) {
     char cpfUsuario[15];
     char crmUsuario[15];
 
+    char saidapath[150];
+    sprintf(saidapath, "%s/saida", argv[1]);
     while (cargo == 0) {
         cargo = ChecaLoginClinica(clinica, nomeUsuario, cpfUsuario, crmUsuario);
     }
@@ -150,6 +142,9 @@ int main(int argc, char* argv[]) {
         GeraMenu(cargo);
 
         scanf("%d", &opt);
+
+        printf("opt eh: %d\n", opt);
+
         while (getchar() != '\n')
             ;
         switch (opt) {
@@ -163,7 +158,7 @@ int main(int argc, char* argv[]) {
                 CadastraPacienteClinica(clinica, bancoPacientes);
                 break;
             case 4:
-                RealizaConsultaClinica(clinica, bancoConsultas, nomeUsuario, cpfUsuario, crmUsuario);
+                RealizaConsultaClinica(clinica, bancoConsultas, bancoLesoes, nomeUsuario, cpfUsuario, crmUsuario);
                 break;
             case 5:
                 BuscaPacientesClinica(clinica);
@@ -172,12 +167,12 @@ int main(int argc, char* argv[]) {
                 GeraRelatorioGeral(clinica);
                 break;
             case 7:
-                ExibeMenuFilaClinica(clinica, argv[1]);
+                // ExibeMenuFilaClinica(clinica, argv[1]);  // caso de teste
+                ExibeMenuFilaClinica(clinica, saidapath);  // caso script
             case 8:
                 break;
         }
 
-        printf("opt eh: %d", opt);
     } while (opt != 8);
 
     // Fecha tudo e salva no banco

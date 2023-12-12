@@ -1,7 +1,0 @@
-/usr/bin/ld: Resultados/Victor/main/tClinica.o: in function `GeraMenu':
-tClinica.c:(.text+0x11e8): multiple definition of `GeraMenu'; Resultados/Victor/main/main.o:main.c:(.text+0x66): first defined here
-/usr/bin/ld: Resultados/Victor/main/tClinica.o: in function `RealizaConsultaClinica':
-tClinica.c:(.text+0x8c): undefined reference to `BuscaPacienteClinica'
-/usr/bin/ld: Resultados/Victor/main/tLista.o: in function `criaLista':
-tLista.c:(.text+0x66): undefined reference to `ClonaAgente'
-collect2: error: ld returned 1 exit status

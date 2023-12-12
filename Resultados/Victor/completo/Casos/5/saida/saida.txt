@@ -1,1 +1,289 @@
-valgrind: Resultados/Victor/completo/prog: No such file or directory
+################################################
+DIGITE O CAMINHO DO BANCO DE DADOS:
+digite o caminho:caminho eh:Resultados/Victor/completo/Casos/5/../../
+################################################
+O arquivo não está vazio.
+NUMERO DE PACIENTES RECUPERADOS: 7
+NUMERO DE MEDICOS RECUPERADOS: 2
+NUMERO DE SECRETARIOS RECUPERADOS: 2
+NUMERO DE CONSULTAS RECUPERADOS: 4
+NUMERO DE SECRETARIOS DA CLINICA EH OFICIALMENTE 2NOME DO SECRETARIO RECUPERADO EH HEIMERDINGER
+NOME DO SECRETARIO RECUPERADO EH VIKTOR ARAUTO
+######################## ACESSO MINI-SADE #####################
+DIGITE SEU LOGIN: login eh  heimer
+DIGITE SUA SENHA: senha eh: science!LOGIN EH :heimer
+CARGO EH 1
+####################### MENU PRINCIPAL #########################
+ESCOLHA UMA OPCAO:
+(1) CADASTRAR SECRETARIO
+(2) CADASTRAR MEDICO
+(3) CADASTRAR PACIENTE
+(4) REALIZAR CONSULTA
+(5) BUSCAR PACIENTES
+(6) RELATORIO GERAL
+(7) FILA DE IMPRESSAO
+(8) FINALIZAR O PROGRAMA
+###############################################################
+opt eh: 3
+#################### CADASTRO PACIENTE #######################
+NOME COMPLETO:  nome eh LEONA
+CPF: cpf eh 524.456.852-98
+DATA DE NASCIMENTO: data eh 15/10/1980
+TELEFONE: tel eh (78)65734-8352
+GENERO: genero eh FEMININO
+CPF JA EXISTENTE. OPERACAO NAO PERMITIDA
+####################### MENU PRINCIPAL #########################
+ESCOLHA UMA OPCAO:
+(1) CADASTRAR SECRETARIO
+(2) CADASTRAR MEDICO
+(3) CADASTRAR PACIENTE
+(4) REALIZAR CONSULTA
+(5) BUSCAR PACIENTES
+(6) RELATORIO GERAL
+(7) FILA DE IMPRESSAO
+(8) FINALIZAR O PROGRAMA
+###############################################################
+opt eh: 3
+#################### CADASTRO PACIENTE #######################
+NOME COMPLETO:  nome eh LEONA
+CPF: cpf eh 245.632.548-10
+DATA DE NASCIMENTO: data eh 15/10/1980
+TELEFONE: tel eh (78)65734-8352
+GENERO: genero eh FEMININO
+CADASTRO REALIZADO COM SUCESSO. PRESSIONE QUALQUER TECLA PARA VOLTAR PARA O MENU INICIAL
+###################################################################################### MENU PRINCIPAL #########################
+ESCOLHA UMA OPCAO:
+(1) CADASTRAR SECRETARIO
+(2) CADASTRAR MEDICO
+(3) CADASTRAR PACIENTE
+(4) REALIZAR CONSULTA
+(5) BUSCAR PACIENTES
+(6) RELATORIO GERAL
+(7) FILA DE IMPRESSAO
+(8) FINALIZAR O PROGRAMA
+###############################################################
+opt eh: 5
+#################### BUSCAR PACIENTES #######################
+NOME DO PACIENTE: PACIENTES ENCONTRADOS 
+1 - VAINE (524.456.852-98)
+
+ESCOLHA UMA OPCAO:
+	(1) ENVIAR LISTA PARA IMPRESSAO	(2) RETORNAR AO MENU PRINCIPALLISTA ENVIADA PARA FILA DE IMPRESSAO. PRESSIONE QUALQUER TECLA PARA RETORNAR AO MENU PRINCIPAL
+############################################################
+####################### MENU PRINCIPAL #########################
+ESCOLHA UMA OPCAO:
+(1) CADASTRAR SECRETARIO
+(2) CADASTRAR MEDICO
+(3) CADASTRAR PACIENTE
+(4) REALIZAR CONSULTA
+(5) BUSCAR PACIENTES
+(6) RELATORIO GERAL
+(7) FILA DE IMPRESSAO
+(8) FINALIZAR O PROGRAMA
+###############################################################
+opt eh: 4
+#################### CONSULTA MEDICA #######################
+CPF DO PACIENTE:---
+-NOME: LEONA
+-DATA DE NASCIMENTO: 15/10/1980---
+DATA DA CONSULTA:
+DATA EH 10/10/2020
+POSSUI DIABETES:FUMANTE:ALERGIA A MEDICAMENTO: HISTORICO DE CANCER: TIPO DE PELE: ############################################################
+TIPO PELE EH 4
+#################### CONSULTA MEDICA #######################
+ESCOLHA UMA OPCAO:
+	(1) CADASTRAR LESAO
+	(2) GERAR RECEITA MEDICA
+	(3) SOLICITACAO DE BIOPSIA
+	(4) ENCAMINHAMENTO
+	(5) ENCERRAR CONSULTA
+############################################################
+#################### CONSULTA MEDICA #######################
+DIAGNOSTICO CLINICO: REGIAO DO CORPO: TAMANHO: ENVIAR PARA CIRURGIA: ENVIAR PARA CRIOTERAPIA: DIAG: MELANOMA 
+ REGIAO: MAO
+ROTULO EH L1
+LESAO COM TAMANHO 30 CADASTRADA
+LESAO REGISTRADA COM SUCESSO. PRESSIONE QUALQUER TECLA PARA VOLTAR AO MENU ANTERIOR
+############################################################
+#################### CONSULTA MEDICA #######################
+ESCOLHA UMA OPCAO:
+	(1) CADASTRAR LESAO
+	(2) GERAR RECEITA MEDICA
+	(3) SOLICITACAO DE BIOPSIA
+	(4) ENCAMINHAMENTO
+	(5) ENCERRAR CONSULTA
+############################################################
+#################### CONSULTA MEDICA #######################
+RECEITA MEDICA:
+TIPO DE USO: NOME DO MEDICAMENTO: TIPO DE MEDICAMENTO: QUANTIDADE: INSTRUCOES DE USO: RECEITA ENVIADA PARA FILA DE IMPRESSAO. PRESSIONE QUALQUER TECLA PARA RETORNAR AO MENU ANTERIOR
+############################################################
+#################### CONSULTA MEDICA #######################
+ESCOLHA UMA OPCAO:
+	(1) CADASTRAR LESAO
+	(2) GERAR RECEITA MEDICA
+	(3) SOLICITACAO DE BIOPSIA
+	(4) ENCAMINHAMENTO
+	(5) ENCERRAR CONSULTA
+############################################################
+#################### CONSULTA MEDICA ######################
+SOLICITACAO DE BIOPSIA ENVIADA PARA FILA DE IMPRESSAO. PRESSIONE QUALQUER TECLA PARA RETORNAR AO MENU ANTERIOR
+############################################################
+#################### CONSULTA MEDICA #######################
+ESCOLHA UMA OPCAO:
+	(1) CADASTRAR LESAO
+	(2) GERAR RECEITA MEDICA
+	(3) SOLICITACAO DE BIOPSIA
+	(4) ENCAMINHAMENTO
+	(5) ENCERRAR CONSULTA
+############################################################
+#################### CONSULTA MEDICA ######################
+ENCAMINHAMENTO:
+ESPECIALIDADE ENCAMINHADA:MOTIVO: ENCAMINHAMENTO ENVIADO PARA FILA DE IMPRESSAO. PRESSIONE QUALQUER TECLA PARA RETORNAR AO MENU ANTERIOR
+############################################################
+#################### CONSULTA MEDICA #######################
+ESCOLHA UMA OPCAO:
+	(1) CADASTRAR LESAO
+	(2) GERAR RECEITA MEDICA
+	(3) SOLICITACAO DE BIOPSIA
+	(4) ENCAMINHAMENTO
+	(5) ENCERRAR CONSULTA
+############################################################
+CONSULTA NUMERO 5 COM PACIENTE LEONA de idade 43 com 1 lesoes realizada e salva
+
+
+
+
+
+ PACIENTE LEONA ATENDIDO
+
+
+
+
+
+####################### MENU PRINCIPAL #########################
+ESCOLHA UMA OPCAO:
+(1) CADASTRAR SECRETARIO
+(2) CADASTRAR MEDICO
+(3) CADASTRAR PACIENTE
+(4) REALIZAR CONSULTA
+(5) BUSCAR PACIENTES
+(6) RELATORIO GERAL
+(7) FILA DE IMPRESSAO
+(8) FINALIZAR O PROGRAMA
+###############################################################
+opt eh: 6
+NUMERO TOTAL DE PACIENTES ATENDIDOS: 4
+IDADE MEDIA: 42
+DISTRIBUICAO POR GENERO:
+- FEMININO: 3
+- MASCULINO: 2
+- OUTROS: 3
+TAMANHO MEDIO DAS LESOES: 17
+NUMERO TOTAL DE LESOES: 7
+NUMERO TOTAL DE CIRURGIAS: 5
+NUMERO TOTAL DE CRIOTERAPIA: 2
+
+SELECIONE UMA OPCAO: 
+	 (1) ENVIAR PARA LISTA DE IMPRESAO
+	 (2) RETORNAR AO MENU PRINCIPAL 
+DOCUMENTO ENVIADO PARA LISTA DE IMPRESSAO. PRESSIONE QUALQUER TECLA PARA RETORNAR AO MENU INICIAL
+#################################
+####################### MENU PRINCIPAL #########################
+ESCOLHA UMA OPCAO:
+(1) CADASTRAR SECRETARIO
+(2) CADASTRAR MEDICO
+(3) CADASTRAR PACIENTE
+(4) REALIZAR CONSULTA
+(5) BUSCAR PACIENTES
+(6) RELATORIO GERAL
+(7) FILA DE IMPRESSAO
+(8) FINALIZAR O PROGRAMA
+###############################################################
+opt eh: 7
+################ FILA DE IMPRESSAO MEDICA ##################
+ESCOLHA UMA OPCAO:
+	(1) EXECUTAR FILA DE IMPRESSAO
+	(2) RETORNAR AO MENU PRINCIPAL
+############################################################################ FILA DE IMPRESSAO MEDICA ##################
+EXECUTANDO FILA DE IMPRESSAO:
+1 - VAINE (524.456.852-98)
+
+RECEITUARIO
+NOME: LEONA
+
+USO ORAL
+
+DIPIRONA
+30 COMPRIMIDO
+
+USAR EM CASO DE MUITA DOR
+
+ ()
+10/10/2020
+
+PACIENTE: LEONA
+CPF: 245.632.548-10
+
+SOLICITACAO DE BIOPSIA PARA AS LESOES:
+L1 - MELANOMA - MAO - 30MM
+
+ ()
+10/10/2020
+
+PACIENTE: LEONA
+CPF: 245.632.548-10
+
+ESPECIALIDADE ENCAMINHADA: CARDIOLOGIA
+MOTIVO:REALIZAR CARDIOGRAMA COMPLETO PARA CIRURGIA
+
+ ()
+10/10/2020
+
+NUMERO TOTAL DE PACIENTES ATENDIDOS: 4
+IDADE MEDIA: 42
+DISTRIBUICAO POR GENERO:
+- FEMININO: 3
+- MASCULINO: 2
+- OUTROS: 3
+TAMANHO MEDIO DAS LESOES: 17
+NUMERO TOTAL DE LESOES: 7
+NUMERO TOTAL DE CIRURGIAS: 5
+NUMERO TOTAL DE CRIOTERAPIA: 2
+
+PRESSIONE QUALQUER TECLA PARA VOLTAR PARA O MENU ANTERIOR
+############################################################
+################ FILA DE IMPRESSAO MEDICA ##################
+ESCOLHA UMA OPCAO:
+	(1) EXECUTAR FILA DE IMPRESSAO
+	(2) RETORNAR AO MENU PRINCIPAL
+################################################################################### MENU PRINCIPAL #########################
+ESCOLHA UMA OPCAO:
+(1) CADASTRAR SECRETARIO
+(2) CADASTRAR MEDICO
+(3) CADASTRAR PACIENTE
+(4) REALIZAR CONSULTA
+(5) BUSCAR PACIENTES
+(6) RELATORIO GERAL
+(7) FILA DE IMPRESSAO
+(8) FINALIZAR O PROGRAMA
+###############################################################
+opt eh: 8
+entrou pra liberar pacientes 
+Liberando Paciente VAINE
+Liberando Paciente TRYNDAMERE
+Liberando Paciente SYNDRA
+Liberando Paciente TAHM KENCH
+Liberando Paciente TWISTED FATE
+Liberando Paciente VARUS
+Liberando Paciente TRYNDAMERE
+Liberando Paciente LEONA
+PACIENTES LIBERADOS
+entrou pra liberar medicos 
+Liberando MEDICO DR. MUNDO
+Liberando MEDICO SORAKA ESTRELA
+MEDICOS LIBERADOS
+entrou pra liberar SECRETARIOS 
+Liberando SECRETARIO HEIMERDINGER
+Liberando SECRETARIO VIKTOR ARAUTO
+SECRETARIOS LIBERADOS
+CHEGOU AQUI4

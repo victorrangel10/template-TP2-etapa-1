@@ -9,15 +9,6 @@
 #include "tMedico.h"
 #include "tSecretario.h"
 
-tAgente* CadastraPaciente() {
-    printf("#################### CADASTRO PACIENTE #######################\n");
-    tAgente* a = LeAgente();
-    printf("CADASTRO REALIZADO COM SUCESSO. PRESSIONE QUALQUER TECLA PARA VOLTAR PARA O MENU INICIAL\n");
-    printf("###############################################################");
-    scanf("%*c");
-    return a;
-}
-
 void GeraMenu(int tipoUsuario) {
     printf("####################### MENU PRINCIPAL #########################\n");
     printf("ESCOLHA UMA OPCAO:\n");
@@ -44,6 +35,8 @@ void GeraMenu(int tipoUsuario) {
         printf("(6) RELATORIO GERAL\n");
         printf("(7) FILA DE IMPRESSAO\n");
         printf("(8) FINALIZAR O PROGRAMA\n");
+    } else {
+        printf("TIPO DE USUARIO ERRADO \n");
     }
 
     printf("###############################################################\n");
@@ -68,21 +61,28 @@ int verificaTam(FILE* arquivo) {
     }
 }
 
-char* ObtemCaminhoBancodeDados() {
+char* ObtemCaminhoBancodeDados(char* agrv) {
     printf("################################################\n");
     printf("DIGITE O CAMINHO DO BANCO DE DADOS:\n");
     char* caminho = malloc(150 * sizeof(char));
     printf("digite o caminho:");
-    scanf("%s", caminho);
+    char aux[150];
+    scanf("%s", aux);
     while (getchar() != '\n')
         ;
+    sprintf(caminho, "%s/%s", agrv, aux);
     printf("caminho eh:%s\n", caminho);
     printf("################################################\n");
     return caminho;
 }
 
-int main() {
-    char* caminho = ObtemCaminhoBancodeDados();
+int main(int argc, char* argv[]) {
+    if (argc < 2) {
+        printf("Erro: favor informar diretorio para impresao de arquivos");
+        return 0;
+    }
+
+    char* caminho = ObtemCaminhoBancodeDados(argv[1]);
     char arqSecretarios[200];
     char arqMedicos[200];
     char arqPacientes[200];
@@ -106,35 +106,47 @@ int main() {
 
     free(caminho);
 
-    int ehNecessarioLogin = 0;
     tClinica* clinica;
 
     // Verifica se há dados registrados no banco da clinica e faz load
     if (verificaTam(bancoClinica)) {
+        /*   rewind(bancoClinica);
+           rewind(bancoSecretarios);
+           rewind(bancoLesoes);
+           rewind(bancoMedicos);
+           rewind(bancoPacientes);
+           rewind(bancoConsultas);*/
+
         clinica = RecuperaClinicaBinario(bancoClinica, bancoMedicos, bancoPacientes, bancoLesoes, bancoSecretarios, bancoConsultas);
-        ehNecessarioLogin = 1;
     } else {
         clinica = CriaClinica();
         CadastraSecretarioClinica(clinica, bancoSecretarios);
     }
 
     // Checa informacoes de login e senha
-    int cargo;
+    int cargo = 0;
     char nomeUsuario[101];
     char cpfUsuario[15];
     char crmUsuario[15];
 
-    if (ehNecessarioLogin) {
-        cargo = ChecaLoginClinica(clinica, &nomeUsuario, &cpfUsuario, &crmUsuario);
-    } else {
-        cargo = 1;
+    char saidapath[150];
+    sprintf(saidapath, "%s/saida", argv[1]);
+    while (cargo == 0) {
+        cargo = ChecaLoginClinica(clinica, nomeUsuario, cpfUsuario, crmUsuario);
     }
 
+    printf("CARGO EH %d\n", cargo);
     // Comeca o programa de fato
-    int opt;
+    int opt = 0;
     do {
         GeraMenu(cargo);
+
         scanf("%d", &opt);
+
+        printf("opt eh: %d\n", opt);
+
+        while (getchar() != '\n')
+            ;
         switch (opt) {
             case 1:
                 CadastraSecretarioClinica(clinica, bancoSecretarios);
@@ -146,20 +158,30 @@ int main() {
                 CadastraPacienteClinica(clinica, bancoPacientes);
                 break;
             case 4:
-                RealizaConsultaClinica(clinica, bancoConsultas, nomeUsuario, cpfUsuario, crmUsuario);
+                RealizaConsultaClinica(clinica, bancoConsultas, bancoLesoes, nomeUsuario, cpfUsuario, crmUsuario);
                 break;
             case 5:
                 BuscaPacientesClinica(clinica);
-            break;
-            default:
+                break;
+            case 6:
+                GeraRelatorioGeral(clinica);
+                break;
+            case 7:
+                // ExibeMenuFilaClinica(clinica, argv[1]);  // caso de teste
+                ExibeMenuFilaClinica(clinica, saidapath);  // caso script
+            case 8:
                 break;
         }
+
     } while (opt != 8);
 
     // Fecha tudo e salva no banco
     fclose(bancoClinica);
+
     bancoClinica = fopen(arqClinica, "wb");
     SalvaClinicaBinario(clinica, bancoClinica);
+
+    DesalocaClinica(clinica);
 
     fclose(bancoClinica);
     fclose(bancoSecretarios);
@@ -167,8 +189,6 @@ int main() {
     fclose(bancoConsultas);
     fclose(bancoPacientes);
     fclose(bancoMedicos);
-
-    DesalocaClinica(clinica);
 
     return 0;
 }

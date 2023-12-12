@@ -77,6 +77,36 @@ tSecretario* LeSecretario() {
     while (getchar() != '\n')
         ;
     printf("ACESSO EH %s\n", secretario->acesso);
+    return secretario;
+}
+
+tSecretario* LePrimeiroSecretario() {
+    tSecretario* secretario = malloc(sizeof(tSecretario));
+
+    if (secretario == NULL) {
+        perror("Erro ao alocar memória para secretário");
+        exit(EXIT_FAILURE);
+    }
+
+    // Lendo os dados do secretário
+    printf("#################### CADASTRO SECRETARIO #######################\n");
+    secretario->pessoa = LeAgente();  // Usando LeAgente() para ler os dados do agente
+    printf("NOME DE USUARIO: ");
+    scanf("%[^\n]", secretario->usuario);
+
+    while (getchar() != '\n')
+        ;
+    printf("LOGIN EH %s\n", secretario->usuario);
+    printf("SENHA: ");
+    scanf("%[^\n]", secretario->senha);
+    while (getchar() != '\n')
+        ;
+    printf("SENHA EH %s\n", secretario->senha);
+    printf("NIVEL DE ACESSO: ");
+    scanf("%[^\n]", secretario->acesso);
+    while (getchar() != '\n')
+        ;
+    printf("ACESSO EH %s\n", secretario->acesso);
     printf("CADASTRO REALIZADO COM SUCESSO. PRESSIONE QUALQUER TECLA PARA VOLTAR PARA O MENU INICIAL\n");
 
     return secretario;

@@ -38,9 +38,11 @@ tLista* desalocaLista(void* dado) {
 
 void imprimeNaTelaLista(void* dado) {
     tLista* l = (tLista*)dado;
+    int count = 0;
     for (size_t i = 0; i < l->nAgentes; i++) {
         if (strcmp(l->nomeBuscado, ObtemNomeAgente(l->agentes[i])) == 0) {
-            printf("%d - %s(%s)\n", i+1, ObtemNomeAgente(l->agentes[i]), ObtemCPFAgente(l->agentes[i]));
+            count++;
+            printf("%d - %s (%s)\n\n", count, ObtemNomeAgente(l->agentes[i]), ObtemCPFAgente(l->agentes[i]));
         }
     }
 }
@@ -49,15 +51,18 @@ void imprimeEmArquivoLista(void* dado, char* path) {
     tLista* l = (tLista*)dado;
     char dest[200];
     sprintf(dest, "%s/lista_busca.txt", path);
-    FILE* arq = fopen(dest, "w");
+    FILE* arq = fopen(dest, "a+");
     if (arq == NULL) {
         perror("Erro ao abrir o arquivo para lista");
         exit(EXIT_FAILURE);
     }
+    int count = 0;
     for (size_t i = 0; i < l->nAgentes; i++) {
         if (strcmp(l->nomeBuscado, ObtemNomeAgente(l->agentes[i])) == 0) {
-            fprintf(arq, "%d - %s(%s)\n", i, ObtemNomeAgente(l->agentes[i]), ObtemCPFAgente(l->agentes[i]));
+            count++;
+            fprintf(arq, "%d - %s (%s)\n", count, ObtemNomeAgente(l->agentes[i]), ObtemCPFAgente(l->agentes[i]));
         }
     }
+    fprintf(arq, "\n");
     fclose(arq);
 }

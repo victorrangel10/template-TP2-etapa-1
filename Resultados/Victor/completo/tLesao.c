@@ -13,6 +13,17 @@ struct tLesao {
     int vaiPraCrioterapia;
 };
 
+tLesao *ClonaLesao(tLesao *l) {
+    tLesao *nova = calloc(1, sizeof(tLesao));
+    strcpy(nova->rotulo, l->rotulo);
+    strcpy(nova->diagnostico, l->diagnostico);
+    strcpy(nova->regiao, l->regiao);
+    nova->tamanho = l->tamanho;
+    nova->vaiPraCirurgia = l->vaiPraCirurgia;
+    nova->vaiPraCrioterapia = l->vaiPraCrioterapia;
+    return nova;
+}
+
 tLesao *criaLesao(char *rotulo, char *diagnostico, char *regiao, int tamanho,
                   int cir, int crio) {
     tLesao *l = calloc(1, sizeof(tLesao));
@@ -33,13 +44,12 @@ tLesao *criaLesao(char *rotulo, char *diagnostico, char *regiao, int tamanho,
 }
 
 void desalocaLesao(void *dado) {
-    if (dado) {
+    if (dado!=NULL) {
         free(dado);
     }
 }
 
-
-int VaiPraCirurgiaLesao(tLesao * t){
+int VaiPraCirurgiaLesao(tLesao *t) {
     return t->vaiPraCirurgia;
 }
 
@@ -60,10 +70,11 @@ int VaiPraCrioterapiaLesao(tLesao *l) {
 void SalvaLesao(FILE *banco, tLesao *lesao) {
     if (lesao) {
         fwrite(lesao, sizeof(tLesao), 1, banco);
-        fwrite(lesao->diagnostico,sizeof(char),strlen(lesao->diagnostico)+1,banco);
-        fwrite(lesao->regiao,sizeof(char),strlen(lesao->regiao)+1,banco);
-        fwrite(lesao->rotulo,sizeof(char),strlen(lesao->rotulo)+1,banco);
     }
+}
+
+int ObtemTamanhoLesao(tLesao *l) {
+    return l->tamanho;
 }
 
 tLesao *RecuperaLesao(FILE *banco) {
@@ -73,10 +84,5 @@ tLesao *RecuperaLesao(FILE *banco) {
         exit(EXIT_FAILURE);
     }
     fread(l, sizeof(tLesao), 1, banco);
-    fread(l->diagnostico,sizeof(char),100,banco);
-    fread(l->regiao,sizeof(char),30,banco);
-    fread(l->rotulo,sizeof(char),6,banco);
-
-
     return l;
 }

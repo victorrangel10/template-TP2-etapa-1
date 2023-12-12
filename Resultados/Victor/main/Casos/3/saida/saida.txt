@@ -1,1 +1,306 @@
-valgrind: Resultados/Victor/main/prog: No such file or directory
+################################################
+DIGITE O CAMINHO DO BANCO DE DADOS:
+digite o caminho:caminho eh:Resultados/Victor/main/Casos/3/../../
+################################################
+O arquivo não está vazio.
+NUMERO DE PACIENTES RECUPERADOS: 7
+NUMERO DE MEDICOS RECUPERADOS: 2
+NUMERO DE SECRETARIOS RECUPERADOS: 2
+NUMERO DE CONSULTAS RECUPERADOS: 2
+NUMERO DE SECRETARIOS DA CLINICA EH OFICIALMENTE 2NOME DO SECRETARIO RECUPERADO EH HEIMERDINGER
+NOME DO SECRETARIO RECUPERADO EH VIKTOR ARAUTO
+######################## ACESSO MINI-SADE #####################
+DIGITE SEU LOGIN: login eh  soraka
+DIGITE SUA SENHA: senha eh: cura$LOGIN EH :soraka
+LOGIN EH :soraka
+CARGO EH 3
+####################### MENU PRINCIPAL #########################
+ESCOLHA UMA OPCAO:
+(4) REALIZAR CONSULTA
+(5) BUSCAR PACIENTES
+(6) RELATORIO GERAL
+(7) FILA DE IMPRESSAO
+(8) FINALIZAR O PROGRAMA
+###############################################################
+opt eh: 5
+#################### BUSCAR PACIENTES #######################
+NOME DO PACIENTE: NENHUM PACIENTE FOI ENCONTRADO. PRESSIONE QUALQUER TECLA PARA RETORNAR AO MENU ANTERIOR
+############################################################
+####################### MENU PRINCIPAL #########################
+ESCOLHA UMA OPCAO:
+(4) REALIZAR CONSULTA
+(5) BUSCAR PACIENTES
+(6) RELATORIO GERAL
+(7) FILA DE IMPRESSAO
+(8) FINALIZAR O PROGRAMA
+###############################################################
+opt eh: 5
+#################### BUSCAR PACIENTES #######################
+NOME DO PACIENTE: PACIENTES ENCONTRADOS 
+1 - VARUS (555.333.270-46)
+
+ESCOLHA UMA OPCAO:
+	(1) ENVIAR LISTA PARA IMPRESSAO	(2) RETORNAR AO MENU PRINCIPALLISTA ENVIADA PARA FILA DE IMPRESSAO. PRESSIONE QUALQUER TECLA PARA RETORNAR AO MENU PRINCIPAL
+############################################################
+####################### MENU PRINCIPAL #########################
+ESCOLHA UMA OPCAO:
+(4) REALIZAR CONSULTA
+(5) BUSCAR PACIENTES
+(6) RELATORIO GERAL
+(7) FILA DE IMPRESSAO
+(8) FINALIZAR O PROGRAMA
+###############################################################
+opt eh: 5
+#################### BUSCAR PACIENTES #######################
+NOME DO PACIENTE: PACIENTES ENCONTRADOS 
+1 - SYNDRA (155.941.270-46)
+
+ESCOLHA UMA OPCAO:
+	(1) ENVIAR LISTA PARA IMPRESSAO	(2) RETORNAR AO MENU PRINCIPALLISTA ENVIADA PARA FILA DE IMPRESSAO. PRESSIONE QUALQUER TECLA PARA RETORNAR AO MENU PRINCIPAL
+############################################################
+####################### MENU PRINCIPAL #########################
+ESCOLHA UMA OPCAO:
+(4) REALIZAR CONSULTA
+(5) BUSCAR PACIENTES
+(6) RELATORIO GERAL
+(7) FILA DE IMPRESSAO
+(8) FINALIZAR O PROGRAMA
+###############################################################
+opt eh: 4
+#################### CONSULTA MEDICA #######################
+CPF DO PACIENTE:---
+-NOME: SYNDRA
+-DATA DE NASCIMENTO: 06/04/1985---
+DATA DA CONSULTA:
+DATA EH 01/12/2023
+POSSUI DIABETES:FUMANTE:ALERGIA A MEDICAMENTO: HISTORICO DE CANCER: TIPO DE PELE: ############################################################
+TIPO PELE EH 1
+#################### CONSULTA MEDICA #######################
+ESCOLHA UMA OPCAO:
+	(1) CADASTRAR LESAO
+	(2) GERAR RECEITA MEDICA
+	(3) SOLICITACAO DE BIOPSIA
+	(4) ENCAMINHAMENTO
+	(5) ENCERRAR CONSULTA
+############################################################
+#################### CONSULTA MEDICA #######################
+DIAGNOSTICO CLINICO: REGIAO DO CORPO: TAMANHO: ENVIAR PARA CIRURGIA: ENVIAR PARA CRIOTERAPIA: DIAG: MELANOMA 
+ REGIAO: PEITORAL
+ROTULO EH L1
+LESAO COM TAMANHO 12 CADASTRADA
+LESAO REGISTRADA COM SUCESSO. PRESSIONE QUALQUER TECLA PARA VOLTAR AO MENU ANTERIOR
+############################################################
+#################### CONSULTA MEDICA #######################
+ESCOLHA UMA OPCAO:
+	(1) CADASTRAR LESAO
+	(2) GERAR RECEITA MEDICA
+	(3) SOLICITACAO DE BIOPSIA
+	(4) ENCAMINHAMENTO
+	(5) ENCERRAR CONSULTA
+############################################################
+#################### CONSULTA MEDICA #######################
+DIAGNOSTICO CLINICO: REGIAO DO CORPO: TAMANHO: ENVIAR PARA CIRURGIA: ENVIAR PARA CRIOTERAPIA: DIAG: NEVO 
+ REGIAO: COXA
+ROTULO EH L2
+LESAO COM TAMANHO 18 CADASTRADA
+LESAO REGISTRADA COM SUCESSO. PRESSIONE QUALQUER TECLA PARA VOLTAR AO MENU ANTERIOR
+############################################################
+#################### CONSULTA MEDICA #######################
+ESCOLHA UMA OPCAO:
+	(1) CADASTRAR LESAO
+	(2) GERAR RECEITA MEDICA
+	(3) SOLICITACAO DE BIOPSIA
+	(4) ENCAMINHAMENTO
+	(5) ENCERRAR CONSULTA
+############################################################
+#################### CONSULTA MEDICA #######################
+RECEITA MEDICA:
+TIPO DE USO: NOME DO MEDICAMENTO: TIPO DE MEDICAMENTO: QUANTIDADE: INSTRUCOES DE USO: RECEITA ENVIADA PARA FILA DE IMPRESSAO. PRESSIONE QUALQUER TECLA PARA RETORNAR AO MENU ANTERIOR
+############################################################
+#################### CONSULTA MEDICA #######################
+ESCOLHA UMA OPCAO:
+	(1) CADASTRAR LESAO
+	(2) GERAR RECEITA MEDICA
+	(3) SOLICITACAO DE BIOPSIA
+	(4) ENCAMINHAMENTO
+	(5) ENCERRAR CONSULTA
+############################################################
+#################### CONSULTA MEDICA #######################
+RECEITA MEDICA:
+TIPO DE USO: NOME DO MEDICAMENTO: TIPO DE MEDICAMENTO: QUANTIDADE: INSTRUCOES DE USO: RECEITA ENVIADA PARA FILA DE IMPRESSAO. PRESSIONE QUALQUER TECLA PARA RETORNAR AO MENU ANTERIOR
+############################################################
+#################### CONSULTA MEDICA #######################
+ESCOLHA UMA OPCAO:
+	(1) CADASTRAR LESAO
+	(2) GERAR RECEITA MEDICA
+	(3) SOLICITACAO DE BIOPSIA
+	(4) ENCAMINHAMENTO
+	(5) ENCERRAR CONSULTA
+############################################################
+#################### CONSULTA MEDICA ######################
+SOLICITACAO DE BIOPSIA ENVIADA PARA FILA DE IMPRESSAO. PRESSIONE QUALQUER TECLA PARA RETORNAR AO MENU ANTERIOR
+############################################################
+#################### CONSULTA MEDICA #######################
+ESCOLHA UMA OPCAO:
+	(1) CADASTRAR LESAO
+	(2) GERAR RECEITA MEDICA
+	(3) SOLICITACAO DE BIOPSIA
+	(4) ENCAMINHAMENTO
+	(5) ENCERRAR CONSULTA
+############################################################
+#################### CONSULTA MEDICA ######################
+ENCAMINHAMENTO:
+ESPECIALIDADE ENCAMINHADA:MOTIVO: ENCAMINHAMENTO ENVIADO PARA FILA DE IMPRESSAO. PRESSIONE QUALQUER TECLA PARA RETORNAR AO MENU ANTERIOR
+############################################################
+#################### CONSULTA MEDICA #######################
+ESCOLHA UMA OPCAO:
+	(1) CADASTRAR LESAO
+	(2) GERAR RECEITA MEDICA
+	(3) SOLICITACAO DE BIOPSIA
+	(4) ENCAMINHAMENTO
+	(5) ENCERRAR CONSULTA
+############################################################
+CONSULTA NUMERO 3 COM PACIENTE SYNDRA de idade 38 com 2 lesoes realizada e salva
+
+
+
+
+
+ PACIENTE SYNDRA ATENDIDO
+
+
+
+
+
+####################### MENU PRINCIPAL #########################
+ESCOLHA UMA OPCAO:
+(4) REALIZAR CONSULTA
+(5) BUSCAR PACIENTES
+(6) RELATORIO GERAL
+(7) FILA DE IMPRESSAO
+(8) FINALIZAR O PROGRAMA
+###############################################################
+opt eh: 6
+NUMERO TOTAL DE PACIENTES ATENDIDOS: 2
+IDADE MEDIA: 42
+DISTRIBUICAO POR GENERO:
+- FEMININO: 2
+- MASCULINO: 2
+- OUTROS: 3
+TAMANHO MEDIO DAS LESOES: 15
+NUMERO TOTAL DE LESOES: 4
+NUMERO TOTAL DE CIRURGIAS: 3
+NUMERO TOTAL DE CRIOTERAPIA: 1
+
+SELECIONE UMA OPCAO: 
+	 (1) ENVIAR PARA LISTA DE IMPRESAO
+	 (2) RETORNAR AO MENU PRINCIPAL 
+DOCUMENTO ENVIADO PARA LISTA DE IMPRESSAO. PRESSIONE QUALQUER TECLA PARA RETORNAR AO MENU INICIAL
+#################################
+####################### MENU PRINCIPAL #########################
+ESCOLHA UMA OPCAO:
+(4) REALIZAR CONSULTA
+(5) BUSCAR PACIENTES
+(6) RELATORIO GERAL
+(7) FILA DE IMPRESSAO
+(8) FINALIZAR O PROGRAMA
+###############################################################
+opt eh: 7
+################ FILA DE IMPRESSAO MEDICA ##################
+ESCOLHA UMA OPCAO:
+	(1) EXECUTAR FILA DE IMPRESSAO
+	(2) RETORNAR AO MENU PRINCIPAL
+############################################################################ FILA DE IMPRESSAO MEDICA ##################
+EXECUTANDO FILA DE IMPRESSAO:
+1 - VARUS (555.333.270-46)
+
+1 - SYNDRA (155.941.270-46)
+
+RECEITUARIO
+NOME: SYNDRA
+
+USO TOPICO
+
+BEPANTOL DERM
+4 POMADA
+
+USAR 4X AOS DIA
+
+SORAKA ESTRELA (CRM-2454)
+01/12/2023
+
+RECEITUARIO
+NOME: SYNDRA
+
+USO TOPICO
+
+EFURIX
+10 POMADA
+
+USAR 1X AO DIA ANTES DE DORMIR
+
+SORAKA ESTRELA (CRM-2454)
+01/12/2023
+
+PACIENTE: SYNDRA
+CPF: 155.941.270-46
+
+SOLICITACAO DE BIOPSIA PARA AS LESOES:
+L1 - MELANOMA - PEITORAL - 12MM
+
+SORAKA ESTRELA (CRM-2454)
+1/12/2023
+
+PACIENTE: SYNDRA
+CPF: 155.941.270-46
+
+ESPECIALIDADE ENCAMINHADA: CARDIOLOGIA/ANESTESISTA
+MOTIVO:AVALIACAO DE RISCO CIRURGICO
+
+SORAKA ESTRELA (CRM-2454)
+1/12/2023
+
+NUMERO TOTAL DE PACIENTES ATENDIDOS: 2
+IDADE MEDIA: 42
+DISTRIBUICAO POR GENERO:
+- FEMININO: 2
+- MASCULINO: 2
+- OUTROS: 3
+TAMANHO MEDIO DAS LESOES: 15
+NUMERO TOTAL DE LESOES: 4
+NUMERO TOTAL DE CIRURGIAS: 3
+NUMERO TOTAL DE CRIOTERAPIA: 1
+
+PRESSIONE QUALQUER TECLA PARA VOLTAR PARA O MENU ANTERIOR
+############################################################
+################ FILA DE IMPRESSAO MEDICA ##################
+ESCOLHA UMA OPCAO:
+	(1) EXECUTAR FILA DE IMPRESSAO
+	(2) RETORNAR AO MENU PRINCIPAL
+################################################################################### MENU PRINCIPAL #########################
+ESCOLHA UMA OPCAO:
+(4) REALIZAR CONSULTA
+(5) BUSCAR PACIENTES
+(6) RELATORIO GERAL
+(7) FILA DE IMPRESSAO
+(8) FINALIZAR O PROGRAMA
+###############################################################
+opt eh: 8
+entrou pra liberar pacientes 
+Liberando Paciente VAINE
+Liberando Paciente TRYNDAMERE
+Liberando Paciente SYNDRA
+Liberando Paciente TAHM KENCH
+Liberando Paciente TWISTED FATE
+Liberando Paciente VARUS
+Liberando Paciente TRYNDAMERE
+PACIENTES LIBERADOS
+entrou pra liberar medicos 
+Liberando MEDICO DR. MUNDO
+Liberando MEDICO SORAKA ESTRELA
+MEDICOS LIBERADOS
+entrou pra liberar SECRETARIOS 
+Liberando SECRETARIO HEIMERDINGER
+Liberando SECRETARIO VIKTOR ARAUTO
+SECRETARIOS LIBERADOS
+CHEGOU AQUI4

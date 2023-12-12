@@ -27,7 +27,11 @@ void AtendeuPaciente(tAgente* a);
 
 char* ObtemGeneroAgente(tAgente* a);
 
-void AtendeuPaciente(tAgente* a);
+void ContaPaciente(tAgente* p);
+
+int FoiContadoPaciente(tAgente* a);
+
+int ObtemIdadePaciente(tAgente* a);
 
 tAgente* ClonaAgente(tAgente* a);
 #endif

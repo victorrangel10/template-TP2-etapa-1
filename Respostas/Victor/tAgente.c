@@ -19,6 +19,7 @@ struct tAgente {
     int possuiHistoricoCancer;
     int tipoPele;
     int jaFoiAtendido;
+    int jaFoiContado;
 };
 
 tAgente* LeAgente() {
@@ -51,6 +52,8 @@ tAgente* LeAgente() {
 
     agente->possuiDiabetes = 199;
 
+    agente->jaFoiAtendido = 0;
+
     return agente;
 }
 
@@ -64,13 +67,43 @@ void RegistraAgenteBancoDados(tAgente* agente, FILE* banco) {
           fwrite(agente->telefone, sizeof(char), strlen(agente->telefone) + 1, banco);*/
     }
 }
+void ContaPaciente(tAgente* p) {
+    p->jaFoiContado = 1;
+}
 
-void AtendePaciente(tAgente* a) {
-    a->jaFoiAtendido = 1;
+int ObtemIdadePaciente(tAgente* a) {
+    char* data = ObtemDataNascimentoAgente(a);
+    int dia, mes, ano;
+    sscanf(data, "%d/%d/%d", &dia, &mes, &ano);
+
+    int diaC = 9, mesC = 11, anoC = 2023;
+
+    if (mesC > mes) {
+        return anoC - ano;
+    } else if (mesC == mes) {
+        if (dia == diaC) {
+            return anoC - ano;
+        } else {
+            return anoC - ano + 1;
+        }
+
+    } else {
+        return anoC - ano + 1;
+    }
+}
+
+int FoiContadoPaciente(tAgente* a) {
+    return a->jaFoiContado;
 }
 
 int JaFoiAtendidoPaciente(tAgente* a) {
     return a->jaFoiAtendido;
+}
+
+void AtendeuPaciente(tAgente* a) {
+    if (a) {
+        a->jaFoiAtendido = 1;
+    }
 }
 
 tAgente* RecuperaAgenteBancoDados(FILE* banco) {
@@ -89,6 +122,7 @@ tAgente* RecuperaAgenteBancoDados(FILE* banco) {
      fread(agente->nome, sizeof(char), 101, banco);
      fread(agente->telefone, sizeof(char), 15, banco);*/
 
+    agente->jaFoiContado = 0;
     return agente;
 }
 
@@ -126,12 +160,6 @@ char* ObtemCPFAgente(tAgente* a) {
 
 char* ObtemGeneroAgente(tAgente* a) {
     if (a) return a->genero;
-}
-
-void AtendeuPaciente(tAgente* a) {
-    if (a) {
-        a->jaFoiAtendido = 1;
-    }
 }
 
 tAgente* ClonaAgente(tAgente* a) {

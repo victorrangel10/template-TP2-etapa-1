@@ -14,8 +14,7 @@ typedef struct tConsulta tConsulta;
 tConsulta* criaConsulta(char* crm, char* nomeapl, tAgente* paciente);
 
 void DesalocaConsulta(tConsulta* c);
-
-void RealizaConsulta(tConsulta* consulta, tFila* fila);
+void RealizaConsulta(tConsulta* consulta, tFila* fila, FILE* bancoConsulta, FILE* bancoLesoes);
 
 void ImprimeMenuConsulta();
 
@@ -45,6 +44,6 @@ int ObtemTotalCrioterapias(tConsulta* consulta);
 
 int ObtemTotalCirurgias(tConsulta* consulta);
 
-int ObtemIdadePaciente(tConsulta* c);
-
 char* ObtemGeneroPacienteConsulta(tConsulta* c);
+
+int TemConsultaComMesmoPaciente(tConsulta** consultas, tConsulta* c, int n);
